@@ -69,6 +69,7 @@ form{
 .elementos.controles{
     right: 0%;
     border-left: gray solid 2px;
+    place-items: center;
 }
 .imgLogo{
     width: 175px;
@@ -91,7 +92,7 @@ form{
         transform: rotatey(0deg) ;
     }
     25%{
-        transform: rotatey(90deg) translatey(-50px);
+        transform: rotatey(90deg) translatey(-80px);
     }
     50%{
         transform: rotatey(180deg);
@@ -106,7 +107,7 @@ form{
 }
 .elementos.logo a{
     font-weight: bolder;
-    font-size: 20px;
+    font-size: 25px;
     color: black;
     position: absolute;
     bottom: 70px;
@@ -124,13 +125,13 @@ form{
 
 .elementos.controles h1 {
     color: rgb(0, 0, 0);
-    font-size: 50px;   
+    font-size: 40px;   
 }
 
 .elementos.controles h2 {
     
     color: rgb(0, 0, 0);
-    font-size: 30px;
+    font-size: 20px;
  
 }
 .elementos.controles h1, H2{
@@ -139,6 +140,10 @@ form{
     font-weight: bolder;
 }
 
+.elementos.controles p{
+    display: grid;
+    place-items: center;
+}
 
 .elementos.controles input[type="text"], input[type="password"] {
     font-size: 20px;
