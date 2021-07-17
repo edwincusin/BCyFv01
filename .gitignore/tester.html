@@ -1,0 +1,17 @@
+hola mundo
+
+/*formato de mensaje en caso de error o alerta*/
+
+echo "
+<script type=\"text/javascript\">alert(\"Usuario Errado o Contraseña Errada\");</script>";
+include './derechosAutor.html'; 
+
+
+//funciones en php
+
+function obtenerSexo(){
+    $consulta="SELECT * FROM public.sexo";
+    $resultado=pg_query($conexion,$consulta) or die ("error al realizar la consulta en la tabla sexo de la BBD" );
+    
+    return  $resultado ; 
+}
