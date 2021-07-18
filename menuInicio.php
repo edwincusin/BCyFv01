@@ -20,12 +20,12 @@
 
                 <div id="bienvenido">
 
-                    <img src="./img/LogoEsfoguar.png" alt="">
-                    <h1>Evolución en Seguridad y Formación Integral</h1>
+                    <img src="./img/icono_welcome.png" alt="">
+                    <h1>Banco Crecimiento y Futuro</h1>
                     <h1>
                         ¡Bienvenido!
                     </h1>
-                    <h2> a Siccopes</h2>
+                    <h2> a BCyF</h2>
                     <h3> Versión 0.01</h3>
 
                 </div>

@@ -16,21 +16,24 @@
             <div class="contenedorLogin">
 
                 <div class="elementos logo">
-                    <img src="./img/01bcyf.jpeg" class="imgLogo" >
+                    <img src="./img/01bcyftomate.jpeg" class="imgLogo">
                     <a href="">Crecimiento Y Futuro</a>
                 </div>
                 <div class="elementos controles animate__animated animate__backInLeft">
                     <!-- <h1>SICCOPES</h1> -->
                     <h1>Iniciar sesión</h1>
                     <p><img src="./img/icono_login.png" alt=""></p>
+
                     <p>
-                        <input type="text" placeholder="&#128100; Ingrese cédula" name="usuario"  maxlength="10" size="15px" required>       
-                        <input type="password" placeholder="&#128274; Ingrese contraseña" name="pwd"  maxlength="20" size="15px"  required>
+                        <input type="text" placeholder="  &#128100; Ingrese cédula" name="usuario" maxlength="10" size="18" required>
                     </p>
-                    <br>                   
+                    
                     <p>
-                        <input type="submit" value="&#128272; Ingresar" name="ingresar">       
-                        <br>                  
+                    &nbsp<input type="password" placeholder="  &#128274; Ingrese contraseña" name="pwd" maxlength="20" size="18" required>
+                    </p>
+                                 
+                    <p>
+                        <input type="submit" value="&#128272; Ingresar" name="ingresar">            
                         <input type="submit" value="&#128273 ¿Olvidó su contraseña?" >
                     </p> 
                 </div>                   
