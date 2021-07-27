@@ -21,7 +21,8 @@
                 <div id="bienvenido">
 
                     <img src="./img/icono_welcome.png" alt="">
-                    <h1>Banco Crecimiento y Futuro</h1>
+                    <h1>Siga Adelante</h1>
+                    <h2>Crecimiento y Futuro</h2>
                     <h1>
                         ¡Bienvenido!
                     </h1>

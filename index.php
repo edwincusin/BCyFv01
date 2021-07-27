@@ -17,7 +17,8 @@
 
                 <div class="elementos logo">
                     <img src="./img/01bcyftomate.jpeg" class="imgLogo">
-                    <a href="">Crecimiento Y Futuro</a>
+                    <a href="">Banco Siga Adelante</a>
+                    <p id="eslogan">Crecimiento Y Futuro</p>
                 </div>
                 <div class="elementos controles animate__animated animate__backInLeft">
                     <!-- <h1>SICCOPES</h1> -->

@@ -6,7 +6,7 @@
 
         <div class="tituloPaginaLogo">
             <!--logos  -->
-            <img src="./img/siccopespng.png">
+            <img src="./img/01bcyftomate.jpeg">
         </div>
 
         <!-- inicio menu-->
