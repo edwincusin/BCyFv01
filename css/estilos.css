@@ -248,6 +248,19 @@ form{
     top: 7px;
 }
 
+.tituloPaginaLogo h1 {
+    margin-top: 20px;
+    text-align: center;
+    text-shadow: 2px 2px 0 rgb(255, 255, 255), 12px 12px 8px rgba(255, 162, 0, 0.556);
+    font-weight: bolder;
+}
+.tituloPaginaLogo h3 {
+    text-align: center;
+    text-shadow: 2px 2px 0 rgb(255, 255, 255), 12px 12px 8px rgba(255, 162, 0, 0.556);
+    font-weight: bolder;
+    color: rgba(0, 0, 0, 0.578);
+}
+
 
 
 /*estructura menu*//*estructura menu*//*estructura menu*//*estructura menu*//*estructura menu*//*estructura menu*//*estructura menu*/

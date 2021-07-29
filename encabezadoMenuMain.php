@@ -7,6 +7,8 @@
         <div class="tituloPaginaLogo">
             <!--logos  -->
             <img src="./img/01bcyftomate.jpeg">
+            <h1> BANCO SIGA ADELANTE  </h1>
+            <h3>CRECIMIENTO Y FUTURO </h3> 
         </div>
 
         <!-- inicio menu-->
@@ -15,38 +17,38 @@
                 <li id="item_menu"><a href="./menuInicio.php">Inicio</a></li>
                 <li id="item_menu"><a href="#">Usuario</a>
                     <ul id="desp_submenu">
-                        <li><a href="./formregistroUser.php">Agregar </a></li>
+                        <li><a href="./formregistroUser.php">Agregar</a></li>
                     </ul>
                 </li>
-                <li id="item_menu"><a href="#">Personal Operativo</a>
+                <li id="item_menu"><a href="#">Apertura </a>
 
                     <ul id="desp_submenu">
-                        <li><a href="./menu_registrar_personal_operativos.php">Agregar / Información</a></li>
-                        <li><a href="#">Agregar / Referencias familiar</a></li>
+                        <li><a href="./menu_registrar_personal_operativos.php">Cuenta bancaria</a></li>
+                        
                     </ul>
 
                 </li>
-                <li id="item_menu"><a href="#">Proyecto</a>
+                <li id="item_menu"><a href="#">Transacción</a>
 
                     <ul id="desp_submenu">
-                        <li><a href="#">Agregar / Información</a></li>
-                        <li><a href="#">Inf. Seguridad Interna</a></li>
+                        <li><a href="#">Realizar deposito en efectivo</a></li>
+                        <li><a href="#">Realizar deposito con cheque</a></li>
+                        <li><a href="#">Realizar retiro</a></li>
+                        <li><a href="#">Realizar transferencia interna</a></li>
 
                     </ul>
                 </li>
-                <li id="item_menu"><a href="#">Novedad</a>
+                <li id="item_menu"><a href="#">Consultar / Imprimir</a>
                     <ul id="desp_submenu">
-                        <li><a href="#">Registrar / consultar</a></li>
+                        <li><a href="#">Estado de cuenta</a></li>
+                        <li><a href="#"></a></li>
 
                     </ul>
                 </li>
                 <li id="item_menu"><a href="#">Reportes</a>
                     <ul id="desp_submenu">
-                        <li><a href="#">Personal Operativo</a></li>
-                        <li><a href="#">Inf. Seguridad Interna</a></li>
-                        <li><a href="#">Proyectos</a></li>
-                        <li><a href="#">Novedades</a></li>
-
+                        <li><a href="#">Clientes</a></li>
+                        <li><a href="#">Usuarios</a></li>
                     </ul>
                 </li>
                 <?php  ?>
