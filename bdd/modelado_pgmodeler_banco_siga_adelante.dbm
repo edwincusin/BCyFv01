@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.7.2" last-position="6,0" last-zoom="1">
+<database name="new_database">
+</database>
+
+<schema name="public" protected="true" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<table name="persona">
+	<schema name="public"/>
+	<comment><![CDATA[usuarios del sistema y clientes]]></comment>
+	<position x="837" y="49"/>
+	<column name="cedula_per">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="apellido1_per">
+		<type name="varchar" length="25"/>
+		<comment><![CDATA[primer apellido]]></comment>
+	</column>
+	<column name="nombre1_per">
+		<type name="varchar" length="25"/>
+		<comment><![CDATA[primer nombre]]></comment>
+	</column>
+	<column name="nombre2_per">
+		<type name="varchar" length="25"/>
+		<comment><![CDATA[segiundo nombre ]]></comment>
+	</column>
+	<column name="apellido2_per">
+		<type name="varchar" length="25"/>
+	</column>
+	<column name="fechanac_per">
+		<type name="date"/>
+		<comment><![CDATA[fecha de nacimiento]]></comment>
+	</column>
+	<column name="telefono_per">
+		<type name="varchar" length="10"/>
+		<comment><![CDATA[convencional]]></comment>
+	</column>
+	<column name="celular_per">
+		<type name="varchar" length="10"/>
+	</column>
+	<column name="direcciondom_per">
+		<type name="varchar" length="50"/>
+	</column>
+	<column name="nacionalidad_per">
+		<type name="integer"/>
+		<comment><![CDATA[nacionalidad]]></comment>
+	</column>
+	<column name="estadocivil">
+		<type name="integer"/>
+		<comment><![CDATA[estado civil forenkey]]></comment>
+	</column>
+	<column name="sexo_per">
+		<type name="integer"/>
+		<comment><![CDATA[forenkey]]></comment>
+	</column>
+	<column name="intruccion_per">
+		<type name="integer"/>
+	</column>
+	<column name="actividad_per">
+		<type name="integer"/>
+		<comment><![CDATA[forenkey actividad a la que se dedica el usuario ocliente]]></comment>
+	</column>
+	<column name="tipopersona_per">
+		<type name="integer"/>
+		<comment><![CDATA[forenkey tipo de persona]]></comment>
+	</column>
+	<column name="estadopersona_per">
+		<type name="integer"/>
+		<comment><![CDATA[activo / pasivo]]></comment>
+	</column>
+	<constraint name="pk_persona" type="pk-constr" factor="100" table="public.persona">
+		<columns names="cedula_per" ref-type="src-columns"/>
+		<comment><![CDATA[clave primaria de la tambla persona]]></comment>
+	</constraint>
+</table>
+
+<table name="sexo">
+	<schema name="public"/>
+	<comment><![CDATA[sexo]]></comment>
+	<position x="80" y="129"/>
+	<column name="codigo_sex">
+		<type name="serial"/>
+	</column>
+	<column name="descripcion_sex">
+		<type name="varchar" length="15"/>
+		<comment><![CDATA[HOMBRE Y MUJER]]></comment>
+	</column>
+	<constraint name="pk_sexo" type="pk-constr" factor="100" table="public.sexo">
+		<columns names="codigo_sex" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="estadocivil">
+	<schema name="public"/>
+	<comment><![CDATA[soltero / casado / viudo / divorciado / union libre]]></comment>
+	<position x="67" y="69"/>
+	<column name="codigo_estciv">
+		<type name="serial"/>
+	</column>
+	<column name="descripcion_estciv">
+		<type name="varchar" length="20"/>
+	</column>
+	<constraint name="pk_estadocivil" type="pk-constr" factor="100" table="public.estadocivil">
+		<columns names="codigo_estciv" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="intruccion">
+	<schema name="public"/>
+	<comment><![CDATA[nivel de instruccion academico / inicial / primaria / secundaria / superior/]]></comment>
+	<position x="87" y="189"/>
+	<column name="codigo_int">
+		<type name="serial"/>
+	</column>
+	<column name="descripcion_int">
+		<type name="varchar" length="20"/>
+	</column>
+	<constraint name="pk_intruccion" type="pk-constr" factor="100" table="public.intruccion">
+		<columns names="codigo_int" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="nacionalidad">
+	<schema name="public"/>
+	<comment><![CDATA[nacionalidad persona / ecuatoriano / peruano/colombiano]]></comment>
+	<position x="78" y="10"/>
+	<column name="codigo_nac">
+		<type name="serial"/>
+	</column>
+	<column name="descripcion_nac">
+		<type name="varchar" length="20"/>
+	</column>
+	<constraint name="pk_nacionalidad" type="pk-constr" factor="100" table="public.nacionalidad">
+		<columns names="codigo_nac" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="actividad">
+	<schema name="public"/>
+	<comment><![CDATA[obrero / servicios generales/seguridad/comerciante/educador/ventas/]]></comment>
+	<position x="86" y="248"/>
+	<column name="codigo_act">
+		<type name="serial"/>
+	</column>
+	<column name="descripcion_act">
+		<type name="varchar" length="30"/>
+	</column>
+	<constraint name="pk_actividad" type="pk-constr" factor="100" table="public.actividad">
+		<columns names="codigo_act" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="tipopersona">
+	<schema name="public"/>
+	<position x="109" y="306"/>
+	<column name="codigo_tipper">
+		<type name="serial"/>
+	</column>
+	<column name="descripcion_tipper">
+		<type name="varchar" length="30"/>
+	</column>
+</table>
+
+<table name="estadopersona">
+	<schema name="public"/>
+	<comment><![CDATA[activo/pasivo]]></comment>
+	<position x="65" y="363"/>
+	<column name="codigo_estper">
+		<type name="serial"/>
+	</column>
+	<column name="descripcion_estper">
+		<type name="varchar" length="15"/>
+	</column>
+	<constraint name="pk_estadopersona" type="pk-constr" factor="100" table="public.estadopersona">
+		<columns names="codigo_estper" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+</dbmodel>
