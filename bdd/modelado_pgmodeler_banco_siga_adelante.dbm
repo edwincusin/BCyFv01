@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.7.2" last-position="6,0" last-zoom="1">
+<dbmodel pgmodeler-ver="0.7.2" last-position="0,154" last-zoom="0.9">
 <database name="new_database">
 </database>
 
@@ -13,7 +13,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="persona">
 	<schema name="public"/>
 	<comment><![CDATA[usuarios del sistema y clientes]]></comment>
-	<position x="837" y="49"/>
+	<position x="665.889" y="12.3333"/>
 	<column name="cedula_per">
 		<type name="varchar" length="20"/>
 	</column>
@@ -44,6 +44,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="varchar" length="10"/>
 	</column>
 	<column name="direcciondom_per">
+		<type name="varchar" length="50"/>
+	</column>
+	<column name="contraseña_per">
 		<type name="varchar" length="50"/>
 	</column>
 	<column name="nacionalidad_per">
@@ -180,5 +183,171 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<columns names="codigo_estper" ref-type="src-columns"/>
 	</constraint>
 </table>
+
+<table name="cuentabancaria">
+	<schema name="public"/>
+	<position x="658.889" y="483.333"/>
+	<column name="numerocuenta_cueban">
+		<type name="serial"/>
+	</column>
+	<column name="fechaapertura_cueban">
+		<type name="date"/>
+	</column>
+	<column name="saldo_cueban">
+		<type name="float"/>
+	</column>
+	<column name="tipocuenta_cueban">
+		<type name="integer"/>
+	</column>
+	<column name="persona_cueban">
+		<type name="character" length="20"/>
+	</column>
+	<column name="estado_cueban">
+		<type name="integer"/>
+	</column>
+	<constraint name="pk_cuentabancaria" type="pk-constr" factor="100" table="public.cuentabancaria">
+		<columns names="numerocuenta_cueban" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="tipocuenta">
+	<schema name="public"/>
+	<position x="77.7778" y="480"/>
+	<column name="codigo_tipcue">
+		<type name="serial"/>
+	</column>
+	<column name="descripcion_tipcue">
+		<type name="varchar" length="30"/>
+	</column>
+	<constraint name="pk_tipocuenta" type="pk-constr" factor="100" table="public.tipocuenta">
+		<columns names="codigo_tipcue" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="estadocuenta">
+	<schema name="public"/>
+	<position x="74.4445" y="537.778"/>
+	<column name="codigo_estcue">
+		<type name="serial"/>
+	</column>
+	<column name="descripcion_estcue">
+		<type name="varchar" length="15"/>
+	</column>
+	<constraint name="pk_estadocuenta" type="pk-constr" factor="100" table="public.estadocuenta">
+		<columns names="codigo_estcue" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="trandeposito">
+	<schema name="public"/>
+	<position x="1104.44" y="371.111"/>
+	<column name="codigo_trandep">
+		<type name="serial"/>
+	</column>
+</table>
+
+<constraint name="fk_nacionalidad" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.nacionalidad" table="public.persona">
+	<columns names="nacionalidad_per" ref-type="src-columns"/>
+	<columns names="codigo_nac" ref-type="dst-columns"/>
+</constraint>
+<constraint name="fk_estadocivil" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.estadocivil" table="public.persona">
+	<columns names="estadocivil" ref-type="src-columns"/>
+	<columns names="codigo_estciv" ref-type="dst-columns"/>
+</constraint>
+<constraint name="fk_sexo" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.sexo" table="public.persona">
+	<columns names="sexo_per" ref-type="src-columns"/>
+	<columns names="codigo_sex" ref-type="dst-columns"/>
+</constraint>
+<constraint name="fk_instruccion" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.intruccion" table="public.persona">
+	<columns names="intruccion_per" ref-type="src-columns"/>
+	<columns names="codigo_int" ref-type="dst-columns"/>
+</constraint>
+<constraint name="fk_actividad" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.actividad" table="public.persona">
+	<columns names="actividad_per" ref-type="src-columns"/>
+	<columns names="codigo_act" ref-type="dst-columns"/>
+</constraint>
+<constraint name="fk_tipopersona" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tipopersona" table="public.persona">
+	<columns names="tipopersona_per" ref-type="src-columns"/>
+	<columns names="codigo_tipper" ref-type="dst-columns"/>
+</constraint>
+<constraint name="fk_estadopersona" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.estadopersona" table="public.persona">
+	<columns names="estadopersona_per" ref-type="src-columns"/>
+	<columns names="codigo_estper" ref-type="dst-columns"/>
+</constraint>
+<constraint name="fk_persona" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.persona" table="public.cuentabancaria">
+	<columns names="persona_cueban" ref-type="src-columns"/>
+	<columns names="cedula_per" ref-type="dst-columns"/>
+</constraint>
+<constraint name="fk_tipocuenta" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tipocuenta" table="public.cuentabancaria">
+	<columns names="tipocuenta_cueban" ref-type="src-columns"/>
+	<columns names="codigo_tipcue" ref-type="dst-columns"/>
+</constraint>
+<constraint name="fk_estadocuenta" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.estadocuenta" table="public.cuentabancaria">
+	<columns names="estado_cueban" ref-type="src-columns"/>
+	<columns names="codigo_estcue" ref-type="dst-columns"/>
+</constraint>
+<relationship name="rel_persona_nacionalidad" type="relfk"
+	 src-table="public.persona"
+	 dst-table="public.nacionalidad"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_persona_estadocivil" type="relfk"
+	 src-table="public.persona"
+	 dst-table="public.estadocivil"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_persona_sexo" type="relfk"
+	 src-table="public.persona"
+	 dst-table="public.sexo"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_persona_intruccion" type="relfk"
+	 src-table="public.persona"
+	 dst-table="public.intruccion"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_persona_actividad" type="relfk"
+	 src-table="public.persona"
+	 dst-table="public.actividad"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_persona_estadopersona" type="relfk"
+	 src-table="public.persona"
+	 dst-table="public.estadopersona"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_persona_tipopersona" type="relfk"
+	 src-table="public.persona"
+	 dst-table="public.tipopersona"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_cuentabancaria_persona" type="relfk"
+	 src-table="public.cuentabancaria"
+	 dst-table="public.persona"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_cuentabancaria_tipocuenta" type="relfk"
+	 src-table="public.cuentabancaria"
+	 dst-table="public.tipocuenta"
+	 src-required="true" dst-required="true">
+	<label ref-type="name-label">
+		<position x="-15.3298" y="-54.854"/>
+	</label>
+</relationship>
+
+<relationship name="rel_cuentabancaria_estadocuenta" type="relfk"
+	 src-table="public.cuentabancaria"
+	 dst-table="public.estadocuenta"
+	 src-required="true" dst-required="true"/>
 
 </dbmodel>
