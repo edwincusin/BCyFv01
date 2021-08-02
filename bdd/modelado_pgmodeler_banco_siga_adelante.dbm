@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.7.2" last-position="0,154" last-zoom="0.9">
+<dbmodel pgmodeler-ver="0.7.2" last-position="44,0" last-zoom="0.9">
 <database name="new_database">
 </database>
 
@@ -46,9 +46,6 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="direcciondom_per">
 		<type name="varchar" length="50"/>
 	</column>
-	<column name="contraseña_per">
-		<type name="varchar" length="50"/>
-	</column>
 	<column name="nacionalidad_per">
 		<type name="integer"/>
 		<comment><![CDATA[nacionalidad]]></comment>
@@ -67,10 +64,6 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="actividad_per">
 		<type name="integer"/>
 		<comment><![CDATA[forenkey actividad a la que se dedica el usuario ocliente]]></comment>
-	</column>
-	<column name="tipopersona_per">
-		<type name="integer"/>
-		<comment><![CDATA[forenkey tipo de persona]]></comment>
 	</column>
 	<column name="estadopersona_per">
 		<type name="integer"/>
@@ -158,21 +151,25 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="tipopersona">
+<table name="tipousuario">
 	<schema name="public"/>
-	<position x="109" y="306"/>
-	<column name="codigo_tipper">
+	<comment><![CDATA[privilegio de usuario / administrador / empleado / cliente]]></comment>
+	<position x="1169" y="236"/>
+	<column name="codigo_tipusr">
 		<type name="serial"/>
 	</column>
-	<column name="descripcion_tipper">
+	<column name="descripcion_tipusr">
 		<type name="varchar" length="30"/>
 	</column>
+	<constraint name="pk_tipo_usuario" type="pk-constr" factor="100" table="public.tipousuario">
+		<columns names="codigo_tipusr" ref-type="src-columns"/>
+	</constraint>
 </table>
 
 <table name="estadopersona">
 	<schema name="public"/>
 	<comment><![CDATA[activo/pasivo]]></comment>
-	<position x="65" y="363"/>
+	<position x="116.111" y="306.333"/>
 	<column name="codigo_estper">
 		<type name="serial"/>
 	</column>
@@ -226,7 +223,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="estadocuenta">
 	<schema name="public"/>
-	<position x="74.4445" y="537.778"/>
+	<position x="74.4445" y="595.556"/>
 	<column name="codigo_estcue">
 		<type name="serial"/>
 	</column>
@@ -240,10 +237,49 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="trandeposito">
 	<schema name="public"/>
-	<position x="1104.44" y="371.111"/>
+	<position x="1117.78" y="556.667"/>
 	<column name="codigo_trandep">
 		<type name="serial"/>
 	</column>
+</table>
+
+<table name="usuario">
+	<schema name="public"/>
+	<comment><![CDATA[cuentas de usuario]]></comment>
+	<position x="1088.89" y="32.2222"/>
+	<column name="usuario_usr">
+		<type name="varchar" length="25"/>
+	</column>
+	<column name="contraseña_usr">
+		<type name="varchar" length="50"/>
+	</column>
+	<column name="tipousuario_usr">
+		<type name="integer"/>
+	</column>
+	<column name="estado_usr">
+		<type name="integer"/>
+	</column>
+	<column name="persona_usr">
+		<type name="varchar" length="20"/>
+	</column>
+	<constraint name="pk_usuario" type="pk-constr" factor="100" table="public.usuario">
+		<columns names="usuario_usr" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="estadousuario">
+	<schema name="public"/>
+	<comment><![CDATA[activo o pasivo]]></comment>
+	<position x="922.222" y="231.111"/>
+	<column name="codigo_esturs">
+		<type name="serial"/>
+	</column>
+	<column name="descripcion_estusr">
+		<type name="varchar" length="25"/>
+	</column>
+	<constraint name="pk_estado_usuario" type="pk-constr" factor="100" table="public.estadousuario">
+		<columns names="codigo_esturs" ref-type="src-columns"/>
+	</constraint>
 </table>
 
 <constraint name="fk_nacionalidad" type="fk-constr" comparison-type="MATCH FULL"
@@ -271,11 +307,6 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<columns names="actividad_per" ref-type="src-columns"/>
 	<columns names="codigo_act" ref-type="dst-columns"/>
 </constraint>
-<constraint name="fk_tipopersona" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tipopersona" table="public.persona">
-	<columns names="tipopersona_per" ref-type="src-columns"/>
-	<columns names="codigo_tipper" ref-type="dst-columns"/>
-</constraint>
 <constraint name="fk_estadopersona" type="fk-constr" comparison-type="MATCH FULL"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.estadopersona" table="public.persona">
 	<columns names="estadopersona_per" ref-type="src-columns"/>
@@ -295,6 +326,21 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.estadocuenta" table="public.cuentabancaria">
 	<columns names="estado_cueban" ref-type="src-columns"/>
 	<columns names="codigo_estcue" ref-type="dst-columns"/>
+</constraint>
+<constraint name="fk_tipousuario" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tipousuario" table="public.usuario">
+	<columns names="tipousuario_usr" ref-type="src-columns"/>
+	<columns names="codigo_tipusr" ref-type="dst-columns"/>
+</constraint>
+<constraint name="fk_estado_usuario" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.estadousuario" table="public.usuario">
+	<columns names="estado_usr" ref-type="src-columns"/>
+	<columns names="codigo_esturs" ref-type="dst-columns"/>
+</constraint>
+<constraint name="pk_persona_usuario" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.persona" table="public.usuario">
+	<columns names="persona_usr" ref-type="src-columns"/>
+	<columns names="cedula_per" ref-type="dst-columns"/>
 </constraint>
 <relationship name="rel_persona_nacionalidad" type="relfk"
 	 src-table="public.persona"
@@ -324,12 +370,11 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <relationship name="rel_persona_estadopersona" type="relfk"
 	 src-table="public.persona"
 	 dst-table="public.estadopersona"
-	 src-required="true" dst-required="true"/>
-
-<relationship name="rel_persona_tipopersona" type="relfk"
-	 src-table="public.persona"
-	 dst-table="public.tipopersona"
-	 src-required="true" dst-required="true"/>
+	 src-required="true" dst-required="true">
+	<label ref-type="dst-label">
+		<position x="60.9677" y="9.91111"/>
+	</label>
+</relationship>
 
 <relationship name="rel_cuentabancaria_persona" type="relfk"
 	 src-table="public.cuentabancaria"
@@ -348,6 +393,21 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <relationship name="rel_cuentabancaria_estadocuenta" type="relfk"
 	 src-table="public.cuentabancaria"
 	 dst-table="public.estadocuenta"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_usuario_tipousuario" type="relfk"
+	 src-table="public.usuario"
+	 dst-table="public.tipousuario"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_usuario_estadousuario" type="relfk"
+	 src-table="public.usuario"
+	 dst-table="public.estadousuario"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_usuario_persona" type="relfk"
+	 src-table="public.usuario"
+	 dst-table="public.persona"
 	 src-required="true" dst-required="true"/>
 
 </dbmodel>

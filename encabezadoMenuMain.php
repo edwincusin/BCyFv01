@@ -17,14 +17,16 @@
                 <li id="item_menu"><a href="./menuInicio.php">Inicio</a></li>
                 <li id="item_menu"><a href="#">Usuario</a>
                     <ul id="desp_submenu">
-                        <li><a href="./formregistroUser.php">Agregar</a></li>
+                        <li><a href="./formregistroUserSis.php">Registrar información</a></li>
+                        <li><a href="./formregistroUserSis.php">Crear empleado</a></li>
+                        <li><a href="./formregistroUser.php">Crear cliente</a></li>
+
                     </ul>
                 </li>
                 <li id="item_menu"><a href="#">Apertura </a>
 
                     <ul id="desp_submenu">
-                        <li><a href="./menu_registrar_personal_operativos.php">Cuenta bancaria</a></li>
-                        
+                        <li><a href="./menu_registrar_personal_operativos.php">Agregar cuenta bancaria</a></li>
                     </ul>
 
                 </li>
