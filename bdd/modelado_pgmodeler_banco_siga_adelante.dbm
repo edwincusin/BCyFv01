@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.7.2" last-position="24,0" last-zoom="0.9">
+<dbmodel pgmodeler-ver="0.7.2" last-position="23,156" last-zoom="0.9">
 <database name="new_database">
 </database>
 
@@ -172,7 +172,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="estadopersona">
 	<schema name="public"/>
 	<comment><![CDATA[activo/pasivo]]></comment>
-	<position x="70.5556" y="351.889"/>
+	<position x="65" y="381.889"/>
 	<column name="codigo_estper">
 		<type name="serial"/>
 	</column>

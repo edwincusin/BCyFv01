@@ -34,7 +34,9 @@ function obtenerSexo(){
 <html lang="es">
 
     <head>
-        <?php include 'headLib.html';?>
+        <?php include 'headLib.html'; ?>
+        <?php  require_once ('./sqlcombobox.php'); //* se hace un solo llamado para todo el  documento las consultas de combobox*/ ?>
+
         <script type="text/javascript" src="./jsValidarCedulaEcu.js"></script>
         <title>Gestión de usuario</title>
     </head>    
@@ -77,8 +79,9 @@ function obtenerSexo(){
                                 <td>
                                      <select name="" id="" name="descripcionSexo" required>
                                         <option disabled selected value="">Seleccionar</option>
-                                        <?php                                            
-                                            require_once ('./sqlcombobox.php'); //* se hace un solo llamado para todo el  documento las consultas de combobox*/                                                                                      
+                                        <?php                                
+                                        require_once ('./sqlcombobox.php'); //* se hace un solo llamado para todo el  documento las consultas de combobox*/
+                                                                                               
                                             if($numregSexo>0){                                         
                                             while ($row=pg_fetch_array($resultadoSexo)){
                                         ?> 

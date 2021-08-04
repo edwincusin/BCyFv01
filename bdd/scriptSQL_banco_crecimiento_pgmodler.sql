@@ -180,7 +180,7 @@ CREATE TABLE public.trandeposito(
 -- DROP TABLE public.usuario;
 CREATE TABLE public.usuario(
 	usuario_usr varchar(25),
-	contraseña_usr varchar(50),
+	contrasena_usr varchar(50),
 	tipousuario_usr integer,
 	estado_usr integer,
 	persona_usr varchar(20),

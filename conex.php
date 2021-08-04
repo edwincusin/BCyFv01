@@ -2,7 +2,7 @@
 function conectarBD(){
     /*variables para la conexion*/
     $host="host=localhost";
-    $dbname="dbname=siccopes2021v01"; 
+    $dbname="dbname=banco_sa"; 
     $port="port=5432"; 
     $user="user=postgres"; 
     $password="password=admin1996";

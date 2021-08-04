@@ -2,29 +2,46 @@
 require_once './conex.php';
 $conexion=conectarBD();
 
-/*para llenar combox sexo*/
-$consulta="SELECT * FROM public.sexo";
-$resultado=pg_query($conexion,$consulta) or die ("error al realizar la consulta en la tabla sexo de la BBD" );
+
+/*CONSULTA PARA LLENAR COMBOX NACIONALIDAD */
+$consulta="select *from public.nacionalidad";
+$resultado=pg_query($conexion,$consulta) or die ("error al realizar la consulta en la tabla nacionalidad");
+$resultadoNacionalidad=$resultado;
+$numRegNacionalidad=pg_num_rows($resultadoNacionalidad);
+
+
+/* CONSULTA PARA LLENAR COMBOX ESTADO CIVIL*/
+$consulta="SELECT *FROM public.estadocivil";
+$resultado=pg_query($conexion,$consulta) or die ("error al realizar la consulta en la tabla EstadoCivil");
+$resultadoEstadoCivil=$resultado;
+$numRegEstadoCivil=pg_num_rows($resultadoEstadoCivil);
+
+
+/* CONSULTA PARA LLENAR COMBOX NIVEL DE INSTRUCCION*/
+$consulta="SELECT *FROM public.intruccion";
+$resultado=pg_query($conexion,$consulta) or die ("error al realizar la consulta en la tabla Instruccion");
+$resultadoInstruccion=$resultado;
+$numRegInstruccion=pg_num_rows($resultadoInstruccion);
+
+
+/* CONSULTA PARA LLENAR COMBOX  SEXO*/
+$consulta="SELECT *FROM public.sexo";
+$resultado=pg_query($conexion,$consulta) or die ("error al realizar la consulta en la tabla Sexo");
 $resultadoSexo=$resultado;
-$numregSexo=pg_num_rows($resultadoSexo);
+$numRegSexo=pg_num_rows($resultadoSexo);
 
-/*para llenar combox cargo*/
-$consulta="SELECT * FROM public.cargo";
-$resultado=pg_query($conexion,$consulta) or die ("error al realizar la consulta en la tabla sexo de la BBD" );
-$resultadoCargo=$resultado;
-$numregCargo=pg_num_rows($resultadoCargo);
+/* CONSULTA PARA LLENAR COMBOX ACTIVIDAD LABORAL*/
+$consulta="SELECT *FROM public.actividad";
+$resultado=pg_query($conexion,$consulta) or die ("error al realizar la consulta en la tabla Actividad");
+$resultadoActividad=$resultado;
+$numRegActividad=pg_num_rows($resultadoActividad);
 
-/*para llenar el combobox estado laboral */
-$consulta="SELECT * FROM public.estadolaboral";
-$resultado=pg_query($conexion,$consulta) or die ("error al realizar la consulta en la tabla sexo de la BBD" );
-$resultadoEstadoLab=$resultado;
-$numregEstadoLab=pg_num_rows($resultadoEstadoLab);
+/* CONSULTA PARA LLENAR COMBOX ESTADO PERSONA*/
+$consulta="SELECT *FROM public.estadopersona";
+$resultado=pg_query($conexion,$consulta) or die ("error al realizar la consulta en la tabla EstadoPersona");
+$resultadoEstadoPersona=$resultado;
+$numRegEstadoPersona=pg_num_rows($resultadoEstadoPersona);
 
-/*para llenar el combobox tipo de usuario */
-$consulta="SELECT * FROM public.tipousuario";
-$resultado=pg_query($conexion,$consulta) or die ("error al realizar la consulta en la tabla sexo de la BBD" );
-$resultadoTipoUsuario=$resultado;
-$numregTipoUsuario=pg_num_rows($resultadoTipoUsuario);
 
 // pg_free_result($resultado);
 pg_close($conexion);
