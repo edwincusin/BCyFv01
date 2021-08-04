@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.7.2" last-position="44,0" last-zoom="0.9">
+<dbmodel pgmodeler-ver="0.7.2" last-position="24,78" last-zoom="0.9">
 <database name="new_database">
 </database>
 
@@ -43,8 +43,11 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="celular_per">
 		<type name="varchar" length="10"/>
 	</column>
-	<column name="direcciondom_per">
+	<column name="email_per">
 		<type name="varchar" length="50"/>
+	</column>
+	<column name="direcciondom_per">
+		<type name="varchar" length="80"/>
 	</column>
 	<column name="nacionalidad_per">
 		<type name="integer"/>
@@ -223,7 +226,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="estadocuenta">
 	<schema name="public"/>
-	<position x="74.4445" y="595.556"/>
+	<position x="73.3334" y="553.333"/>
 	<column name="codigo_estcue">
 		<type name="serial"/>
 	</column>

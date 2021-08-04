@@ -42,22 +42,22 @@
                         <table>
                             <tr>
                                 <td> <label for=""><span>N° Cédula / Ruc:</span></label> </td>
-                                <td> <input type="text" size="20" maxlength="10"  placeholder="Cédula" required> </td>
+                                <td> <input type="text" size="20" maxlength="10"  placeholder="ej. 1234567890" required> </td>
 
                                 <td> <label for=""><span>Apellido paterno:</span></label> </td>
                                 <td> <input type="text" size="20" maxlength="18" placeholder="Primer apellido" required> </td>
                              
                                 <td> <label for=""><span>Apellido materno:</span></label> </td>
-                                <td> <input type="text" size="20" maxlength="18" placeholder="Primer nombre" required> </td> 
+                                <td> <input type="text" size="20" maxlength="18" placeholder="Segundo apellido" required> </td> 
                                 
                             </tr>
                                 
                             <tr>
                                 <td> <label for=""><span>Primer nombre:</span></label> </td>
-                                <td> <input type="text" size="20" maxlength="10" placeholder="Primer apellido" required> </td>
+                                <td> <input type="text" size="20" maxlength="10" placeholder="Primer nombre" required> </td>
                              
                                 <td> <label for=""><span>Segundo nombre:</span></label> </td>
-                                <td> <input type="text" size="20" maxlength="09" placeholder="Primer nombre" required> </td>  
+                                <td> <input type="text" size="20" maxlength="09" placeholder="Segundo nombre" required> </td>  
 
                                 <td> <label for=""><span> Fecha de nacimiento:</span></label> </td>
                                 <td> <input type="date" name="fechaRegistro"  min="1990-01-01" max="<?php echo date ("Y-m-d")?>">; </td>
@@ -71,7 +71,7 @@
                                 <td> <input type="text" size="20" maxlength="18" placeholder="ej. 02-123-4567" required> </td>  
                               
                                 <td> <label for=""><span>Email @:</span></label> </td>
-                                <td> <input type="email" size="33" id="input_email" maxlength="40" placeholder="ejemplo18@email.com" required> </span> </td>     
+                                <td> <input type="email" size="33" id="input_email" maxlength="40" placeholder="ej. nombre18@email.com" required> </span> </td>     
 
                             </tr>
 

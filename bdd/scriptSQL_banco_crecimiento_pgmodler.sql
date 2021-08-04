@@ -8,7 +8,7 @@ SET check_function_bodies = false;
 -- ddl-end --
 
 
--- Database creation must be done outside an multicommand file.
+-- Database creation must be done   outside an multicommand file.
 -- These commands were put in this file only for convenience.
 -- -- object: new_database | type: DATABASE --
 -- -- DROP DATABASE new_database;
@@ -28,13 +28,13 @@ CREATE TABLE public.persona(
 	fechanac_per date,
 	telefono_per varchar(10),
 	celular_per varchar(10),
-	direcciondom_per varchar(50),
+	email_per varchar(50),
+	direcciondom_per varchar(80),
 	nacionalidad_per integer,
 	estadocivil integer,
 	sexo_per integer,
 	intruccion_per integer,
 	actividad_per integer,
-	tipopersona_per integer,
 	estadopersona_per integer,
 	CONSTRAINT pk_persona PRIMARY KEY (cedula_per)
 
@@ -50,7 +50,6 @@ COMMENT ON COLUMN public.persona.nacionalidad_per IS 'nacionalidad';
 COMMENT ON COLUMN public.persona.estadocivil IS 'estado civil forenkey';
 COMMENT ON COLUMN public.persona.sexo_per IS 'forenkey';
 COMMENT ON COLUMN public.persona.actividad_per IS 'forenkey actividad a la que se dedica el usuario ocliente';
-COMMENT ON COLUMN public.persona.tipopersona_per IS 'forenkey tipo de persona';
 COMMENT ON COLUMN public.persona.estadopersona_per IS 'activo / pasivo';
 COMMENT ON CONSTRAINT pk_persona ON public.persona IS 'clave primaria de la tambla persona';
 -- ddl-end --
@@ -116,13 +115,18 @@ CREATE TABLE public.actividad(
 COMMENT ON TABLE public.actividad IS 'obrero / servicios generales/seguridad/comerciante/educador/ventas/';
 -- ddl-end --
 
--- object: public.tipopersona | type: TABLE --
--- DROP TABLE public.tipopersona;
-CREATE TABLE public.tipopersona(
-	codigo_tipper serial,
-	descripcion_tipper varchar(30)
+-- object: public.tipousuario | type: TABLE --
+-- DROP TABLE public.tipousuario;
+CREATE TABLE public.tipousuario(
+	codigo_tipusr serial,
+	descripcion_tipusr varchar(30),
+	CONSTRAINT pk_tipo_usuario PRIMARY KEY (codigo_tipusr)
+
 );
 -- ddl-end --
+COMMENT ON TABLE public.tipousuario IS 'privilegio de usuario / administrador / empleado / cliente';
+-- ddl-end --
+
 -- object: public.estadopersona | type: TABLE --
 -- DROP TABLE public.estadopersona;
 CREATE TABLE public.estadopersona(
@@ -134,5 +138,165 @@ CREATE TABLE public.estadopersona(
 -- ddl-end --
 COMMENT ON TABLE public.estadopersona IS 'activo/pasivo';
 -- ddl-end --
+
+-- object: public.cuentabancaria | type: TABLE --
+-- DROP TABLE public.cuentabancaria;
+CREATE TABLE public.cuentabancaria(
+	numerocuenta_cueban serial,
+	fechaapertura_cueban date,
+	saldo_cueban float,
+	tipocuenta_cueban integer,
+	persona_cueban character(20),
+	estado_cueban integer,
+	CONSTRAINT pk_cuentabancaria PRIMARY KEY (numerocuenta_cueban)
+
+);
+-- ddl-end --
+-- object: public.tipocuenta | type: TABLE --
+-- DROP TABLE public.tipocuenta;
+CREATE TABLE public.tipocuenta(
+	codigo_tipcue serial,
+	descripcion_tipcue varchar(30),
+	CONSTRAINT pk_tipocuenta PRIMARY KEY (codigo_tipcue)
+
+);
+-- ddl-end --
+-- object: public.estadocuenta | type: TABLE --
+-- DROP TABLE public.estadocuenta;
+CREATE TABLE public.estadocuenta(
+	codigo_estcue serial,
+	descripcion_estcue varchar(15),
+	CONSTRAINT pk_estadocuenta PRIMARY KEY (codigo_estcue)
+
+);
+-- ddl-end --
+-- object: public.trandeposito | type: TABLE --
+-- DROP TABLE public.trandeposito;
+CREATE TABLE public.trandeposito(
+	codigo_trandep serial
+);
+-- ddl-end --
+-- object: public.usuario | type: TABLE --
+-- DROP TABLE public.usuario;
+CREATE TABLE public.usuario(
+	usuario_usr varchar(25),
+	contraseña_usr varchar(50),
+	tipousuario_usr integer,
+	estado_usr integer,
+	persona_usr varchar(20),
+	CONSTRAINT pk_usuario PRIMARY KEY (usuario_usr)
+
+);
+-- ddl-end --
+COMMENT ON TABLE public.usuario IS 'cuentas de usuario';
+-- ddl-end --
+
+-- object: public.estadousuario | type: TABLE --
+-- DROP TABLE public.estadousuario;
+CREATE TABLE public.estadousuario(
+	codigo_esturs serial,
+	descripcion_estusr varchar(25),
+	CONSTRAINT pk_estado_usuario PRIMARY KEY (codigo_esturs)
+
+);
+-- ddl-end --
+COMMENT ON TABLE public.estadousuario IS 'activo o pasivo';
+-- ddl-end --
+
+-- object: fk_nacionalidad | type: CONSTRAINT --
+-- ALTER TABLE public.persona DROP CONSTRAINT fk_nacionalidad;
+ALTER TABLE public.persona ADD CONSTRAINT fk_nacionalidad FOREIGN KEY (nacionalidad_per)
+REFERENCES public.nacionalidad (codigo_nac) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: fk_estadocivil | type: CONSTRAINT --
+-- ALTER TABLE public.persona DROP CONSTRAINT fk_estadocivil;
+ALTER TABLE public.persona ADD CONSTRAINT fk_estadocivil FOREIGN KEY (estadocivil)
+REFERENCES public.estadocivil (codigo_estciv) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: fk_sexo | type: CONSTRAINT --
+-- ALTER TABLE public.persona DROP CONSTRAINT fk_sexo;
+ALTER TABLE public.persona ADD CONSTRAINT fk_sexo FOREIGN KEY (sexo_per)
+REFERENCES public.sexo (codigo_sex) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: fk_instruccion | type: CONSTRAINT --
+-- ALTER TABLE public.persona DROP CONSTRAINT fk_instruccion;
+ALTER TABLE public.persona ADD CONSTRAINT fk_instruccion FOREIGN KEY (intruccion_per)
+REFERENCES public.intruccion (codigo_int) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: fk_actividad | type: CONSTRAINT --
+-- ALTER TABLE public.persona DROP CONSTRAINT fk_actividad;
+ALTER TABLE public.persona ADD CONSTRAINT fk_actividad FOREIGN KEY (actividad_per)
+REFERENCES public.actividad (codigo_act) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: fk_estadopersona | type: CONSTRAINT --
+-- ALTER TABLE public.persona DROP CONSTRAINT fk_estadopersona;
+ALTER TABLE public.persona ADD CONSTRAINT fk_estadopersona FOREIGN KEY (estadopersona_per)
+REFERENCES public.estadopersona (codigo_estper) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: fk_persona | type: CONSTRAINT --
+-- ALTER TABLE public.cuentabancaria DROP CONSTRAINT fk_persona;
+ALTER TABLE public.cuentabancaria ADD CONSTRAINT fk_persona FOREIGN KEY (persona_cueban)
+REFERENCES public.persona (cedula_per) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: fk_tipocuenta | type: CONSTRAINT --
+-- ALTER TABLE public.cuentabancaria DROP CONSTRAINT fk_tipocuenta;
+ALTER TABLE public.cuentabancaria ADD CONSTRAINT fk_tipocuenta FOREIGN KEY (tipocuenta_cueban)
+REFERENCES public.tipocuenta (codigo_tipcue) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: fk_estadocuenta | type: CONSTRAINT --
+-- ALTER TABLE public.cuentabancaria DROP CONSTRAINT fk_estadocuenta;
+ALTER TABLE public.cuentabancaria ADD CONSTRAINT fk_estadocuenta FOREIGN KEY (estado_cueban)
+REFERENCES public.estadocuenta (codigo_estcue) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: fk_tipousuario | type: CONSTRAINT --
+-- ALTER TABLE public.usuario DROP CONSTRAINT fk_tipousuario;
+ALTER TABLE public.usuario ADD CONSTRAINT fk_tipousuario FOREIGN KEY (tipousuario_usr)
+REFERENCES public.tipousuario (codigo_tipusr) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: fk_estado_usuario | type: CONSTRAINT --
+-- ALTER TABLE public.usuario DROP CONSTRAINT fk_estado_usuario;
+ALTER TABLE public.usuario ADD CONSTRAINT fk_estado_usuario FOREIGN KEY (estado_usr)
+REFERENCES public.estadousuario (codigo_esturs) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: pk_persona_usuario | type: CONSTRAINT --
+-- ALTER TABLE public.usuario DROP CONSTRAINT pk_persona_usuario;
+ALTER TABLE public.usuario ADD CONSTRAINT pk_persona_usuario FOREIGN KEY (persona_usr)
+REFERENCES public.persona (cedula_per) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
 
 
