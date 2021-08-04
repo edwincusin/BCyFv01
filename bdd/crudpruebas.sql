@@ -63,7 +63,12 @@ INSERT INTO public.estadopersona(
 
 --+++++++++++++++SCRIPT PARA TABLA PERSONA++++++++++++++++--
 
-
+INSERT INTO public.persona(
+	cedula_per, apellido1_per, apellido2_per, nombre1_per, nombre2_per, fechanac_per, telefono_per, celular_per, email_per, direcciondom_per, nacionalidad_per, estadocivil, sexo_per, intruccion_per, actividad_per, estadopersona_per)
+	VALUES ('1753081050', 'CUSIN', 'ANTAMBA', 'EDWIN', 'GEOVANY', '23-06-1997', '062919080', '0961918920', 'EGA.CUSIN@YAVIRAC.EDU.EC', 'PICHINCHA/QUITO/BELISARIO QUEVEDO/ SAN VICENTE Y S/N / N32OE64', 1, 1, 1, 1, 1, 1),
+			('1753081051', 'CUS', 'ANTAM', 'DANIELA', 'CESIBEL', '23-06-1998', '062919081', '0961918921', 'BB.CUSIN@YAVIRAC.EDU.EC', 'IMBABURA/QUITO/BELISARIO QUEVEDO/ SAN VICENTE Y S/N / N32OE64', 2, 2, 2, 2, 3, 2),
+			('1753081052', 'CUSI', 'ANT', 'MARLON', 'GABRIEL', '23-06-1999', '062919082', '0961918922', 'CC.CUSIN@YAVIRAC.EDU.EC', 'GUAYAS/QUITO/BELISARIO QUEVEDO/ SAN VICENTE Y S/N / N32OE64', 1, 3, 1, 3, 3, 1),
+			('1753081053', 'CSN', 'ANTAMB', 'DIANA', 'VALERIA', '23-06-2000', '062919083', '0961918923', 'DD.CUSIN@YAVIRAC.EDU.EC', 'CHIMBORAZO/QUITO/BELISARIO QUEVEDO/ SAN VICENTE Y S/N / N32OE64', 2, 4, 2, 2, 4, 2);
 
 
 
@@ -71,14 +76,27 @@ INSERT INTO public.estadopersona(
 
 --TABLA TIPO USUARIO--
 
+INSERT INTO public.tipousuario(
+	codigo_tipusr, descripcion_tipusr)
+	VALUES (1, 'ADMINISTRADOR'),
+			(2, 'EMPLEADO'),
+			(3, 'CLIENTE');
 
 --TABLA ESTADO USUARIO--
-
+INSERT INTO public.estadousuario(
+	codigo_esturs, descripcion_estusr)
+	VALUES (1, 'ACTIVO'),
+			(2, 'PASIVO');
 
 
 --+++++++++++++++SCRIPT PARA TABLA USUARIO++++++++++++++++--
 
-
+INSERT INTO public.usuario(
+	usuario_usr, contrasena_usr, tipousuario_usr, estado_usr, persona_usr)
+	VALUES ('admin', 'admin', 1, 1, '1753081050'),
+			('edwincusin1', 'edwincusin1', 2, 1, '1753081051'), 
+			('edwincusin2', 'edwincusin2',2, 2, '1753081052'), 
+			('edwincusin3', 'edwincusin3', 3, 1, '1753081053');
 
 
 
@@ -88,5 +106,22 @@ INSERT INTO public.estadopersona(
 
 --TABLA TIPO CUENTA--
 
+INSERT INTO public.tipocuenta(
+	codigo_tipcue, descripcion_tipcue)
+	VALUES  (1, 'AHORROS'),
+			(2, 'CORRIENTE');
 
 --TABLA ESTADO CUENTA--
+
+INSERT INTO public.estadocuenta(
+	codigo_estcue, descripcion_estcue)
+	VALUES  (1, 'ACTIVO'),
+			(2, 'PASIVO');
+
+--+++++++++++++++SCRIPT PARA TABLA CUENTA BANCARIA++++++++++++++++--
+INSERT INTO public.cuentabancaria(
+	numerocuenta_cueban, fechaapertura_cueban, saldo_cueban, tipocuenta_cueban, persona_cueban, estado_cueban)
+	VALUES (1, '01-08-2021', 100.25, 1, '1753081050', 1),
+			(2, '01-01-2021', 50, 2, '1753081051', 1),
+			(3, '01-02-2021', 0, 1, '1753081052', 2),
+			(4, '01-03-2021', 1000, 2, '1753081051', 1);
