@@ -43,7 +43,8 @@ $resultadoEstadoPersona=$resultado;
 $numRegEstadoPersona=pg_num_rows($resultadoEstadoPersona);
 
 
-// pg_free_result($resultado);
+
 pg_close($conexion);
+// pg_free_result($resultado);
 
 ?>
