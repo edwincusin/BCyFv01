@@ -54,7 +54,7 @@
                                     <td> <input type="text" size="20" value="<?php echo $apellido1_per; ?>"  name="txtapellido1" maxlength="18" placeholder="Primer apellido" required> </td>
                                 
                                     <td> <label for=""><span>Apellido materno:</span></label> </td>
-                                    <td> <input type="text" size="20"  name="txtapellido2" maxlength="18" placeholder="Segundo apellido" required> </td> 
+                                    <td> <input type="text" size="20"  name="txtapellido2" value="<?php echo $apellido2_per; ?>" maxlength="18" placeholder="Segundo apellido" required> </td> 
                                     
                                 </tr>
                                     
@@ -63,21 +63,21 @@
                                     <td> <input type="text" size="20" value="<?php echo $nombre1_per; ?>" name="txtnombre1" maxlength="10" placeholder="Primer nombre" required> </td>
                                 
                                     <td> <label for=""><span>Segundo nombre:</span></label> </td>
-                                    <td> <input type="text" size="20" name="txtnombre2"maxlength="09" placeholder="Segundo nombre" required> </td>  
+                                    <td> <input type="text" size="20" name="txtnombre2" value="<?php echo $nombre2_per; ?>" maxlength="09" placeholder="Segundo nombre" required> </td>  
 
                                     <td> <label for=""><span> Fecha de nacimiento:</span></label> </td>
-                                    <td> <input type="date" name="fechaRegistro"  min="1990-01-01" max="<?php echo date ("Y-m-d")?>">; </td>
+                                    <td> <input type="date" name="fechaRegistro"  min="1990-01-01" max="2021-07-01" value="<?php echo $fechanac_per; ?>" </td>
                                 </tr>
 
                                 <tr>
                                     <td> <label for=""><span>Número celular:</span></label> </td>
-                                    <td> <input type="text" size="20" maxlength="18" placeholder="ej. 0912345678" required> </td>
+                                    <td> <input type="text" size="20" maxlength="18" name="txtcelular" value="<?php echo $celular_per; ?>" placeholder="ej. 0912345678" required> </td>
                                 
                                     <td> <label for=""><span>Número teléfono:</span></label> </td>
-                                    <td> <input type="text" size="20" maxlength="18" placeholder="ej. 02-123-4567" required> </td>  
+                                    <td> <input type="text" size="20" maxlength="18" name="txttelefono" value="<?php echo $telefono_per; ?>" placeholder="ej. 02-123-4567" required> </td>  
                                 
                                     <td> <label for=""><span>Email @:</span></label> </td>
-                                    <td> <input type="email" size="33" id="input_email" maxlength="40" placeholder="ej. nombre18@email.com" required> </span> </td>     
+                                    <td> <input type="email" size="33" id="input_email" name="txtemail" value="<?php echo $email_per; ?>" maxlength="40" placeholder="ej. nombre18@email.com" required> </span> </td>     
 
                                 </tr>
 
@@ -187,7 +187,7 @@
                                 
                                 <tr>
                                     <td> <label for=""><span>Dirección domicilio:</span></label> </td>
-                                    <td colspan="5"> <input type="text" size="100" maxlength="90" placeholder="Provincia / ciudad / parroquia / calle 1 / calle 2 / numero de casa" required> </span> </td>     
+                                    <td colspan="5"> <input type="text" name="txtdireccion"  value="<?php echo $direcciondom_per; ?>" size="100" maxlength="90" placeholder="Provincia / ciudad / parroquia / calle 1 / calle 2 / numero de casa" required> </span> </td>     
                                 </tr>
 
                             </table>
