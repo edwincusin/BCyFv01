@@ -34,12 +34,12 @@
                         <table>
                             <tr>
                                 <td> <label for=""><span>N° Cédula:</span></label> </td>
-                                <td colspam="2"> <input type="text" name="txtbuscarDato" id="validarCedulaEcu" size="20" maxlength="10" placeholder="ej. 1234567890 " required> </td>
+                                <td colspam="2"> <input type="text" name="txtbuscarDato" id="validarCedulaEcu" size="20" onKeyPress='return validaNumericos(event)' maxlength="10" placeholder="ej. 1234567890 " required pattern="[0-9]{10}" oninvalid="this.setCustomValidity('Se Requiere 10 digitos')" oninput="this.setCustomValidity('')"> </td>
                                 <td> <input type="submit" name="buscar" value="&#128270; Buscar"> </td>
                             </tr>
                         </table>
                     </form> 
-                    <?php require_once './sqlReadRegistroUserSis.php'; ?>
+                    <?php require './sqlReadRegistroUserSis.php'; ?>
                     
 
                     <form action="./sqlCuRegistroUserSis.php" method="post">
@@ -48,7 +48,7 @@
                             <table>
                                 <tr>
                                     <td> <label for=""><span>N° Cédula / Ruc:</span></label> </td>
-                                    <td> <input type="text" name="txtcedula" value="<?php echo $cedula_per; ?>" size="20" maxlength="10"  placeholder="ej. 1234567890" required> </td>
+                                    <td> <input type="text" name="txtcedula" value="<?php echo $cedula_per; ?>" size="20" onKeyPress='return validaNumericos(event)' pattern="[0-9]{10}" maxlength="10"  placeholder="ej. 1234567890" required oninvalid="this.setCustomValidity('Se Requiere 10 digitos')" oninput="this.setCustomValidity('')">  </td>
 
                                     <td> <label for=""><span>Apellido paterno:</span></label> </td>
                                     <td> <input type="text" size="20" value="<?php echo $apellido1_per; ?>"  name="txtapellido1" maxlength="18" placeholder="Primer apellido" required> </td>
@@ -66,7 +66,7 @@
                                     <td> <input type="text" size="20" name="txtnombre2" value="<?php echo $nombre2_per; ?>" maxlength="09" placeholder="Segundo nombre" required> </td>  
 
                                     <td> <label for=""><span> Fecha de nacimiento:</span></label> </td>
-                                    <td> <input type="date" name="fechaRegistro"  min="1990-01-01" max="2021-07-01" required value="<?php echo $fechanac_per; ?>"> </td>
+                                    <td> <input type="date" name="dtfechaNac"  min="1990-01-01" max="2021-07-01" required value="<?php echo $fechanac_per; ?>"> </td>
                                 </tr>
 
                                 <tr>
@@ -84,7 +84,7 @@
                                 <tr>
                                     <td> <label for=""><span>Nacionalidad:</span></label> </td>
                                     <td>
-                                        <select name="" id="" name="descripcionNacionalidad" required>
+                                        <select  id="" name="descripcionNacionalidad" required>
                                             <option disabled selected value="" >Seleccionar...</option>
                                            
                                             <!-- llenar cobobox y consultar datos de  persona TABLAS -->
@@ -105,12 +105,12 @@
                                     
                                     <td> <label for=""><span>Estado Civil:</span></label> </td>
                                     <td>
-                                        <select name="" id="" name="descripcionEstadoCivil" required>
+                                        <select  id="" name="descripcionEstadoCivil" required>
                                             <option disabled selected value="">Seleccionar...</option>
                                             <!-- llenar cobobox y consultar datos de  persona TABLAS -->
                                             <?php 
                                                 while($row=pg_fetch_array($resultadoEstadoCivil)){
-                                                    $optionC = "<option value='".$row['codigo_nac']."'"; //iniciamos el codigo del option                                                
+                                                    $optionC = "<option value='".$row['codigo_estciv']."'"; //iniciamos el codigo del option                                                
                                                     if($estadocivil_per > 0 and $estadocivil_per == $row['codigo_estciv']){ //si el id de la bodega es igual al del usuario lo seleccionamos
                                                         $optionC .= " selected='selected'";
                                                     }                                                
@@ -124,7 +124,7 @@
 
                                     <td> <label for=""><span>Nivel de instruccion:</span></label> </td>
                                     <td>
-                                        <select name="" id="" name="descripcionInstruccion" required>
+                                        <select  id="" name="descripcionInstruccion" required>
                                             <option disabled selected value="">Seleccionar...</option>
                                             <!-- llenar cobobox y consultar datos de  persona TABLAS -->
                                             <?php 
@@ -145,7 +145,7 @@
                                 <tr>
                                     <td> <label for=""><span>Sexo:</span></label> </td>
                                         <td>
-                                            <select name="" id="" name="descripcion-Sexo" required>
+                                            <select  id="" name="descripcion-Sexo" required>
                                                 <option disabled selected value="">Seleccionar...</option>
                                                 
                                                  <!-- llenar cobobox y consultar datos de  persona TABLAS -->
@@ -165,7 +165,7 @@
 
                                     <td> <label for=""><span>Actividad laboral:</span></label> </td>
                                         <td>
-                                            <select name="" id="" name="descripcionActividadLaboral" required>
+                                            <select  id="" name="descripcionActividadLaboral" required>
                                                 <option disabled selected value="">Seleccionar...</option>
                                                  <!-- llenar cobobox y consultar datos de  persona TABLAS -->
                                             <?php 
@@ -184,7 +184,7 @@
 
                                     <td> <label for=""><span>Estado operativo:</span></label> </td>
                                         <td>
-                                            <select name="" id="" name="descripcionEstadoPersona" required>
+                                            <select  id="" name="descripcionEstadoPersona" required>
                                                 <option disabled selected value="">Seleccionar...</option>
                                                 <!-- llenar cobobox y consultar datos de  persona TABLAS -->
                                             <?php 
@@ -211,14 +211,13 @@
                                                         
                         </fieldset>
                         <input type="submit" name="crear" value="&#10004; Guardar">
-                        <input type="submit" value="&#128221; Modificar cambios"> 
-                    </form>   
-                <?php require_once './sqlCuRegistroUserSis.php'; ?>
-                
-                
+                        <input type="submit" name="modificar" value="&#128221; Modificar Información"> 
+                      
+                        <?php require './sqlCuRegistroUserSis.php'; ?>
 
+                    </form>        
                     </div>
-                    <!-- INICIO FORMULARIO   -->
+                    <!-- fin FORMULARIO   -->
                 </div>
             </div>
         </form>
@@ -229,3 +228,5 @@
     </body>
 
 </html>
+
+<script src="eventosfunciones.js" type="text/javascript"></script>

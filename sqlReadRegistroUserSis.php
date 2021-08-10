@@ -46,10 +46,12 @@ if(isset($_POST['buscar'])){
         $actividad_per=$row['actividad_per'];
         $estadopersona_per=$row['estadopersona_per'];
         }
-
+        
     if ($cedula_per=="") {
 
-        echo '<i style="color:red;font-size:20px;font-family:calibri ;"> Resgistro no encontrado</i> ';
+        echo '<h4 style="color:red;font-size:20px;font-family:calibri ;"> Resgistro no encontrado</h4> ';
+     } else{
+        echo '<h4 style="color:green;font-size:20px;font-family:calibri ;"> Resgistro encontrado</h4> ';
      }
     
 
