@@ -30,25 +30,25 @@
 
                     <div class="contenedorControlesForm">
 
-                    <form action="./sqlRegistroUserSis.php" method="post">
+                    <form action="" method="post">
                         <table>
                             <tr>
-                                <td> <label for=""><span>N° Cédula / Ruc:</span></label> </td>
+                                <td> <label for=""><span>N° Cédula:</span></label> </td>
                                 <td colspam="2"> <input type="text" name="txtbuscarDato" id="validarCedulaEcu" size="20" maxlength="10" placeholder="ej. 1234567890 " required> </td>
                                 <td> <input type="submit" name="buscar" value="&#128270; Buscar"> </td>
                             </tr>
                         </table>
                     </form> 
-                    <?php require_once './sqlRegistroUserSis.php'; ?>
+                    <?php require_once './sqlReadRegistroUserSis.php'; ?>
                     
 
-                    <form action="" method="post">
+                    <form action="./sqlCuRegistroUserSis.php" method="post">
                         <fieldset  > <legend>Información</legend>
 
                             <table>
                                 <tr>
                                     <td> <label for=""><span>N° Cédula / Ruc:</span></label> </td>
-                                    <td> <input type="text" name="txtcedularuc" value="<?php echo $cedula_per; ?>" size="20" maxlength="10"  placeholder="ej. 1234567890" required> </td>
+                                    <td> <input type="text" name="txtcedula" value="<?php echo $cedula_per; ?>" size="20" maxlength="10"  placeholder="ej. 1234567890" required> </td>
 
                                     <td> <label for=""><span>Apellido paterno:</span></label> </td>
                                     <td> <input type="text" size="20" value="<?php echo $apellido1_per; ?>"  name="txtapellido1" maxlength="18" placeholder="Primer apellido" required> </td>
@@ -66,7 +66,7 @@
                                     <td> <input type="text" size="20" name="txtnombre2" value="<?php echo $nombre2_per; ?>" maxlength="09" placeholder="Segundo nombre" required> </td>  
 
                                     <td> <label for=""><span> Fecha de nacimiento:</span></label> </td>
-                                    <td> <input type="date" name="fechaRegistro"  min="1990-01-01" max="2021-07-01" value="<?php echo $fechanac_per; ?>" </td>
+                                    <td> <input type="date" name="fechaRegistro"  min="1990-01-01" max="2021-07-01" required value="<?php echo $fechanac_per; ?>"> </td>
                                 </tr>
 
                                 <tr>
@@ -85,18 +85,21 @@
                                     <td> <label for=""><span>Nacionalidad:</span></label> </td>
                                     <td>
                                         <select name="" id="" name="descripcionNacionalidad" required>
-                                            <option disabled selected value="">Seleccionar...</option>
+                                            <option disabled selected value="" >Seleccionar...</option>
+                                           
+                                            <!-- llenar cobobox y consultar datos de  persona TABLAS -->
                                             <?php 
-                                                    if($numRegNacionalidad>0){                                         
-                                                        while ($row=pg_fetch_array($resultadoNacionalidad)){
-                                                ?> 
-                                                        <option value="<?php echo $row['codigo_nac']; ?>"><?php echo $row['descripcion_nac']; ?></option>
-
-                                                <?php   
-                                                        }
-                                                    }
-                                                ?>
-                                        
+                                                while($row=pg_fetch_array($resultadoNacionalidad)){
+                                                    $optionC = "<option value='".$row['codigo_nac']."'"; //iniciamos el codigo del option                                                
+                                                    if($nacionalidad_per > 0 and $nacionalidad_per == $row['codigo_nac']){ //si el id de la bodega es igual al del usuario lo seleccionamos
+                                                        $optionC .= " selected='selected'";
+                                                    }                                                
+                                                    $optionC .= ">".$row['descripcion_nac']."</option>"; //terminamos el codigo del option                                                
+                                                    echo $optionC; //imprimimos en pantalla el codigo que se armo
+                                                }
+                                            ?>
+                                              <!-- FIN llenar cobobox y consultar datos de  persona TABLAS -->                                     
+                                                
                                         </select>
                                     </td>
                                     
@@ -104,16 +107,18 @@
                                     <td>
                                         <select name="" id="" name="descripcionEstadoCivil" required>
                                             <option disabled selected value="">Seleccionar...</option>
+                                            <!-- llenar cobobox y consultar datos de  persona TABLAS -->
                                             <?php 
-                                                    if($numRegEstadoCivil>0){                                         
-                                                        while ($row=pg_fetch_array($resultadoEstadoCivil)){
-                                                ?> 
-                                                        <option value="<?php echo $row['codigo_estciv']; ?>"><?php echo $row['descripcion_estciv']; ?></option>
-
-                                                <?php   
-                                                        }
-                                                    }
-                                                ?>
+                                                while($row=pg_fetch_array($resultadoEstadoCivil)){
+                                                    $optionC = "<option value='".$row['codigo_nac']."'"; //iniciamos el codigo del option                                                
+                                                    if($estadocivil_per > 0 and $estadocivil_per == $row['codigo_estciv']){ //si el id de la bodega es igual al del usuario lo seleccionamos
+                                                        $optionC .= " selected='selected'";
+                                                    }                                                
+                                                    $optionC .= ">".$row['descripcion_estciv']."</option>"; //terminamos el codigo del option                                                
+                                                    echo $optionC; //imprimimos en pantalla el codigo que se armo
+                                                }
+                                            ?>
+                                              <!-- FIN llenar cobobox y consultar datos de  persona TABLAS -->  
                                         </select>
                                     </td>
 
@@ -121,16 +126,18 @@
                                     <td>
                                         <select name="" id="" name="descripcionInstruccion" required>
                                             <option disabled selected value="">Seleccionar...</option>
+                                            <!-- llenar cobobox y consultar datos de  persona TABLAS -->
                                             <?php 
-                                                    if($numRegInstruccion>0){                                         
-                                                        while ($row=pg_fetch_array($resultadoInstruccion)){
-                                                ?> 
-                                                        <option value="<?php echo $row['codigo_int']; ?>"><?php echo $row['descripcion_int']; ?></option>
-
-                                                <?php   
-                                                        }
-                                                    }
-                                                ?>
+                                                while($row=pg_fetch_array($resultadoInstruccion)){
+                                                    $optionC = "<option value='".$row['codigo_int']."'"; //iniciamos el codigo del option                                                
+                                                    if($intruccion_per > 0 and $intruccion_per == $row['codigo_int']){ //si el id de la bodega es igual al del usuario lo seleccionamos
+                                                        $optionC .= " selected='selected'";
+                                                    }                                                
+                                                    $optionC .= ">".$row['descripcion_int']."</option>"; //terminamos el codigo del option                                                
+                                                    echo $optionC; //imprimimos en pantalla el codigo que se armo
+                                                }
+                                            ?>
+                                              <!-- FIN llenar cobobox y consultar datos de  persona TABLAS -->  
                                         </select>
                                     </td>
                                 </tr>
@@ -140,15 +147,19 @@
                                         <td>
                                             <select name="" id="" name="descripcion-Sexo" required>
                                                 <option disabled selected value="">Seleccionar...</option>
-                                                <?php                                                               
-                                                    if($numRegSexo>0){                                         
-                                                        while ($row=pg_fetch_array($resultadoSexo)){
-                                                ?> 
-                                                        <option value="<?php echo $row['codigo_sex']; ?>"><?php echo $row['descripcion_sex']; ?></option>
-                                                <?php   
-                                                        }
-                                                    }
-                                                ?>
+                                                
+                                                 <!-- llenar cobobox y consultar datos de  persona TABLAS -->
+                                            <?php 
+                                                while($row=pg_fetch_array($resultadoSexo)){
+                                                    $optionC = "<option value='".$row['codigo_sex']."'"; //iniciamos el codigo del option                                                
+                                                    if($sexo_per > 0 and $sexo_per == $row['codigo_sex']){ //si el id de la bodega es igual al del usuario lo seleccionamos
+                                                        $optionC .= " selected='selected'";
+                                                    }                                                
+                                                    $optionC .= ">".$row['descripcion_sex']."</option>"; //terminamos el codigo del option                                                
+                                                    echo $optionC; //imprimimos en pantalla el codigo que se armo
+                                                }
+                                            ?>
+                                              <!-- FIN llenar cobobox y consultar datos de  persona TABLAS -->  
                                             </select>
                                     </td>
 
@@ -156,31 +167,37 @@
                                         <td>
                                             <select name="" id="" name="descripcionActividadLaboral" required>
                                                 <option disabled selected value="">Seleccionar...</option>
-                                                <?php 
-                                                    if($numRegActividad>0){                                         
-                                                        while ($row=pg_fetch_array($resultadoActividad)){
-                                                ?> 
-                                                        <option value="<?php echo $row['codigo_act']; ?>"><?php echo $row['descripcion_act']; ?></option>
-                                                <?php   
-                                                        }
-                                                    }
-                                                ?>
+                                                 <!-- llenar cobobox y consultar datos de  persona TABLAS -->
+                                            <?php 
+                                                while($row=pg_fetch_array($resultadoActividad)){
+                                                    $optionC = "<option value='".$row['codigo_act']."'"; //iniciamos el codigo del option                                                
+                                                    if($actividad_per  > 0 and $actividad_per == $row['codigo_act']){ //si el id de la bodega es igual al del usuario lo seleccionamos
+                                                        $optionC .= " selected='selected'";
+                                                    }                                                
+                                                    $optionC .= ">".$row['descripcion_act']."</option>"; //terminamos el codigo del option                                                
+                                                    echo $optionC; //imprimimos en pantalla el codigo que se armo
+                                                }
+                                            ?>
+                                              <!-- FIN llenar cobobox y consultar datos de  persona TABLAS --> 
                                             </select>
                                     </td>
 
-                                    <td> <label for=""><span>Estado en sistema banco:</span></label> </td>
+                                    <td> <label for=""><span>Estado operativo:</span></label> </td>
                                         <td>
                                             <select name="" id="" name="descripcionEstadoPersona" required>
                                                 <option disabled selected value="">Seleccionar...</option>
-                                                <?php 
-                                                    if($numRegEstadoPersona>0){                                         
-                                                        while ($row=pg_fetch_array($resultadoEstadoPersona)){
-                                                ?> 
-                                                        <option value="<?php echo $row['codigo_estper']; ?>"><?php echo $row['descripcion_estper']; ?></option>
-                                                <?php   
-                                                        }
-                                                    }
-                                                ?>
+                                                <!-- llenar cobobox y consultar datos de  persona TABLAS -->
+                                            <?php 
+                                                while($row=pg_fetch_array($resultadoEstadoPersona)){
+                                                    $optionC = "<option value='".$row['codigo_estper']."'"; //iniciamos el codigo del option                                                
+                                                    if($estadopersona_per  > 0 and $estadopersona_per == $row['codigo_estper']){ //si el id de la bodega es igual al del usuario lo seleccionamos
+                                                        $optionC .= " selected='selected'";
+                                                    }                                                
+                                                    $optionC .= ">".$row['descripcion_estper']."</option>"; //terminamos el codigo del option                                                
+                                                    echo $optionC; //imprimimos en pantalla el codigo que se armo
+                                                }
+                                            ?>
+                                              <!-- FIN llenar cobobox y consultar datos de  persona TABLAS --> 
                                             </select>
                                     </td>
                                 </tr>
@@ -193,11 +210,10 @@
                             </table>
                                                         
                         </fieldset>
-                    </form>                                        
-              
-
-                <input type="submit" value="&#10004; Guardar">
-                <input type="submit" value="&#128221; Modificar cambios"> 
+                        <input type="submit" name="crear" value="&#10004; Guardar">
+                        <input type="submit" value="&#128221; Modificar cambios"> 
+                    </form>   
+                <?php require_once './sqlCuRegistroUserSis.php'; ?>
                 
                 
 

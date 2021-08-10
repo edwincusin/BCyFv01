@@ -199,3 +199,22 @@ function obtenerSexo(){
     </body>
 
 </html>
+
+
+
+
+
+
+
+modo para llenar los combobox
+
+<?php 
+if($numRegNacionalidad>0){                                         
+while ($row=pg_fetch_array($resultadoNacionalidad)){
+?> 
+<option value="<?php echo $row['codigo_nac']; ?>"><?php echo $row['descripcion_nac']; ?></option>
+
+<?php   
+}
+}
+?>
