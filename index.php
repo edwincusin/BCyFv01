@@ -26,11 +26,11 @@
                     <p><img src="./img/icono_login.png" alt=""></p>
 
                     <p>
-                        <input type="text" placeholder="  &#128100; Ingrese cédula" name="usuario" maxlength="25" size="18" required>
+                        &nbsp&nbsp    <input type="text" placeholder="  &#128100; Ingrese usuario" name="usuario" maxlength="25" size="18" required>
                     </p>
                     
                     <p>
-                    &nbsp<input type="password" placeholder="  &#128274; Ingrese contraseña" name="pwd" maxlength="25" size="18" required>
+                        <input type="password" placeholder="  &#128274; Ingrese contraseña" name="pwd" maxlength="25" size="18" required>
                     </p>
                                  
                     <p>
@@ -51,5 +51,7 @@
 </body>
 
 </html>
+
+<!-- &nbsp -->
 
 
