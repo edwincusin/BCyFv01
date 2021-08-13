@@ -14,7 +14,7 @@
     </head>    
 
     <body>  
-        <form action="" method="post">
+        <!-- <form action="" method="post"> -->
             <div class="contenedorMainInicio">
                 <div class="subcontenedorInicio">
                     <!--menu inicio -->                
@@ -42,7 +42,7 @@
                     <?php require './sqlReadRegistroUserSis.php'; ?>
                     
 
-                    <form action="./sqlCuRegistroUserSis.php" method="post">
+                    <form action="" method="post">
                         <fieldset  > <legend>Información</legend>
 
                             <table>
@@ -212,15 +212,16 @@
                         </fieldset>
                         <input type="submit" name="crear" value="&#10004; Guardar">
                         <input type="submit" name="modificar" value="&#128221; Modificar Información"> 
-                      
-                        <?php require './sqlCuRegistroUserSis.php'; ?>
+                                                             
+                    </form>  
+                    
+                    <?php include_once 'sqlCuRegistroUserSis.php'; ?>     
 
-                    </form>        
-                    </div>
+                    </div>                  
                     <!-- fin FORMULARIO   -->
                 </div>
             </div>
-        </form>
+        <!-- </form> -->
         <?php
         include './derechosAutor.html';
         ?>        

@@ -59,8 +59,8 @@ if (isset($_POST['ingresar'])){
         
         else{
         echo'<script type="text/javascript">
-                 alert("Usuario cesado o esta pendiente activar o reactivar la cuenta por el administrador, como puede ser requerimiento de actualización de datos en el sistema,");
-                 window.location.href="index.php";
+                //  alert("Usuario cesado o esta pendiente activar o reactivar la cuenta por el administrador, como puede ser requerimiento de actualización de datos en el sistema,");
+                 window.location.href="index.php?falloactivar=true";
              </script>';
         }
 
@@ -68,7 +68,7 @@ if (isset($_POST['ingresar'])){
 
         else{
         echo'<script type="text/javascript">
-                alert("Usuario o Contraseña Errada,");
+                // alert("Usuario o Contraseña Errada,");
                 window.location.href="index.php?fallo=true";
         </script>';
         

@@ -1,9 +1,8 @@
 <?php
-require_once './conex.php';
-$conexion=conectarBD();
-
-
 if(isset($_POST['crear'])){   
+
+    require_once './conex.php';
+    $conexion=conectarBD();
 
     $cedula_per_crear=$_POST['txtcedula'];
     $apellido1_per_crear=$_POST['txtapellido1'];
@@ -21,66 +20,72 @@ if(isset($_POST['crear'])){
     $intruccion_per_crear=$_POST['descripcionInstruccion'];
     $actividad_per_crear=$_POST['descripcionActividadLaboral'];
     $estadopersona_per_crear=$_POST['descripcionEstadoPersona'];
-    $numRegPersona=0; 
+    $positivo=false;
+    $negativo=false;
     
     //para validar que exista un dato en la variable cedula ingresado por el usr
-    if(empty($cedula_per_crear)){
-    }else{
-        $consulta="SELECT cedula_per FROM public.persona
-        Where cedula_per='$cedula_per_crear'";
-        $resultado=pg_query($conexion,$consulta) or die ("error al realizar consulta de dato en la tabla persona/ crear registro");
-        $numRegPersona=pg_num_rows($resultado);
+            
+    $consulta="SELECT cedula_per FROM public.persona
+    Where cedula_per='$cedula_per_crear'";
+    $verificarReg=pg_query($conexion,$consulta) or die ("error al realizar consulta de dato en la tabla persona/ crear registro");
+    
+    //valido si existe un registro con el numero de cedula ingresado/ si existe no permite continuar / si no existe puede continuar para guardar
+    if(pg_num_rows($verificarReg)>0){      
+        echo '<h4 style="color:red;font-size:20px;font-family:calibri ;"> El numero de cedula ya existe </h4>' ;
+    } else{
+        //consulta insertar registro en la tabla persona
+        $consulta="INSERT INTO public.persona(
+        cedula_per, 
+        apellido1_per,                 
+        apellido2_per,  
+        nombre1_per, 
+        nombre2_per,
+        fechanac_per, 
+        telefono_per, 
+        celular_per, 
+        email_per, 
+        direcciondom_per, 
+        nacionalidad_per, 
+        estadocivil, 
+        sexo_per, 
+        intruccion_per, 
+        actividad_per, 
+        estadopersona_per)
+        VALUES (
+        '$cedula_per_crear', 
+        '$apellido1_per_crear', 
+        '$apellido2_per_crear', 
+        '$nombre1_per_crear', 
+        '$nombre2_per_crear', 
+        '$fechanac_per_crear', 
+        '$telefono_per_crear', 
+        '$celular_per_crear', 
+        '$email_per_crear', 
+        '$direcciondom_per_crear', 
+        $nacionalidad_per_crear, 
+        $estadocivil_per_crear, 
+        $sexo_per_crear, 
+        $intruccion_per_crear, 
+        $actividad_per_crear,
+        $estadopersona_per_crear
+        );";
 
-        //valido si existe un registro con el numero de cedula ingresado/ si existe no permite continuar / si no existe puede continuar para guardar
-        if($numRegPersona=0){       
-           //consulta insertar registro en la tabla persona
-           $consulta="INSERT INTO public.persona(
-                cedula_per, 
-                apellido1_per,                 
-                apellido2_per,  
-                nombre1_per, 
-                nombre2_per,
-                fechanac_per, 
-                telefono_per, 
-                celular_per, 
-                email_per, 
-                direcciondom_per, 
-                nacionalidad_per, 
-                estadocivil, 
-                sexo_per, 
-                intruccion_per, 
-                actividad_per, 
-                estadopersona_per)
-                VALUES (
-                '$cedula_per_crear', 
-                '$apellido1_per_crear', 
-                '$apellido2_per_crear', 
-                '$nombre1_per_crear', 
-                '$nombre2_per_crear', 
-                '$fechanac_per_crear', 
-                '$telefono_per_crear', 
-                '$celular_per_crear', 
-                '$email_per_crear', 
-                '$direcciondom_per_crear', 
-                $nacionalidad_per_crear, 
-                $estadocivil_per_crear, 
-                $sexo_per_crear, 
-                $intruccion_per_crear, 
-                $actividad_per_crear,
-                $estadopersona_per_crear
-                );";
-
-            $resultado=pg_query($conexion,$consulta) or die ("los datos no se guardaron en la tabla persona error");
-            echo '<i style="color:green;font-size:20px;font-family:calibri ;"> Información Registrado con exito </i> ';
-        } else{
-           echo '<h4 style="color:red;font-size:20px;font-family:calibri ;"> El numero de cedula ya existe </h4>' ;
-
-        }
-    } 
+        $resultado=pg_query($conexion,$consulta) or die ("los datos no se guardaron en la tabla persona error");
+        echo '<h4 style="color:green;font-size:20px;font-family:calibri ;"> Información Registrado con exito </h4> '; 
+        pg_free_result($resultado);
+    }    
+    pg_free_result($verificarReg);    
+    pg_close($conexion);
+ 
 }//if isset crear fin
 
 
+// if inicio isset modificar
+
 if(isset($_POST['modificar'])){
+
+    require_once './conex.php';
+    $conexion=conectarBD();
 
     $cedula_per_crear=$_POST['txtcedula'];
     $apellido1_per_crear=$_POST['txtapellido1'];
@@ -125,11 +130,22 @@ if(isset($_POST['modificar'])){
 
      $resultado=pg_query($conexion,$consulta) or die ("los datos no se pudieron modificar en la tabla persona error");
 
-     echo '<h4 style="color:green;font-size:20px;font-family:calibri ;"> Información modificada exitosamente </h4>' ;
-    
+        echo '<h4 id="msmcorreto"> Información modificada exitosamente </h4>' ;
+
     }else{
-           echo '<h4 style="color:red;font-size:20px;font-family:calibri ;"> El numero de cédula ya existe </h4>' ;
+        echo '<h4 id ="errorSis" > El numero de cédula ya existe </h4>' ;
+       
     }
+    pg_free_result($resultado);
+    pg_close($conexion);
 }
-pg_close($conexion);
+
+//if fin isset modificar 
+
+
 ?>
+
+
+
+
+                

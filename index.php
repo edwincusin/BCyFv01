@@ -37,17 +37,25 @@
                         <input type="submit" value="&#128272; Ingresar" name="ingresar">            
                         <input type="submit" value="&#128273 ¿Olvidó su contraseña?" >
                     </p> 
-                </div>                   
+
+                    <?php 
+                        if (isset($_GET['fallo'])) {
+                        echo '<h4 id="errorSis" style="font-size:15px;">Usuario o Contraseña Errada </h4>' ;
+                        }
+                        if (isset($_GET['falloactivar'])) {
+                            echo '<h4 id="errorSis" style="font-size:12px;">Usuario cesado o esta pendiente activar o reactivar la cuenta por el administrador, como puede ser requerimiento de actualización de datos en el sistema </h4>' ;
+                            }
+                     ?>
+                </div>    
+                              
             </div>   
             
             <?php
                 include './derechosAutor.html';
             ?>
         </div>
-
         </form>
-        
-
+        <br>    
 </body>
 
 </html>

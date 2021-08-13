@@ -1,6 +1,5 @@
 <?php
-require_once './conex.php';
-$conexion=conectarBD();
+
 
 
 $cedula_per='';
@@ -22,6 +21,9 @@ $estadopersona_per=0;
 
 
 if(isset($_POST['buscar'])){    
+
+    require_once './conex.php';
+    $conexion=conectarBD();
 
     //consulta buscar en la tabla persona
     $buscarDato=$_POST['txtbuscarDato'];
@@ -45,19 +47,19 @@ if(isset($_POST['buscar'])){
         $intruccion_per=$row['intruccion_per'];
         $actividad_per=$row['actividad_per'];
         $estadopersona_per=$row['estadopersona_per'];
+
         }
         
     if ($cedula_per=="") {
+        echo '<h4 id ="errorSis"> Resgistro no encontrado</h4> ';       
 
-        echo '<h4 style="color:red;font-size:20px;font-family:calibri ;"> Resgistro no encontrado</h4> ';
      } else{
-        echo '<h4 style="color:green;font-size:20px;font-family:calibri ;"> Resgistro encontrado</h4> ';
+        
+        echo '<h4 id="msmcorreto"> Resgistro encontrado</h4> ';
      }
-    
-
+     pg_free_result($resultado);
+     pg_close($conexion);
 }//if isset buscar fin
 
 
-
-pg_close($conexion);
 ?>

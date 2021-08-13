@@ -541,6 +541,27 @@ fieldset{
     margin-left: 10px;
     background-clip: padding-box;
 }
+ #numCuenta{
+    height: 25px;
+    font-size: 25px;
+    font-weight: bolder;
+    background:  rgba(0, 162, 255, 0);
+    border:rgba(0, 0, 0, 0) 3px solid;
+
+}
+
+
+/*______________estilos para los mensajes de error fallos o confirmaciones___________ */
+
+#errorSis{
+    text-align: center;
+    color: red;
+    font-size: 20px;
+}
+#msmcorreto{
+    text-align: center;
+    color: green;     
+    font-size: 20px;
 
 /* .contenedorControlesForm fieldset table, tr, td{
     border: solid 1px rgb(0, 0, 0);
