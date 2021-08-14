@@ -12,7 +12,6 @@
         <script type="text/javascript" src="./jsValidarCedulaEcu.js"></script>
         <title>Gestión de usuario</title>
     </head>    
-
     <body>  
         <!-- <form action="" method="post"> -->
             <div class="contenedorMainInicio">
@@ -35,15 +34,15 @@
                             <tr>
                                 <td> <label for=""><span>N° Cédula:</span></label> </td>
                                 <td colspam="2"> <input type="text" name="txtbuscarDato" id="validarCedulaEcu" size="20" onKeyPress='return validaNumericos(event)' maxlength="10" placeholder="ej. 1234567890 " required pattern="[0-9]{10}" oninvalid="this.setCustomValidity('Se Requiere 10 digitos')" oninput="this.setCustomValidity('')"> </td>
-                                <td> <input type="submit" name="buscar" value="&#128270; Buscar"> </td>
+                                <td> <input type="submit" name="buscar_AC" value="&#128270; Buscar"> </td>
                             </tr>
                         </table>
                     </form> 
-                    <?php require './sqlReadRegistroUserSis.php'; ?>
+                    <?php require './sqlReadAperturaCuenta.php'; ?>
                     
 
                     <form action="" method="post">
-                        <fieldset  > <legend>Información</legend>
+                        <fieldset  > <legend>Información datos cliente</legend>
 
                             <table>
                                 <tr>
@@ -75,22 +74,34 @@
                                 
                                     <td> <label for=""><span>Número teléfono:</span></label> </td>
                                     <td> <input type="text" size="20"  name="txttelefono" value="<?php echo $telefono_per; ?>" disabled> </td>  
+                                    
                                     <td> <label for=""><span>Estado operativo:</span></label> </td>
-                                    <td> <input type="text" size="20"  name="txttelefono" value="<?php echo $estadopersona_per; ?>" disabled> </td> 
+                                    <td> <input type="text" size="20"  name="txttelefono" value="<?php echo $descripcionestper_estper; ?>" disabled> </td> 
 
-                                </tr>
-
-                                <tr>
-                                <td colspan="3" > <label for=""  ><span >Número de cuenta asignado automaticamente por el sistema: </span></label> </td>                                
-                                <td colspan="3" > <input type="text" size="24" id="numCuenta" name="txttelefono" value="<?php echo $numCuentaBanco; ?>" > </td> 
-                                </tr>                                
+                                </tr>                             
 
                             </table>
                                                         
                         </fieldset>
-                        <input type="submit" name="crear" value="&#10004; Crear cuenta">
+                        
+                        <fieldset  > <legend>Información cuenta bancaria cliente</legend>
+                            <table>
+                                <tr>
+                                        <td> <label for=""><span> Fecha de apertura:</span></label> </td>
+                                        <td> <input type="text" size="8" name="dtfechaNac"  value="<?php echo date("Y-m-d");?>" disabled> </td>
+                                        
+                                        <td> <label for=""><span>Saldo inicial $USD:</span></label> </td>
+                                        <td> <input type="text" name="txtsaldo" onKeyPress='return validaNumericos(event)' pattern="[0-9]{10}" maxlength="2"  placeholder="$USD" required oninvalid="this.setCustomValidity('Se Requiere 10 digitos')" oninput="this.setCustomValidity('')">  </td>
+                                </tr>
+                                <tr>
+                                        <td colspan="3" > <label for=""><span >Número de cuenta asignado automaticamente por el sistema: </span></label></td>                                
+                                        <td colspan="2" > <input type="text" size="24" id="numCuenta" name="txttelefono" value="<?php echo $numCCC; ?>" disabled> </td> 
+                                </tr>
+                            </table>
+                        </fieldset>        
+                        <input type="submit" name="crear" value="&#10004; Crear cuenta">                        
                         <input type="submit" name="modificar" value="&#128221; Modificar Información"> 
-                                                             
+                             
                     </form>  
 
                     </div>                  

@@ -215,7 +215,7 @@
                                                              
                     </form>  
                     
-                    <?php include_once 'sqlCuRegistroUserSis.php'; ?>     
+                    <?php require 'sqlCuRegistroUserSis.php'; ?>     
 
                     </div>                  
                     <!-- fin FORMULARIO   -->
