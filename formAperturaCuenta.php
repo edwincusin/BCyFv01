@@ -140,7 +140,7 @@
                                         </td>
                                     
                                         <td colspan="3" > <label for=""><span >Número de cuenta asignado automaticamente por el sistema: </span></label></td>                                
-                                        <td colspan="2" > <input type="text" size="24" id="numCuenta" name="txttelefono" value="<?php echo $numCCC; ?>" disabled> </td> 
+                                        <td colspan="2" > <input type="text" size="24" id="numCuenta" name="txtCCC" value="<?php echo $numCCC; ?>" disabled> </td> 
                                 </tr>
                             </table>
                         </fieldset>        

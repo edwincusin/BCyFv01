@@ -33,12 +33,12 @@
                         <table>
                             <tr>
                                 <td> <label for=""><span>N° Cuenta cliente::</span></label> </td>
-                                <td colspam="2"> <input type="text" name="txtbuscarDato" id="validarCedulaEcu" size="20" onKeyPress='return validaNumericos(event)' maxlength="10" placeholder="ej. 002" required  oninvalid="this.setCustomValidity('Se Requiere 10 digitos')" oninput="this.setCustomValidity('')"> </td>
+                                <td colspam="2"> <input type="text" name="txtbuscarDato" id="validarCedulaEcu" size="20" onKeyPress='return validaNumericos(event)' maxlength="10" placeholder="ej. 002" required  oninvalid="this.setCustomValidity('Se Requiere ingrese N° cuenta')" oninput="this.setCustomValidity('')"> </td>
                                 <td> <input type="submit" name="buscar_UDC" value="&#128270; Buscar"> </td>
                             </tr>
                         </table>
                     </form> 
-                    <?php require './sqlReadupdeCuenta.php'; ?>
+                    <?php require 'sqlReadupdeCuenta.php'; ?>
                     
 
                     <form action="" method="post">
@@ -47,7 +47,7 @@
                             <table>
                                 <tr>
                                     <td> <label for=""><span>N° Cédula:</span></label> </td>
-                                    <td> <input type="text" name="txtcedula_AC" required value="<?php echo $persona_cueban; ?>"   readonly>  </td>
+                                    <td> <input type="text" name="txtcedula"  value="<?php echo $cedula_per; ?>"   readonly>  </td>
 
                                     <td> <label for=""><span>Apellido paterno:</span></label> </td>
                                     <td> <input type="text" size="20" value="<?php echo $apellido1_per; ?>" disabled> </td>
@@ -91,7 +91,7 @@
                                         <td> <input type="text" size="8" name="dtfechaAper_AC"  value="<?php echo $dateAC?>" readonly> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
                                         
                                         <td> <label for=""><span>Saldo  $USD:</span></label> </td>
-                                        <td> <input type="text" name="txtsaldo_AC" value="<?php echo $saldo_cueban?>" required>  </td>
+                                        <td> <input type="text" name="txtsaldo_AC" value="<?php echo $saldo_cueban?>" onKeyPress='return validaNumericos(event)' required>  </td>
 
                                         <td> <label for=""><span>Estado:</span></label> </td>
                                         <td>
@@ -140,13 +140,13 @@
                                         </td>
                                     
                                         <td > <label for=""><span >Número de cuenta: </span></label></td>                                
-                                        <td colspan="2" >  <input type="text" size="24" id="numCuenta" name="txttelefono" value="<?php echo $numCCC; ?>" readonly> </td> 
+                                        <td colspan="2" >  <input type="text" size="24" id="numCuenta" name="txtCCC" value="<?php echo $numCCC; ?>" readonly> </td> 
                                 </tr>
                             </table>
                         </fieldset>        
 
-                        <input type="submit" name="crear_AC" value="&#10004; Crear y registrar cuenta">                        
-                        <!-- <input type="submit" name="modificar" value="&#128221; Modificar Información">  -->
+                        <input type="submit" name="modificar_UDC" value="&#10004; Guardar cambios realizados">                        
+                        <input type="submit" name="eliminar_UDC" value="&#128221; Eliminar cuenta bancaria">
                         <p style="display=grid; text-align:center; color:blue; "> 
                     <b>Aviso: </b>  Para considerar una eliminacion de una cuenta bancaria ya creada, esta solo se realizara cuando haya sido creado la fecha actual y si el usuario tiene la certeza de haber cometido un error al resgistrar.</p>
 
@@ -154,7 +154,7 @@
                         
 
                     </form>
-                    <?php require 'sqlCreateAperturaCuenta.php'; ?>  
+                     <?php require 'sqlUpDeCuenta.php'; ?> 
                    
                     </div>                  
                     <!-- fin FORMULARIO   -->

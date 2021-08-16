@@ -12,14 +12,13 @@
 
  $dateAC=''; 
  $saldo_cueban=0;
- $persona_cueban='';
+ $persona_cueban="";
  $tipocuenta_cueban=0;
  $estadocuenta_cueban=0;
  $numCCC=0;
   
 
-if(isset($_POST['buscar_UDC'])){   
-    
+if(isset($_POST['buscar_UDC'])){     
    
     
 
@@ -27,36 +26,21 @@ if(isset($_POST['buscar_UDC'])){
     $conexion=conectarBD();    
     //consulta buscar en la tabla cuenta
     $buscarDato=$_POST['txtbuscarDato'];
-    $consulta="SELECT numerocuenta_cueban, 
-    fechaapertura_cueban, 
-    saldo_cueban, 
-    tipocuenta_cueban, 
-    persona_cueban, 
-    estado_cueban
-	FROM public.cuentabancaria
-    WHERE numerocuenta_cueban=$buscarDato;";
-    $resultadoCCC=pg_query($conexion,$consulta) or die (" error no se realizo la consulta en la tabla cuentabancaria");
+    $consulta="SELECT 
+	*FROM public.cuentabancaria, public.persona, public.estadopersona
+    WHERE numerocuenta_cueban='$buscarDato' and persona_cueban=cedula_per and estadopersona_per=codigo_estper;";
+    $resultado=pg_query($conexion,$consulta) or die (" error no se realizo la consulta en la tabla cuentabancaria");
     
-    if(pg_num_rows($resultadoCCC)>0){
+    if(pg_num_rows($resultado)>0){
 
-        while($row=pg_fetch_array($resultadoCCC)){            
+        while($row=pg_fetch_array($resultado)){            
             $numCCC=$row['numerocuenta_cueban'];
             $dateAC=$row['fechaapertura_cueban'];
             $saldo_cueban=$row['saldo_cueban'];
-            $persona_cueban=$row['persona_cueban'];
             $tipocuenta_cueban=$row['tipocuenta_cueban'];
             $estadocuenta_cueban=$row['estado_cueban'];
 
-        }
-
-         pg_free_result($resultadoCCC);
-
-
-        //consulta buscar en la tabla persona
-        $consulta="SELECT * FROM public.persona
-        Where cedula_per='$persona_cueban';";
-        $resultado=pg_query($conexion,$consulta) or die ("error al realizar consulta de dato en la tabla persona");
-        while($row=pg_fetch_array($resultado)){
+            $cedula_per=$row['cedula_per'];
             $apellido1_per=$row['apellido1_per'];
             $apellido2_per=$row['apellido2_per'];
             $nombre1_per=$row['nombre1_per'];
@@ -64,21 +48,12 @@ if(isset($_POST['buscar_UDC'])){
             $fechanac_per=$row['fechanac_per'];
             $telefono_per=$row['telefono_per'];
             $celular_per=$row['celular_per'];
-            $email_per=$row['email_per'];       
-            $estadopersona_per=$row['estadopersona_per'];
-            }
-         pg_free_result($resultado);
-        $consulta="SELECT descripcion_estper
-                    FROM estadopersona
-                    where codigo_estper=$estadopersona_per;";
-        $resultado=pg_query($conexion,$consulta) or die ("error al realizar consulta de dato en la tabla estadopersona ");
-        while($row=pg_fetch_array($resultado)){
-            $descripcionestper_estper=$row['descripcion_estper'];
+            $email_per=$row['email_per'];
+            $descripcionestper_estper=$row['descripcion_estper'];       
+
         }
-        pg_free_result($resultado);
 
-
-
+      pg_free_result($resultado);
 
         echo '<h4 id ="msmcorreto" > El número de cuenta encontrado. </h4>' ;
 
