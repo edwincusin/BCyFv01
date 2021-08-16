@@ -51,12 +51,16 @@ if(isset($_POST['buscar_AC'])){
     }
     pg_free_result($resultado);
 
+
+    //consulta para generar el numero de cuenta aorde al ultimo digito creado 
     $consulta="SELECT COUNT(numerocuenta_cueban)
                 FROM cuentabancaria;";
     $resultado=pg_query($conexion,$consulta) or die ("error no se pudo contar el total de numero de cuentas");
     $CCC=pg_fetch_result($resultado,0) + 1;
     $numCCC='593-373-022-001-0000000'.$CCC;
 
+
+    //imprime si el registrro persona exite para asi crear la cuenta caso contrario no se puede crear
     if ($cedula_per=="") {
         echo '<h4 id ="errorSis"> Resgistro no encontrado</h4> ';       
 

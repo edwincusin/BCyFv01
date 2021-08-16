@@ -91,7 +91,7 @@
                                             <?php 
                                                 while($row=pg_fetch_array($resultadoNacionalidad)){
                                                     $optionC = "<option value='".$row['codigo_nac']."'"; //iniciamos el codigo del option                                                
-                                                    if($nacionalidad_per > 0 and $nacionalidad_per == $row['codigo_nac']){ //si el id de la bodega es igual al del usuario lo seleccionamos
+                                                    if($nacionalidad_per > 0 and $nacionalidad_per == $row['codigo_nac']){ //si el id de la opcion es igual al del usuario lo seleccionamos
                                                         $optionC .= " selected='selected'";
                                                     }                                                
                                                     $optionC .= ">".$row['descripcion_nac']."</option>"; //terminamos el codigo del option                                                
@@ -111,7 +111,7 @@
                                             <?php 
                                                 while($row=pg_fetch_array($resultadoEstadoCivil)){
                                                     $optionC = "<option value='".$row['codigo_estciv']."'"; //iniciamos el codigo del option                                                
-                                                    if($estadocivil_per > 0 and $estadocivil_per == $row['codigo_estciv']){ //si el id de la bodega es igual al del usuario lo seleccionamos
+                                                    if($estadocivil_per > 0 and $estadocivil_per == $row['codigo_estciv']){ //si el id de la opcion es igual al del usuario lo seleccionamos
                                                         $optionC .= " selected='selected'";
                                                     }                                                
                                                     $optionC .= ">".$row['descripcion_estciv']."</option>"; //terminamos el codigo del option                                                
@@ -130,7 +130,7 @@
                                             <?php 
                                                 while($row=pg_fetch_array($resultadoInstruccion)){
                                                     $optionC = "<option value='".$row['codigo_int']."'"; //iniciamos el codigo del option                                                
-                                                    if($intruccion_per > 0 and $intruccion_per == $row['codigo_int']){ //si el id de la bodega es igual al del usuario lo seleccionamos
+                                                    if($intruccion_per > 0 and $intruccion_per == $row['codigo_int']){ //si el id de la opcion es igual al del usuario lo seleccionamos
                                                         $optionC .= " selected='selected'";
                                                     }                                                
                                                     $optionC .= ">".$row['descripcion_int']."</option>"; //terminamos el codigo del option                                                
@@ -152,7 +152,7 @@
                                             <?php 
                                                 while($row=pg_fetch_array($resultadoSexo)){
                                                     $optionC = "<option value='".$row['codigo_sex']."'"; //iniciamos el codigo del option                                                
-                                                    if($sexo_per > 0 and $sexo_per == $row['codigo_sex']){ //si el id de la bodega es igual al del usuario lo seleccionamos
+                                                    if($sexo_per > 0 and $sexo_per == $row['codigo_sex']){ //si el id de la opcion es igual al del usuario lo seleccionamos
                                                         $optionC .= " selected='selected'";
                                                     }                                                
                                                     $optionC .= ">".$row['descripcion_sex']."</option>"; //terminamos el codigo del option                                                
@@ -171,7 +171,7 @@
                                             <?php 
                                                 while($row=pg_fetch_array($resultadoActividad)){
                                                     $optionC = "<option value='".$row['codigo_act']."'"; //iniciamos el codigo del option                                                
-                                                    if($actividad_per  > 0 and $actividad_per == $row['codigo_act']){ //si el id de la bodega es igual al del usuario lo seleccionamos
+                                                    if($actividad_per  > 0 and $actividad_per == $row['codigo_act']){ //si el id de la opcion es igual al del usuario lo seleccionamos
                                                         $optionC .= " selected='selected'";
                                                     }                                                
                                                     $optionC .= ">".$row['descripcion_act']."</option>"; //terminamos el codigo del option                                                
@@ -190,7 +190,7 @@
                                             <?php 
                                                 while($row=pg_fetch_array($resultadoEstadoPersona)){
                                                     $optionC = "<option value='".$row['codigo_estper']."'"; //iniciamos el codigo del option                                                
-                                                    if($estadopersona_per  > 0 and $estadopersona_per == $row['codigo_estper']){ //si el id de la bodega es igual al del usuario lo seleccionamos
+                                                    if($estadopersona_per  > 0 and $estadopersona_per == $row['codigo_estper']){ //si el id de la opcion es igual al del usuario lo seleccionamos
                                                         $optionC .= " selected='selected'";
                                                     }                                                
                                                     $optionC .= ">".$row['descripcion_estper']."</option>"; //terminamos el codigo del option                                                

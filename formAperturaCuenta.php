@@ -47,7 +47,7 @@
                             <table>
                                 <tr>
                                     <td> <label for=""><span>N° Cédula:</span></label> </td>
-                                    <td> <input type="text" name="txtcedula" value="<?php echo $cedula_per; ?>" disabled>  </td>
+                                    <td> <input type="text" name="txtcedula" required value="<?php echo $cedula_per; ?>"  disabled >  </td>
 
                                     <td> <label for=""><span>Apellido paterno:</span></label> </td>
                                     <td> <input type="text" size="20" value="<?php echo $apellido1_per; ?>" disabled> </td>
@@ -88,12 +88,46 @@
                             <table>
                                 <tr>
                                         <td> <label for=""><span> Fecha de apertura:</span></label> </td>
-                                        <td> <input type="text" size="8" name="dtfechaNac"  value="<?php echo date("Y-m-d");?>" disabled> </td>
+                                        <td> <input type="text" size="8" name="dtfechaNac"  value="<?php echo date("Y-m-d");?>" disabled> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
                                         
                                         <td> <label for=""><span>Saldo inicial $USD:</span></label> </td>
-                                        <td> <input type="text" name="txtsaldo" onKeyPress='return validaNumericos(event)' pattern="[0-9]{10}" maxlength="2"  placeholder="$USD" required oninvalid="this.setCustomValidity('Se Requiere 10 digitos')" oninput="this.setCustomValidity('')">  </td>
-                                </tr>
+                                        <td> <input type="text" name="txtsaldo" onKeyPress='return validaNumericos(event)' pattern="[0-9]{2}" maxlength="2"  placeholder="$USD" required oninvalid="this.setCustomValidity('Se Requiere 2 digitos')" oninput="this.setCustomValidity('')">  </td>
+
+                                        <td> <label for=""><span>Estado:</span></label> </td>
+                                        <td>                                            
+                                            <select name="" id="" name="descripcionEstadoCuenta" required>
+                                                <option disabled selected value="">Seleccionar...</option>
+                                                <?php 
+                                                    if($numRegEstadoCuenta>0){                                         
+                                                        while ($row=pg_fetch_array($resultadoEstadoCuenta)){
+                                                ?> 
+                                                        <option value="<?php echo $row['codigo_estcue']; ?>"><?php echo $row['descripcion_estcue']; ?></option>
+                                                <?php   
+                                                        }
+                                                    }
+                                                ?>
+                                            </select>
+                                        </td>
+                                
+                                    </tr>
                                 <tr>
+
+                                        <td> <label for=""><span>Tipo de cuenta bancaria:</span></label> </td>
+                                        <td>                                            
+                                            <select name="" id="" name="descripcionTipoCuenta" required>
+                                                <option disabled selected value="">Seleccionar...</option>
+                                                <?php 
+                                                    if($numRegTipoCuenta>0){                                         
+                                                        while ($row=pg_fetch_array($resultadoTipoCuenta)){
+                                                ?> 
+                                                        <option value="<?php echo $row['codigo_tipcue']; ?>"><?php echo $row['descripcion_tipcue']; ?></option>
+                                                <?php   
+                                                        }
+                                                    }
+                                                ?>
+                                            </select>
+                                        </td>
+                                    
                                         <td colspan="3" > <label for=""><span >Número de cuenta asignado automaticamente por el sistema: </span></label></td>                                
                                         <td colspan="2" > <input type="text" size="24" id="numCuenta" name="txttelefono" value="<?php echo $numCCC; ?>" disabled> </td> 
                                 </tr>

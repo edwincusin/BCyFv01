@@ -42,9 +42,20 @@ $resultado=pg_query($conexion,$consulta) or die ("error al realizar la consulta 
 $resultadoEstadoPersona=$resultado;
 $numRegEstadoPersona=pg_num_rows($resultadoEstadoPersona);
 
+/* CONSULTA PARA LLENAR COMBOX ESTADO CUENTA // PASIVO O ACTIVO*/
+$consulta="SELECT *FROM public.estadocuenta";
+$resultado=pg_query($conexion,$consulta) or die ("error al realizar la consulta en la tabla EstadoCuenta");
+$resultadoEstadoCuenta=$resultado;
+$numRegEstadoCuenta=pg_num_rows($resultadoEstadoCuenta);
+
+/* CONSULTA PARA LLENAR COMBOX TIPO CUENTA // AHORROS - CORRIENTE*/
+$consulta="SELECT *FROM public.tipocuenta";
+$resultado=pg_query($conexion,$consulta) or die ("error al realizar la consulta en la tabla TipoCuenta");
+$resultadoTipoCuenta=$resultado;
+$numRegTipoCuenta=pg_num_rows($resultadoTipoCuenta);
 
 
+//pg_free_result($resultado);
 pg_close($conexion);
-// pg_free_result($resultado);
 
 ?>
