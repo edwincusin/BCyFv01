@@ -23,10 +23,11 @@
 
                     </ul>
                 </li>
-                <li id="item_menu"><a href="#">Apertura </a>
+                <li id="item_menu"><a href="#">Cuenta Bancaria </a>
 
                     <ul id="desp_submenu">
                         <li><a href="./formAperturaCuenta.php">Agregar cuenta bancaria</a></li>
+                        <li><a href="./formUpDeCuenta.php">Modificar/eliminar cuenta bancaria</a></li>
                     </ul>
 
                 </li>

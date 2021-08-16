@@ -20,8 +20,6 @@ if(isset($_POST['crear'])){
     $intruccion_per_crear=$_POST['descripcionInstruccion'];
     $actividad_per_crear=$_POST['descripcionActividadLaboral'];
     $estadopersona_per_crear=$_POST['descripcionEstadoPersona'];
-    $positivo=false;
-    $negativo=false;
     
     //para validar que exista un dato en la variable cedula ingresado por el usr
             

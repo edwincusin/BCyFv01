@@ -24,21 +24,21 @@
 
                     <!-- INICIO FORMULARIO   -->
                     <div class="tituloForm">
-                        <h2>Formulario para asignacion de código de cuenta cliente</h2>
+                        <h2>Formulario para modificar o eliminar código de cuenta cliente</h2>
                     </div>
-
+                    
                     <div class="contenedorControlesForm">
 
                     <form action="" method="post">
                         <table>
                             <tr>
-                                <td> <label for=""><span>N° Cédula:</span></label> </td>
-                                <td colspam="2"> <input type="text" name="txtbuscarDato" id="validarCedulaEcu" size="20" onKeyPress='return validaNumericos(event)' maxlength="10" placeholder="ej. 1234567890 " required pattern="[0-9]{10}" oninvalid="this.setCustomValidity('Se Requiere 10 digitos')" oninput="this.setCustomValidity('')"> </td>
-                                <td> <input type="submit" name="buscar_AC" value="&#128270; Buscar"> </td>
+                                <td> <label for=""><span>N° Cuenta cliente::</span></label> </td>
+                                <td colspam="2"> <input type="text" name="txtbuscarDato" id="validarCedulaEcu" size="20" onKeyPress='return validaNumericos(event)' maxlength="10" placeholder="ej. 002" required  oninvalid="this.setCustomValidity('Se Requiere 10 digitos')" oninput="this.setCustomValidity('')"> </td>
+                                <td> <input type="submit" name="buscar_UDC" value="&#128270; Buscar"> </td>
                             </tr>
                         </table>
                     </form> 
-                    <?php require './sqlReadAperturaCuenta.php'; ?>
+                    <?php require './sqlReadupdeCuenta.php'; ?>
                     
 
                     <form action="" method="post">
@@ -47,7 +47,7 @@
                             <table>
                                 <tr>
                                     <td> <label for=""><span>N° Cédula:</span></label> </td>
-                                    <td> <input type="text" name="txtcedula_AC" required value="<?php echo $cedula_per; ?>"   readonly>  </td>
+                                    <td> <input type="text" name="txtcedula_AC" required value="<?php echo $persona_cueban; ?>"   readonly>  </td>
 
                                     <td> <label for=""><span>Apellido paterno:</span></label> </td>
                                     <td> <input type="text" size="20" value="<?php echo $apellido1_per; ?>" disabled> </td>
@@ -88,10 +88,10 @@
                             <table>
                                 <tr>
                                         <td> <label for=""><span> Fecha de apertura:</span></label> </td>
-                                        <td> <input type="text" size="8" name="dtfechaAper_AC"  value="<?php echo date("Y-m-d");?>" readonly> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
+                                        <td> <input type="text" size="8" name="dtfechaAper_AC"  value="<?php echo $dateAC?>" readonly> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
                                         
-                                        <td> <label for=""><span>Saldo inicial $USD:</span></label> </td>
-                                        <td> <input type="text" name="txtsaldo_AC" onKeyPress='return validaNumericos(event)' pattern="[0-9]{2}" maxlength="2"  placeholder="$USD" required oninvalid="this.setCustomValidity('Se Requiere 2 digitos')" oninput="this.setCustomValidity('')">  </td>
+                                        <td> <label for=""><span>Saldo  $USD:</span></label> </td>
+                                        <td> <input type="text" name="txtsaldo_AC" value="<?php echo $saldo_cueban?>" required>  </td>
 
                                         <td> <label for=""><span>Estado:</span></label> </td>
                                         <td>
@@ -119,7 +119,7 @@
                                 <tr>
                                         <td> <label for=""><span>Tipo de cuenta bancaria:</span></label> </td>
                                         <td> 
-                                            <select id="" name="descripcionTipoCuenta_AC" required>
+                                            <select id="" name="descripcionTipoCuenta_AC">
                                                     <option disabled selected value="">Seleccionar...</option>
                                             
                                                 <!-- llenar cobobox y consultar datos de  persona TABLAS -->
@@ -139,13 +139,17 @@
 
                                         </td>
                                     
-                                        <td colspan="3" > <label for=""><span >Número de cuenta asignado automaticamente por el sistema: </span></label></td>                                
-                                        <td colspan="2" > <input type="text" size="24" id="numCuenta" name="txttelefono" value="<?php echo $numCCC; ?>" disabled> </td> 
+                                        <td > <label for=""><span >Número de cuenta: </span></label></td>                                
+                                        <td colspan="2" >  <input type="text" size="24" id="numCuenta" name="txttelefono" value="<?php echo $numCCC; ?>" readonly> </td> 
                                 </tr>
                             </table>
                         </fieldset>        
+
                         <input type="submit" name="crear_AC" value="&#10004; Crear y registrar cuenta">                        
                         <!-- <input type="submit" name="modificar" value="&#128221; Modificar Información">  -->
+                        <p style="display=grid; text-align:center; color:blue; "> 
+                    <b>Aviso: </b>  Para considerar una eliminacion de una cuenta bancaria ya creada, esta solo se realizara cuando haya sido creado la fecha actual y si el usuario tiene la certeza de haber cometido un error al resgistrar.</p>
+
                            
                         
 
