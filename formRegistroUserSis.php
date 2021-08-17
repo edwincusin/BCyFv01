@@ -47,7 +47,7 @@
 
                             <table>
                                 <tr>
-                                    <td> <label for=""><span>N° Cédula / Ruc:</span></label> </td>
+                                    <td> <label for=""><span>N° Cédula:</span></label> </td>
                                     <td> <input type="text" name="txtcedula" value="<?php echo $cedula_per; ?>" size="20" onKeyPress='return validaNumericos(event)' pattern="[0-9]{10}" maxlength="10"  placeholder="ej. 1234567890" required oninvalid="this.setCustomValidity('Se Requiere 10 digitos')" oninput="this.setCustomValidity('')">  </td>
 
                                     <td> <label for=""><span>Apellido paterno:</span></label> </td>

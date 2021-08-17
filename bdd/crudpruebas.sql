@@ -133,12 +133,13 @@ INSERT INTO public.cuentabancaria(
 INSERT INTO public.bancoslocales(
 	codigo_banloc, descripcion_banloc)
 	VALUES (1, 'N/A'),
-			(2, 'BANCO PICHINCHA'),
+			(2, 'BANCO SIGUE ADELANTE'),
 			(3, 'BANCO PRODUBANCO'),
 			(4, 'BANCO RUMIÑAHUI'),
 			(5, 'BANCO GUAYAQUIL'),
 			(6, 'BANCO SOLIDARIO'),
-			(7, 'BANCO DEL AUSTRO');
+			(7, 'BANCO DEL AUSTRO'),
+			(8, 'BANCO PICHINCHA');
 
 
 --*********************TABLA tipodeposito**************** --
@@ -162,3 +163,10 @@ INSERT INTO public.trandeposito(
 	numerocheque_trandep)
 	VALUES (1, '16-08-2021', 1, 'EDWIN GUAMA', '1111223366', 600, 1, 1, 'N/A'),
 			(2, '16-09-2021', 1, 'EDWIN CUSIN', '111122222', 1000, 2, 3, '123456789');
+
+
+--*********************TABLA tiporetiro**************** --
+INSERT INTO public.tipoderetiro(
+	codigo_tipret, descripcion_tipret)
+	VALUES (1,'EFECTIVO'),
+			(2,'CHEQUE');

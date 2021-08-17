@@ -54,6 +54,19 @@ $resultado=pg_query($conexion,$consulta) or die ("error al realizar la consulta 
 $resultadoTipoCuenta=$resultado;
 $numRegTipoCuenta=pg_num_rows($resultadoTipoCuenta);
 
+/* CONSULTA PARA LLENAR COMBOX TIPO DE DEPOSITO // EFECTIVO O CHEQUE*/
+// $consulta="SELECT *FROM public.tipocuenta";
+// $resultado=pg_query($conexion,$consulta) or die ("error al realizar la consulta en la tabla TipoCuenta");
+// $resultadoTipoCuenta=$resultado;
+// $numRegTipoCuenta=pg_num_rows($resultadoTipoCuenta);
+
+/* CONSULTA PARA LLENAR COMBOX TIPO DE RETIRO // EFECTIVO O CAMBIAR CHEQUE*/
+$consulta="SELECT *FROM public.tiporetiro";
+$resultado=pg_query($conexion,$consulta) or die ("error al realizar la consulta en la tabla tiporetiro");
+$resultadoTipoRetiro=$resultado;
+$numRegTipoRetiro=pg_num_rows($resultadoTipoRetiro);
+
+
 
 //pg_free_result($resultado);
 pg_close($conexion);

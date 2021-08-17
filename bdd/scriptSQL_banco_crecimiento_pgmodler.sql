@@ -242,8 +242,11 @@ CREATE TABLE public.tranretiro(
 	fecha_tranret date,
 	monto_tranret double precision,
 	saldomonto_tranret double precision,
+	numerocheque_tranret varchar(30),
 	cuentabancaria_tranret integer,
 	tiporetiro_tranret integer,
+	nombreret_tranret varchar(50),
+	cedularet_tranret varchar(20),
 	CONSTRAINT pk_transaccionretiro PRIMARY KEY (codigo_tranret)
 
 );
