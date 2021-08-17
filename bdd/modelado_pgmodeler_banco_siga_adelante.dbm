@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.7.2" last-position="502,844" last-zoom="1.2">
+<dbmodel pgmodeler-ver="0.7.2" last-position="21,261" last-zoom="0.85">
 <database name="new_database">
 </database>
 
@@ -186,7 +186,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="cuentabancaria">
 	<schema name="public"/>
-	<position x="658.889" y="483.333"/>
+	<position x="635.556" y="482.5"/>
 	<column name="numerocuenta_cueban">
 		<type name="serial"/>
 	</column>
@@ -240,7 +240,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="trandeposito">
 	<schema name="public"/>
-	<position x="1119.86" y="448.75"/>
+	<position x="1180.7" y="473.75"/>
 	<column name="codigo_trandep">
 		<type name="serial"/>
 	</column>
@@ -318,7 +318,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="bancoslocales">
 	<schema name="public"/>
-	<position x="1141.25" y="330"/>
+	<position x="1212.08" y="333.333"/>
 	<column name="codigo_banloc">
 		<type name="serial"/>
 	</column>
@@ -332,7 +332,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="tipodeposito">
 	<schema name="public"/>
-	<position x="1149.58" y="720"/>
+	<position x="1237.08" y="720.833"/>
 	<column name="codigo_tipdep">
 		<type name="serial"/>
 	</column>
@@ -347,7 +347,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="tranretiro">
 	<schema name="public"/>
 	<comment><![CDATA[tabla transacion retiro]]></comment>
-	<position x="832.917" y="757.083"/>
+	<position x="782.329" y="685.221"/>
 	<column name="codigo_tranret">
 		<type name="serial"/>
 	</column>
@@ -360,12 +360,21 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="saldomonto_tranret">
 		<type name="double precision"/>
 	</column>
+	<column name="numerocheque_tranret">
+		<type name="varchar" length="30"/>
+	</column>
 	<column name="cuentabancaria_tranret">
 		<type name="integer"/>
 	</column>
 	<column name="tiporetiro_tranret">
 		<type name="integer"/>
 		<comment><![CDATA[efectivo / cambio]]></comment>
+	</column>
+	<column name="nombreret_tranret">
+		<type name="varchar" length="50"/>
+	</column>
+	<column name="cedularet_tranret">
+		<type name="varchar" length="20"/>
 	</column>
 	<constraint name="pk_transaccionretiro" type="pk-constr" factor="100" table="public.tranretiro">
 		<columns names="codigo_tranret" ref-type="src-columns"/>
@@ -375,7 +384,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="trantransferencia">
 	<schema name="public"/>
 	<comment><![CDATA[tabla de transferencia bancaria]]></comment>
-	<position x="483.75" y="743.75"/>
+	<position x="345.172" y="685.27"/>
 	<column name="codigo_transf">
 		<type name="serial"/>
 	</column>
@@ -398,6 +407,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="varchar" length="50"/>
 		<comment><![CDATA[detalle o nombre de la transferencia]]></comment>
 	</column>
+	<column name="saldomonto_transf">
+		<type name="double precision"/>
+	</column>
 	<constraint name="pk_transferencia" type="pk-constr" factor="100" table="public.trantransferencia">
 		<columns names="codigo_transf" ref-type="src-columns"/>
 	</constraint>
@@ -405,7 +417,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="tiporetiro">
 	<schema name="public"/>
-	<position x="867.5" y="970"/>
+	<position x="1241.18" y="833.971"/>
 	<column name="codigo_tipret">
 		<type name="serial"/>
 	</column>
@@ -588,12 +600,20 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <relationship name="rel_trandeposito_bancoslocales" type="relfk"
 	 src-table="public.trandeposito"
 	 dst-table="public.bancoslocales"
-	 src-required="true" dst-required="true"/>
+	 src-required="true" dst-required="true">
+	<label ref-type="name-label">
+		<position x="-2.33082" y="-61.1736"/>
+	</label>
+</relationship>
 
 <relationship name="rel_trandeposito_tipodeposito" type="relfk"
 	 src-table="public.trandeposito"
 	 dst-table="public.tipodeposito"
-	 src-required="true" dst-required="true"/>
+	 src-required="true" dst-required="true">
+	<label ref-type="name-label">
+		<position x="19.0025" y="2.99305"/>
+	</label>
+</relationship>
 
 <relationship name="rel_tranretiro_cuentabancaria" type="relfk"
 	 src-table="public.tranretiro"
@@ -608,6 +628,10 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <relationship name="rel_tranretiro_tiporetiro" type="relfk"
 	 src-table="public.tranretiro"
 	 dst-table="public.tiporetiro"
-	 src-required="true" dst-required="true"/>
+	 src-required="true" dst-required="true">
+	<label ref-type="name-label">
+		<position x="19.8507" y="17.1598"/>
+	</label>
+</relationship>
 
 </dbmodel>

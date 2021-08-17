@@ -36,7 +36,7 @@
                     <ul id="desp_submenu">
                         <li><a href="./formTranDeposito.php">Realizar deposito </a></li>                      
                         <li><a href="./formTranRetiro.php">Realizar retiro</a></li>
-                        <li><a href="#">Realizar transferencia interna</a></li>
+                        <li><a href="./frmTranTransferencia.php">Realizar transferencia Local</a></li>
 
                     </ul>
                 </li>
