@@ -3,11 +3,635 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.7.2" last-position="0,0" last-zoom="1">
+<dbmodel pgmodeler-ver="0.7.2" last-position="21,261" last-zoom="0.85">
 <database name="new_database">
 </database>
 
 <schema name="public" protected="true" fill-color="#e1e1e1" sql-disabled="true">
 </schema>
+
+<table name="persona">
+	<schema name="public"/>
+	<comment><![CDATA[usuarios del sistema y clientes]]></comment>
+	<position x="662.139" y="47.3333"/>
+	<column name="cedula_per">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="apellido1_per">
+		<type name="varchar" length="25"/>
+		<comment><![CDATA[primer apellido]]></comment>
+	</column>
+	<column name="apellido2_per">
+		<type name="varchar" length="25"/>
+	</column>
+	<column name="nombre1_per">
+		<type name="varchar" length="25"/>
+		<comment><![CDATA[primer nombre]]></comment>
+	</column>
+	<column name="nombre2_per">
+		<type name="varchar" length="25"/>
+		<comment><![CDATA[segiundo nombre ]]></comment>
+	</column>
+	<column name="fechanac_per">
+		<type name="date"/>
+		<comment><![CDATA[fecha de nacimiento]]></comment>
+	</column>
+	<column name="telefono_per">
+		<type name="varchar" length="10"/>
+		<comment><![CDATA[convencional]]></comment>
+	</column>
+	<column name="celular_per">
+		<type name="varchar" length="10"/>
+	</column>
+	<column name="email_per">
+		<type name="varchar" length="50"/>
+	</column>
+	<column name="direcciondom_per">
+		<type name="varchar" length="80"/>
+	</column>
+	<column name="nacionalidad_per">
+		<type name="integer"/>
+		<comment><![CDATA[nacionalidad]]></comment>
+	</column>
+	<column name="estadocivil">
+		<type name="integer"/>
+		<comment><![CDATA[estado civil forenkey]]></comment>
+	</column>
+	<column name="sexo_per">
+		<type name="integer"/>
+		<comment><![CDATA[forenkey]]></comment>
+	</column>
+	<column name="intruccion_per">
+		<type name="integer"/>
+	</column>
+	<column name="actividad_per">
+		<type name="integer"/>
+		<comment><![CDATA[forenkey actividad a la que se dedica el usuario ocliente]]></comment>
+	</column>
+	<column name="estadopersona_per">
+		<type name="integer"/>
+		<comment><![CDATA[activo / pasivo]]></comment>
+	</column>
+	<constraint name="pk_persona" type="pk-constr" factor="100" table="public.persona">
+		<columns names="cedula_per" ref-type="src-columns"/>
+		<comment><![CDATA[clave primaria de la tambla persona]]></comment>
+	</constraint>
+</table>
+
+<table name="sexo">
+	<schema name="public"/>
+	<comment><![CDATA[sexo]]></comment>
+	<position x="80" y="129"/>
+	<column name="codigo_sex">
+		<type name="serial"/>
+	</column>
+	<column name="descripcion_sex">
+		<type name="varchar" length="15"/>
+		<comment><![CDATA[HOMBRE Y MUJER]]></comment>
+	</column>
+	<constraint name="pk_sexo" type="pk-constr" factor="100" table="public.sexo">
+		<columns names="codigo_sex" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="estadocivil">
+	<schema name="public"/>
+	<comment><![CDATA[soltero / casado / viudo / divorciado / union libre]]></comment>
+	<position x="67" y="69"/>
+	<column name="codigo_estciv">
+		<type name="serial"/>
+	</column>
+	<column name="descripcion_estciv">
+		<type name="varchar" length="20"/>
+	</column>
+	<constraint name="pk_estadocivil" type="pk-constr" factor="100" table="public.estadocivil">
+		<columns names="codigo_estciv" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="intruccion">
+	<schema name="public"/>
+	<comment><![CDATA[nivel de instruccion academico / inicial / primaria / secundaria / superior/]]></comment>
+	<position x="87" y="189"/>
+	<column name="codigo_int">
+		<type name="serial"/>
+	</column>
+	<column name="descripcion_int">
+		<type name="varchar" length="20"/>
+	</column>
+	<constraint name="pk_intruccion" type="pk-constr" factor="100" table="public.intruccion">
+		<columns names="codigo_int" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="nacionalidad">
+	<schema name="public"/>
+	<comment><![CDATA[nacionalidad persona / ecuatoriano / peruano/colombiano]]></comment>
+	<position x="78" y="10"/>
+	<column name="codigo_nac">
+		<type name="serial"/>
+	</column>
+	<column name="descripcion_nac">
+		<type name="varchar" length="20"/>
+	</column>
+	<constraint name="pk_nacionalidad" type="pk-constr" factor="100" table="public.nacionalidad">
+		<columns names="codigo_nac" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="actividad">
+	<schema name="public"/>
+	<comment><![CDATA[obrero / servicios generales/seguridad/comerciante/educador/ventas/]]></comment>
+	<position x="86" y="248"/>
+	<column name="codigo_act">
+		<type name="serial"/>
+	</column>
+	<column name="descripcion_act">
+		<type name="varchar" length="30"/>
+	</column>
+	<constraint name="pk_actividad" type="pk-constr" factor="100" table="public.actividad">
+		<columns names="codigo_act" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="tipousuario">
+	<schema name="public"/>
+	<comment><![CDATA[privilegio de usuario / administrador / empleado / cliente]]></comment>
+	<position x="1399" y="262.25"/>
+	<column name="codigo_tipusr">
+		<type name="serial"/>
+	</column>
+	<column name="descripcion_tipusr">
+		<type name="varchar" length="30"/>
+	</column>
+	<constraint name="pk_tipo_usuario" type="pk-constr" factor="100" table="public.tipousuario">
+		<columns names="codigo_tipusr" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="estadopersona">
+	<schema name="public"/>
+	<comment><![CDATA[activo/pasivo]]></comment>
+	<position x="72.5" y="334.389"/>
+	<column name="codigo_estper">
+		<type name="serial"/>
+	</column>
+	<column name="descripcion_estper">
+		<type name="varchar" length="15"/>
+	</column>
+	<constraint name="pk_estadopersona" type="pk-constr" factor="100" table="public.estadopersona">
+		<columns names="codigo_estper" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="cuentabancaria">
+	<schema name="public"/>
+	<position x="635.556" y="482.5"/>
+	<column name="numerocuenta_cueban">
+		<type name="serial"/>
+	</column>
+	<column name="fechaapertura_cueban">
+		<type name="date"/>
+	</column>
+	<column name="saldo_cueban">
+		<type name="float"/>
+	</column>
+	<column name="tipocuenta_cueban">
+		<type name="integer"/>
+	</column>
+	<column name="persona_cueban">
+		<type name="character" length="20"/>
+	</column>
+	<column name="estado_cueban">
+		<type name="integer"/>
+	</column>
+	<constraint name="pk_cuentabancaria" type="pk-constr" factor="100" table="public.cuentabancaria">
+		<columns names="numerocuenta_cueban" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="tipocuenta">
+	<schema name="public"/>
+	<position x="77.7778" y="480"/>
+	<column name="codigo_tipcue">
+		<type name="serial"/>
+	</column>
+	<column name="descripcion_tipcue">
+		<type name="varchar" length="30"/>
+	</column>
+	<constraint name="pk_tipocuenta" type="pk-constr" factor="100" table="public.tipocuenta">
+		<columns names="codigo_tipcue" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="estadocuenta">
+	<schema name="public"/>
+	<position x="73.3334" y="553.333"/>
+	<column name="codigo_estcue">
+		<type name="serial"/>
+	</column>
+	<column name="descripcion_estcue">
+		<type name="varchar" length="15"/>
+	</column>
+	<constraint name="pk_estadocuenta" type="pk-constr" factor="100" table="public.estadocuenta">
+		<columns names="codigo_estcue" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="trandeposito">
+	<schema name="public"/>
+	<position x="1180.7" y="473.75"/>
+	<column name="codigo_trandep">
+		<type name="serial"/>
+	</column>
+	<column name="fechadeposito_trandep">
+		<type name="date"/>
+	</column>
+	<column name="nombredep_trandep">
+		<type name="varchar" length="50"/>
+	</column>
+	<column name="ceduladep_trandep">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="monto_trandep">
+		<type name="double precision"/>
+	</column>
+	<column name="numerocheque_trandep">
+		<type name="varchar" length="30"/>
+	</column>
+	<column name="saldomonto_trandep">
+		<type name="double precision"/>
+		<comment><![CDATA[para almacenar la actualizacion del saldo del momento del deposito / historia]]></comment>
+	</column>
+	<column name="cuentabancaria_trandep">
+		<type name="integer"/>
+	</column>
+	<column name="tipodeposito_trandep">
+		<type name="integer"/>
+	</column>
+	<column name="banco_trandep">
+		<type name="integer" length="20"/>
+	</column>
+	<constraint name="pk_transacciondepositos" type="pk-constr" factor="100" table="public.trandeposito">
+		<columns names="codigo_trandep" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="usuario">
+	<schema name="public"/>
+	<comment><![CDATA[cuentas de usuario]]></comment>
+	<position x="1211.39" y="50.9722"/>
+	<column name="usuario_usr">
+		<type name="varchar" length="25"/>
+	</column>
+	<column name="contrasena_usr">
+		<type name="varchar" length="50"/>
+	</column>
+	<column name="tipousuario_usr">
+		<type name="integer"/>
+	</column>
+	<column name="estado_usr">
+		<type name="integer"/>
+	</column>
+	<column name="persona_usr">
+		<type name="varchar" length="20"/>
+	</column>
+	<constraint name="pk_usuario" type="pk-constr" factor="100" table="public.usuario">
+		<columns names="usuario_usr" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="estadousuario">
+	<schema name="public"/>
+	<comment><![CDATA[activo o pasivo]]></comment>
+	<position x="965.972" y="257.361"/>
+	<column name="codigo_esturs">
+		<type name="serial"/>
+	</column>
+	<column name="descripcion_estusr">
+		<type name="varchar" length="25"/>
+	</column>
+	<constraint name="pk_estado_usuario" type="pk-constr" factor="100" table="public.estadousuario">
+		<columns names="codigo_esturs" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="bancoslocales">
+	<schema name="public"/>
+	<position x="1212.08" y="333.333"/>
+	<column name="codigo_banloc">
+		<type name="serial"/>
+	</column>
+	<column name="descripcion_banloc">
+		<type name="varchar" length="30"/>
+	</column>
+	<constraint name="pk_bancoslocales" type="pk-constr" factor="100" table="public.bancoslocales">
+		<columns names="codigo_banloc" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="tipodeposito">
+	<schema name="public"/>
+	<position x="1237.08" y="720.833"/>
+	<column name="codigo_tipdep">
+		<type name="serial"/>
+	</column>
+	<column name="descripcion_tipdep">
+		<type name="varchar" length="30"/>
+	</column>
+	<constraint name="pk_tipodeposito" type="pk-constr" factor="100" table="public.tipodeposito">
+		<columns names="codigo_tipdep" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="tranretiro">
+	<schema name="public"/>
+	<comment><![CDATA[tabla transacion retiro]]></comment>
+	<position x="782.329" y="685.221"/>
+	<column name="codigo_tranret">
+		<type name="serial"/>
+	</column>
+	<column name="fecha_tranret">
+		<type name="date"/>
+	</column>
+	<column name="monto_tranret">
+		<type name="double precision"/>
+	</column>
+	<column name="saldomonto_tranret">
+		<type name="double precision"/>
+	</column>
+	<column name="numerocheque_tranret">
+		<type name="varchar" length="30"/>
+	</column>
+	<column name="cuentabancaria_tranret">
+		<type name="integer"/>
+	</column>
+	<column name="tiporetiro_tranret">
+		<type name="integer"/>
+		<comment><![CDATA[efectivo / cambio]]></comment>
+	</column>
+	<column name="nombreret_tranret">
+		<type name="varchar" length="50"/>
+	</column>
+	<column name="cedularet_tranret">
+		<type name="varchar" length="20"/>
+	</column>
+	<constraint name="pk_transaccionretiro" type="pk-constr" factor="100" table="public.tranretiro">
+		<columns names="codigo_tranret" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="trantransferencia">
+	<schema name="public"/>
+	<comment><![CDATA[tabla de transferencia bancaria]]></comment>
+	<position x="345.172" y="685.27"/>
+	<column name="codigo_transf">
+		<type name="serial"/>
+	</column>
+	<column name="fechatransferencia_transf">
+		<type name="date"/>
+	</column>
+	<column name="cuentabeneficiaria_transf">
+		<type name="integer"/>
+	</column>
+	<column name="cuentadebitar_transf">
+		<type name="integer"/>
+	</column>
+	<column name="monto_transf">
+		<type name="double precision"/>
+	</column>
+	<column name="emailnotificar_transf">
+		<type name="varchar" length="50"/>
+	</column>
+	<column name="descripcion_transf">
+		<type name="varchar" length="50"/>
+		<comment><![CDATA[detalle o nombre de la transferencia]]></comment>
+	</column>
+	<column name="saldomonto_transf">
+		<type name="double precision"/>
+	</column>
+	<constraint name="pk_transferencia" type="pk-constr" factor="100" table="public.trantransferencia">
+		<columns names="codigo_transf" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="tiporetiro">
+	<schema name="public"/>
+	<position x="1241.18" y="833.971"/>
+	<column name="codigo_tipret">
+		<type name="serial"/>
+	</column>
+	<column name="descripcion_tipret">
+		<type name="varchar" length="30"/>
+	</column>
+	<constraint name="pk_tiporetiro" type="pk-constr" factor="100" table="public.tiporetiro">
+		<columns names="codigo_tipret" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<constraint name="fk_nacionalidad" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.nacionalidad" table="public.persona">
+	<columns names="nacionalidad_per" ref-type="src-columns"/>
+	<columns names="codigo_nac" ref-type="dst-columns"/>
+</constraint>
+<constraint name="fk_estadocivil" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.estadocivil" table="public.persona">
+	<columns names="estadocivil" ref-type="src-columns"/>
+	<columns names="codigo_estciv" ref-type="dst-columns"/>
+</constraint>
+<constraint name="fk_sexo" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.sexo" table="public.persona">
+	<columns names="sexo_per" ref-type="src-columns"/>
+	<columns names="codigo_sex" ref-type="dst-columns"/>
+</constraint>
+<constraint name="fk_instruccion" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.intruccion" table="public.persona">
+	<columns names="intruccion_per" ref-type="src-columns"/>
+	<columns names="codigo_int" ref-type="dst-columns"/>
+</constraint>
+<constraint name="fk_actividad" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.actividad" table="public.persona">
+	<columns names="actividad_per" ref-type="src-columns"/>
+	<columns names="codigo_act" ref-type="dst-columns"/>
+</constraint>
+<constraint name="fk_estadopersona" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.estadopersona" table="public.persona">
+	<columns names="estadopersona_per" ref-type="src-columns"/>
+	<columns names="codigo_estper" ref-type="dst-columns"/>
+</constraint>
+<constraint name="fk_persona" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.persona" table="public.cuentabancaria">
+	<columns names="persona_cueban" ref-type="src-columns"/>
+	<columns names="cedula_per" ref-type="dst-columns"/>
+</constraint>
+<constraint name="fk_tipocuenta" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tipocuenta" table="public.cuentabancaria">
+	<columns names="tipocuenta_cueban" ref-type="src-columns"/>
+	<columns names="codigo_tipcue" ref-type="dst-columns"/>
+</constraint>
+<constraint name="fk_estadocuenta" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.estadocuenta" table="public.cuentabancaria">
+	<columns names="estado_cueban" ref-type="src-columns"/>
+	<columns names="codigo_estcue" ref-type="dst-columns"/>
+</constraint>
+<constraint name="fk_cuentabancaria_transacciondeposito" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.cuentabancaria" table="public.trandeposito">
+	<columns names="cuentabancaria_trandep" ref-type="src-columns"/>
+	<columns names="numerocuenta_cueban" ref-type="dst-columns"/>
+</constraint>
+<constraint name="fk_bancoslocales" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.bancoslocales" table="public.trandeposito">
+	<columns names="banco_trandep" ref-type="src-columns"/>
+	<columns names="codigo_banloc" ref-type="dst-columns"/>
+</constraint>
+<constraint name="fk_tipodeposito" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tipodeposito" table="public.trandeposito">
+	<columns names="tipodeposito_trandep" ref-type="src-columns"/>
+	<columns names="codigo_tipdep" ref-type="dst-columns"/>
+</constraint>
+<constraint name="fk_tipousuario" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tipousuario" table="public.usuario">
+	<columns names="tipousuario_usr" ref-type="src-columns"/>
+	<columns names="codigo_tipusr" ref-type="dst-columns"/>
+</constraint>
+<constraint name="fk_estado_usuario" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.estadousuario" table="public.usuario">
+	<columns names="estado_usr" ref-type="src-columns"/>
+	<columns names="codigo_esturs" ref-type="dst-columns"/>
+</constraint>
+<constraint name="pk_persona_usuario" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.persona" table="public.usuario">
+	<columns names="persona_usr" ref-type="src-columns"/>
+	<columns names="cedula_per" ref-type="dst-columns"/>
+</constraint>
+<constraint name="fk_cuentabancaria_retiro" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.cuentabancaria" table="public.tranretiro">
+	<columns names="cuentabancaria_tranret" ref-type="src-columns"/>
+	<columns names="numerocuenta_cueban" ref-type="dst-columns"/>
+</constraint>
+<constraint name="fk_tiporetiro_tranretiro" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tiporetiro" table="public.tranretiro">
+	<columns names="tiporetiro_tranret" ref-type="src-columns"/>
+	<columns names="codigo_tipret" ref-type="dst-columns"/>
+</constraint>
+<constraint name="fk_cuentabancaria_transferencia" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.cuentabancaria" table="public.trantransferencia">
+	<columns names="cuentabeneficiaria_transf" ref-type="src-columns"/>
+	<columns names="numerocuenta_cueban" ref-type="dst-columns"/>
+</constraint>
+<constraint name="fk_cuentabancaria_transferencia_debitar" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.cuentabancaria" table="public.trantransferencia">
+	<columns names="cuentadebitar_transf" ref-type="src-columns"/>
+	<columns names="numerocuenta_cueban" ref-type="dst-columns"/>
+</constraint>
+<relationship name="rel_persona_nacionalidad" type="relfk"
+	 src-table="public.persona"
+	 dst-table="public.nacionalidad"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_persona_estadocivil" type="relfk"
+	 src-table="public.persona"
+	 dst-table="public.estadocivil"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_persona_sexo" type="relfk"
+	 src-table="public.persona"
+	 dst-table="public.sexo"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_persona_intruccion" type="relfk"
+	 src-table="public.persona"
+	 dst-table="public.intruccion"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_persona_actividad" type="relfk"
+	 src-table="public.persona"
+	 dst-table="public.actividad"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_persona_estadopersona" type="relfk"
+	 src-table="public.persona"
+	 dst-table="public.estadopersona"
+	 src-required="true" dst-required="true">
+	<label ref-type="dst-label">
+		<position x="60.9677" y="9.91111"/>
+	</label>
+</relationship>
+
+<relationship name="rel_cuentabancaria_persona" type="relfk"
+	 src-table="public.cuentabancaria"
+	 dst-table="public.persona"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_cuentabancaria_tipocuenta" type="relfk"
+	 src-table="public.cuentabancaria"
+	 dst-table="public.tipocuenta"
+	 src-required="true" dst-required="true">
+	<label ref-type="name-label">
+		<position x="-15.3298" y="-54.854"/>
+	</label>
+</relationship>
+
+<relationship name="rel_cuentabancaria_estadocuenta" type="relfk"
+	 src-table="public.cuentabancaria"
+	 dst-table="public.estadocuenta"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_usuario_tipousuario" type="relfk"
+	 src-table="public.usuario"
+	 dst-table="public.tipousuario"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_usuario_estadousuario" type="relfk"
+	 src-table="public.usuario"
+	 dst-table="public.estadousuario"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_usuario_persona" type="relfk"
+	 src-table="public.usuario"
+	 dst-table="public.persona"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_trandeposito_cuentabancaria" type="relfk"
+	 src-table="public.trandeposito"
+	 dst-table="public.cuentabancaria"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_trandeposito_bancoslocales" type="relfk"
+	 src-table="public.trandeposito"
+	 dst-table="public.bancoslocales"
+	 src-required="true" dst-required="true">
+	<label ref-type="name-label">
+		<position x="-2.33082" y="-61.1736"/>
+	</label>
+</relationship>
+
+<relationship name="rel_trandeposito_tipodeposito" type="relfk"
+	 src-table="public.trandeposito"
+	 dst-table="public.tipodeposito"
+	 src-required="true" dst-required="true">
+	<label ref-type="name-label">
+		<position x="19.0025" y="2.99305"/>
+	</label>
+</relationship>
+
+<relationship name="rel_tranretiro_cuentabancaria" type="relfk"
+	 src-table="public.tranretiro"
+	 dst-table="public.cuentabancaria"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_trantransferencia_cuentabancaria" type="relfk"
+	 src-table="public.trantransferencia"
+	 dst-table="public.cuentabancaria"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_tranretiro_tiporetiro" type="relfk"
+	 src-table="public.tranretiro"
+	 dst-table="public.tiporetiro"
+	 src-required="true" dst-required="true">
+	<label ref-type="name-label">
+		<position x="19.8507" y="17.1598"/>
+	</label>
+</relationship>
 
 </dbmodel>
