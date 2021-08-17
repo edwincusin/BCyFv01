@@ -54,6 +54,21 @@ $resultado=pg_query($conexion,$consulta) or die ("error al realizar la consulta 
 $resultadoTipoCuenta=$resultado;
 $numRegTipoCuenta=pg_num_rows($resultadoTipoCuenta);
 
+/* CONSULTA PARA LLENAR COMBOX TIPO DEPOSITO*/
+$consulta="SELECT *FROM public.tipodeposito";
+$resultado=pg_query($conexion,$consulta) or die ("error al realizar la consulta en la tabla TipoCuenta");
+$resultadoTipoDeposito=$resultado;
+$numRegTipoDeposito=pg_num_rows($resultadoTipoDeposito);
+
+
+
+/* CONSULTA PARA LLENAR COMBOX BANCO DESTINO */
+$consulta="SELECT *FROM public.bancoslocales";
+$resultado=pg_query($conexion,$consulta) or die ("error al realizar la consulta en la tabla TipoDeposito");
+$resultadoBancosLocales=$resultado;
+$numRegBancos=pg_num_rows($resultadoBancosLocales);
+
+
 
 //pg_free_result($resultado);
 pg_close($conexion);

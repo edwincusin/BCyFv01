@@ -89,10 +89,10 @@
                             <table>
                                 <tr>
                                     <td> <label for=""><span>N° Cédula:</span></label> </td>
-                                    <td> <input type="text" name="txtcedula"  value=""   readonly>  </td>
+                                    <td> <input type="text" name="txtcedula_depositante"  value="" maxlength="10" required>  </td>
 
-                                    <td> <label for=""><span>Nonmbre :</span></label> </td>
-                                    <td> <input type="text" size="20" value="" > </td>
+                                    <td> <label for=""><span>Nombre :</span></label> </td>
+                                    <td> <input type="text" name="nombre_depositante" size="40" value="" maxlength="60" required> </td>
                                    
                                 </tr>
                           </table>                                                      
@@ -105,67 +105,54 @@
                                         <td> <label for=""><span> Fecha deposito:</span></label> </td>
                                         <td> <input type="text" size="8" name="dtfechaAper_AC"  value="<?php echo date("Y-m-d");?>" readonly> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
                                         
-                                        <td> <label for=""><span>Valor :</span></label> </td>
-                                        <td> <input type="text" name="txtsaldo_AC" value="<?php echo $saldo_cueban?>" onKeyPress='return validaNumericos(event)' required>  </td>
-																				<td> <label for=""><span>Numero de cheque :</span></label> </td>
-                                         <td> <input type="text" size="20" value="" > </td>
-                                        <td> <label for=""><span>Estado:</span></label> </td>
-                                        <td>
-                                            <select id="" name="desEstadoCuenta_AC" required>
+                                        
+																				<td> <label for=""><span>Tipo de deposito:</span></label> </td>
+                                        <td> 
+                                            <select id="" name="descripcionTipoDeposito" class="descripcionTipoDeposito" required>
                                                     <option disabled selected value="">Seleccionar...</option>
-                                            
-                                                <!-- llenar cobobox y consultar datos de  persona TABLAS -->
-                                                <?php 
-                                                    while($row=pg_fetch_array($resultadoEstadoCuenta)){
-                                                        $optionC = "<option value='".$row['codigo_estcue']."'"; //iniciamos el codigo del option                                                
-                                                        if($estadocuenta_cueban > 0 and $estadocuenta_cueban == $row['codigo_estcue']){ //si el id de la opcion es igual al del usuario lo seleccionamos
-                                                            $optionC .= " selected='selected'";
-                                                        }                                                
-                                                        $optionC .= ">".$row['descripcion_estcue']."</option>"; //terminamos el codigo del option                                                
+                                               <?php 
+                                                    while($row=pg_fetch_array($resultadoTipoDeposito)){
+                                                        $optionC = "<option value='".$row['codigo_tipdep']."'"; //iniciamos el codigo del option                                                                                                                                        
+                                                        $optionC .= ">".$row['descripcion_tipdep']."</option>"; //terminamos el codigo del option                                                
                                                         echo $optionC; //imprimimos en pantalla el codigo que se armo
                                                     }
                                                 ?>
-                                                <!-- FIN llenar cobobox y consultar datos de  persona TABLAS -->                                     
-                                                    
-                                            </select>
-
+                                                <!-- FIN llenar cobobox y consultar datos de  persona TABLAS -->                                                                           
+                                            </select>																				
                                         </td>
-                                
+																				<td> <label for=""><span>Número cheque:</span></label> </td>
+																				<td> <input type="text" size="20"  class="resultado" required> </td>
+																				<script>
+																					const selectElement = document.querySelector('.descripcionTipoDeposito');
+																									selectElement.addEventListener('change', (event) => {
+																											const resultado = document.querySelector('.resultado');																											
+																											resultado.textContent = `Te gusta el sabor ${event.target.value}`;																																																																
+																											resultado.value=`${event.target.value}`;
+																											if(resultado.value==="1"){
+																												resultado.value="N/A";
+																												resultado.disabled="true";
+																											}
+																											if(resultado.value==="2"){
+																												resultado.value="";
+																												resultado.removeAttribute('disabled');
+																											}
+																										});
+																				</script>
+
                                     </tr>
                                 <tr>
-                                        <td> <label for=""><span>Tipo de deposito:</span></label> </td>
-                                        <td> 
-                                            <select id="" name="descripcionTipoCuenta_AC">
-                                                    <option disabled selected value="">Seleccionar...</option>
-                                            
-                                                <!-- llenar cobobox y consultar datos de  persona TABLAS -->
-                                                <?php 
-                                                    while($row=pg_fetch_array($resultadoTipoCuenta)){
-                                                        $optionC = "<option value='".$row['codigo_tipcue']."'"; //iniciamos el codigo del option                                                
-                                                        if($tipocuenta_cueban > 0 and $tipocuenta_cueban == $row['codigo_tipcue']){ //si el id de la opcion es igual al del usuario lo seleccionamos
-                                                            $optionC .= " selected='selected'";
-                                                        }                                                
-                                                        $optionC .= ">".$row['descripcion_tipcue']."</option>"; //terminamos el codigo del option                                                
-                                                        echo $optionC; //imprimimos en pantalla el codigo que se armo
-                                                    }
-                                                ?>
-                                                <!-- FIN llenar cobobox y consultar datos de  persona TABLAS -->                                     
-                                                    
-                                            </select>
-                                        </td>
+                                       
+
 																				<td> <label for=""><span>Banco Destino</span></label> </td>
                                         <td> 
-                                            <select id="" name="descripcionTipoCuenta_AC">
+                                            <select id="" name="descripcionBancosLocales" required>
                                                     <option disabled selected value="">Seleccionar...</option>
                                             
                                                 <!-- llenar cobobox y consultar datos de  persona TABLAS -->
                                                 <?php 
-                                                    while($row=pg_fetch_array($resultadoTipoCuenta)){
-                                                        $optionC = "<option value='".$row['codigo_tipcue']."'"; //iniciamos el codigo del option                                                
-                                                        if($tipocuenta_cueban > 0 and $tipocuenta_cueban == $row['codigo_tipcue']){ //si el id de la opcion es igual al del usuario lo seleccionamos
-                                                            $optionC .= " selected='selected'";
-                                                        }                                                
-                                                        $optionC .= ">".$row['descripcion_tipcue']."</option>"; //terminamos el codigo del option                                                
+                                                    while($row=pg_fetch_array($resultadoBancosLocales)){
+                                                        $optionC = "<option value='".$row['codigo_banloc']."'"; //iniciamos el codigo del option                                                                                                                                              
+                                                        $optionC .= ">".$row['descripcion_banloc']."</option>"; //terminamos el codigo del option                                                
                                                         echo $optionC; //imprimimos en pantalla el codigo que se armo
                                                     }
                                                 ?>
@@ -173,22 +160,27 @@
                                                     
                                             </select>
                                         </td>
-
-                                    
-                                        <td > <label for=""><span >Número de cuenta: </span></label></td>                                
-																				                                        <td colspan="2" >  <input type="text" size="24" id="numCuenta" name="txtCCC" value="<?php echo $numCCC; ?>" readonly> </td> 
+																				<td> <label for=""><span>Estado:</span></label> </td>
+                                        <td> <input type="text" size="20"  name="txtdescripcion_estcue"   required readonly> </td>															
+																				<td> <label for=""><span>Valor $:</span></label> </td>
+                                        <td> <input type="text" name="txtvalor" placeholder="ej. 100" maxlength="8" onKeyPress='return validaNumericos(event)' required> </td>         
+																					<td > <label for=""><span >Número de cuenta: </span></label></td>                                
+																				<td>  <input type="text" size="16" id="numCuenta" name="txtCCC" value="<?php echo $numCCC; ?>" required readonly> </td> 
                                 </tr>
                             </table>
                         </fieldset>        
 
-                        <input type="submit" name="modificar_UDC" value="&#10004; Guardar cambios realizados">                        
-                        <input type="submit" name="eliminar_UDC" value="&#128221; Eliminar cuenta bancaria">
+                        <input type="submit" name="ingresar_deposito" class="ingresar_deposito" value="&#10004; Registrar Deposito e imprimir"> 
+										 <script>
+													document.getElementById("ingresar_deposito").addEventListener("click", function( event ) {
+														// presentar la cuenta de clicks realizados sobre el elemento con id "prueba"
+														event.target.innerHTML = "Conteo de Clicks: " + event.detail;
+														console.log("hhjhjj");
+													}, false);
+											</script>     
+
                         <p style="display=grid; text-align:center; color:blue; "> 
-                    <b>Aviso: </b>  Para considerar una eliminacion de una cuenta bancaria ya creada, esta solo se realizara cuando haya sido creado la fecha actual y si el usuario tiene la certeza de haber cometido un error al resgistrar.</p>
-
-                           
-                        
-
+                    
                     </form>
                      <?php require 'sqlUpDeCuenta.php'; ?> 
                    
@@ -205,4 +197,4 @@
 
 </html>
 
-<script src="eventosfunciones.js" type="text/javascript"></script>s
+<script src="./eventosfunciones.js" type="text/javascript"></script>

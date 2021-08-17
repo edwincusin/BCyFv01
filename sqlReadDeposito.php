@@ -14,6 +14,7 @@
  $saldo_cueban=0;
  $persona_cueban="";
  $tipocuenta_cueban=0;
+ $descripcion_estcue="";
  $estadocuenta_cueban=0;
  $numCCC=0;
   
@@ -27,7 +28,7 @@ if(isset($_POST['buscar_UDC'])){
     //consulta buscar en la tabla cuenta
     $buscarDato=$_POST['txtbuscarDato'];
     $consulta="SELECT 
-	*FROM public.cuentabancaria, public.persona, public.estadopersona
+	*FROM public.cuentabancaria, public.persona, public.estadopersona, public.estadocuenta
     WHERE numerocuenta_cueban='$buscarDato' and persona_cueban=cedula_per and estadopersona_per=codigo_estper;";
     $resultado=pg_query($conexion,$consulta) or die (" error no se realizo la consulta en la tabla cuentabancaria");
     
@@ -39,6 +40,7 @@ if(isset($_POST['buscar_UDC'])){
             $saldo_cueban=$row['saldo_cueban'];
             $tipocuenta_cueban=$row['tipocuenta_cueban'];
             $estadocuenta_cueban=$row['estado_cueban'];
+						$descripcion_estcue=$row['descripcion_estcue'];
 
             $cedula_per=$row['cedula_per'];
             $apellido1_per=$row['apellido1_per'];

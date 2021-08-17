@@ -1,20 +1,20 @@
 function limpia(elemento) {
-    elemento.value = "";
+	elemento.value = "";
 }
 
 function mayus(e) {
-    e.value = e.value.toUpperCase();
+	e.value = e.value.toUpperCase();
 }
 
 function minus(e) {
-    e.value = e.value.toLowerCase();
+	e.value = e.value.toLowerCase();
 }
 
 function validaNumericos(event) {
-    if(event.charCode >= 48 && event.charCode <= 57){
-      return true;
-     }
-     return false;        
+	if (event.charCode >= 48 && event.charCode <= 57) {
+		return true;
+	}
+	return false;
 }
 
 //                                    function validaNumericos(event){ 
@@ -23,35 +23,25 @@ function validaNumericos(event) {
 //                                    
 //validad campo txt solo texto
 function soloLetras(e) {
-    var key = e.keyCode || e.which,
-            tecla = String.fromCharCode(key).toLowerCase(),
-            letras = " áéíóúabcdefghijklmnñopqrstuvwxyz",
-            especiales = [8, 37, 39, 46],
-            tecla_especial = false;
+	var key = e.keyCode || e.which,
+		tecla = String.fromCharCode(key).toLowerCase(),
+		letras = " áéíóúabcdefghijklmnñopqrstuvwxyz",
+		especiales = [8, 37, 39, 46],
+		tecla_especial = false;
 
-    for (var i in especiales) {
-        if (key == especiales[i]) {
-            tecla_especial = true;
-            break;
-        }
-    }
+	for (var i in especiales) {
+		if (key == especiales[i]) {
+			tecla_especial = true;
+			break;
+		}
+	}
 
-    if (letras.indexOf(tecla) == -1 && !tecla_especial) {
-        return false;
-    }
+	if (letras.indexOf(tecla) == -1 && !tecla_especial) {
+		return false;
+	}
 }
 
-$(".validar_form").submit(function () {
-var select = $("#id_validar_combo").val();
-if (select == null) {
-$('.error').text("Seleccione una Casa de Apuestas");
-    return false;
-} else {
-    $('.errors').hide();
-    alert('OK');
-    return true;
-}
-});
+
 
 
 //                                    function validarNumeroDecimal(numero){

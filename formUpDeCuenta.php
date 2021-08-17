@@ -109,10 +109,8 @@
                                                         echo $optionC; //imprimimos en pantalla el codigo que se armo
                                                     }
                                                 ?>
-                                                <!-- FIN llenar cobobox y consultar datos de  persona TABLAS -->                                     
-                                                    
+                                                <!-- FIN llenar cobobox y consultar datos de  persona TABLAS -->                                                                                       
                                             </select>
-
                                         </td>
                                 
                                     </tr>
