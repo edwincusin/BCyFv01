@@ -101,7 +101,7 @@
             }
 
         }else {
-            echo '<br> <h4 id ="errorSis" > Debe seccionar o consultar primer numero de cuenta, existen campos vacios, vuelva a intentar. </h4>' ;
+            echo '<br> <h4 id ="errorSis" > Debe seleccionar o consultar primer numero de cuenta, existen campos vacios, vuelva a intentar. </h4>' ;
            
         }
 

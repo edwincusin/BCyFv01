@@ -5,7 +5,7 @@ function conectarBD(){
     $dbname="dbname=banco_sa"; 
     $port="port=5432"; 
     $user="user=postgres"; 
-    $password="password=admin";
+    $password="password=admin1996";
 
     $bd = pg_connect("$host $port $dbname $user $password");
     if(!$bd){
