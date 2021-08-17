@@ -242,12 +242,14 @@ CREATE TABLE public.tranretiro(
 	fecha_tranret date,
 	monto_tranret double precision,
 	saldomonto_tranret double precision,
-	cuentabancaria_tranret smallint,
+	cuentabancaria_tranret integer,
+	tiporetiro_tranret integer,
 	CONSTRAINT pk_transaccionretiro PRIMARY KEY (codigo_tranret)
 
 );
 -- ddl-end --
 COMMENT ON TABLE public.tranretiro IS 'tabla transacion retiro';
+COMMENT ON COLUMN public.tranretiro.tiporetiro_tranret IS 'efectivo / cambio';
 -- ddl-end --
 
 -- object: public.trantransferencia | type: TABLE --
@@ -268,6 +270,15 @@ COMMENT ON TABLE public.trantransferencia IS 'tabla de transferencia bancaria';
 COMMENT ON COLUMN public.trantransferencia.descripcion_transf IS 'detalle o nombre de la transferencia';
 -- ddl-end --
 
+-- object: public.tiporetiro | type: TABLE --
+-- DROP TABLE public.tiporetiro;
+CREATE TABLE public.tiporetiro(
+	codigo_tipret serial,
+	descripcion_tipret varchar(30),
+	CONSTRAINT pk_tiporetiro PRIMARY KEY (codigo_tipret)
+
+);
+-- ddl-end --
 -- object: fk_nacionalidad | type: CONSTRAINT --
 -- ALTER TABLE public.persona DROP CONSTRAINT fk_nacionalidad;
 ALTER TABLE public.persona ADD CONSTRAINT fk_nacionalidad FOREIGN KEY (nacionalidad_per)
@@ -392,6 +403,14 @@ ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ALTER TABLE public.tranretiro DROP CONSTRAINT fk_cuentabancaria_retiro;
 ALTER TABLE public.tranretiro ADD CONSTRAINT fk_cuentabancaria_retiro FOREIGN KEY (cuentabancaria_tranret)
 REFERENCES public.cuentabancaria (numerocuenta_cueban) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: fk_tiporetiro_tranretiro | type: CONSTRAINT --
+-- ALTER TABLE public.tranretiro DROP CONSTRAINT fk_tiporetiro_tranretiro;
+ALTER TABLE public.tranretiro ADD CONSTRAINT fk_tiporetiro_tranretiro FOREIGN KEY (tiporetiro_tranret)
+REFERENCES public.tiporetiro (codigo_tipret) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 

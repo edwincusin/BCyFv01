@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.7.2" last-position="348,78" last-zoom="0.8">
+<dbmodel pgmodeler-ver="0.7.2" last-position="502,844" last-zoom="1.2">
 <database name="new_database">
 </database>
 
@@ -240,7 +240,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="trandeposito">
 	<schema name="public"/>
-	<position x="1226.53" y="472.917"/>
+	<position x="1119.86" y="448.75"/>
 	<column name="codigo_trandep">
 		<type name="serial"/>
 	</column>
@@ -318,7 +318,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="bancoslocales">
 	<schema name="public"/>
-	<position x="1253.75" y="760"/>
+	<position x="1141.25" y="330"/>
 	<column name="codigo_banloc">
 		<type name="serial"/>
 	</column>
@@ -332,7 +332,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="tipodeposito">
 	<schema name="public"/>
-	<position x="1253.75" y="345"/>
+	<position x="1149.58" y="720"/>
 	<column name="codigo_tipdep">
 		<type name="serial"/>
 	</column>
@@ -347,7 +347,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="tranretiro">
 	<schema name="public"/>
 	<comment><![CDATA[tabla transacion retiro]]></comment>
-	<position x="828.75" y="748.75"/>
+	<position x="832.917" y="757.083"/>
 	<column name="codigo_tranret">
 		<type name="serial"/>
 	</column>
@@ -361,7 +361,11 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="double precision"/>
 	</column>
 	<column name="cuentabancaria_tranret">
-		<type name="smallint"/>
+		<type name="integer"/>
+	</column>
+	<column name="tiporetiro_tranret">
+		<type name="integer"/>
+		<comment><![CDATA[efectivo / cambio]]></comment>
 	</column>
 	<constraint name="pk_transaccionretiro" type="pk-constr" factor="100" table="public.tranretiro">
 		<columns names="codigo_tranret" ref-type="src-columns"/>
@@ -396,6 +400,20 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</column>
 	<constraint name="pk_transferencia" type="pk-constr" factor="100" table="public.trantransferencia">
 		<columns names="codigo_transf" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="tiporetiro">
+	<schema name="public"/>
+	<position x="867.5" y="970"/>
+	<column name="codigo_tipret">
+		<type name="serial"/>
+	</column>
+	<column name="descripcion_tipret">
+		<type name="varchar" length="30"/>
+	</column>
+	<constraint name="pk_tiporetiro" type="pk-constr" factor="100" table="public.tiporetiro">
+		<columns names="codigo_tipret" ref-type="src-columns"/>
 	</constraint>
 </table>
 
@@ -478,6 +496,11 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.cuentabancaria" table="public.tranretiro">
 	<columns names="cuentabancaria_tranret" ref-type="src-columns"/>
 	<columns names="numerocuenta_cueban" ref-type="dst-columns"/>
+</constraint>
+<constraint name="fk_tiporetiro_tranretiro" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tiporetiro" table="public.tranretiro">
+	<columns names="tiporetiro_tranret" ref-type="src-columns"/>
+	<columns names="codigo_tipret" ref-type="dst-columns"/>
 </constraint>
 <constraint name="fk_cuentabancaria_transferencia" type="fk-constr" comparison-type="MATCH FULL"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.cuentabancaria" table="public.trantransferencia">
@@ -580,6 +603,11 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <relationship name="rel_trantransferencia_cuentabancaria" type="relfk"
 	 src-table="public.trantransferencia"
 	 dst-table="public.cuentabancaria"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_tranretiro_tiporetiro" type="relfk"
+	 src-table="public.tranretiro"
+	 dst-table="public.tiporetiro"
 	 src-required="true" dst-required="true"/>
 
 </dbmodel>
