@@ -182,10 +182,14 @@ CREATE TABLE public.trandeposito(
 	tipodeposito_trandep integer,
 	banco_trandep integer,
 	numerocheque_trandep varchar(30),
+	saldomonto_trandep double precision,
 	CONSTRAINT pk_transacciondepositos PRIMARY KEY (codigo_trandep)
 
 );
 -- ddl-end --
+COMMENT ON COLUMN public.trandeposito.saldomonto_trandep IS 'para almacenar la actualizacion del saldo del momento del deposito / historia';
+-- ddl-end --
+
 -- object: public.usuario | type: TABLE --
 -- DROP TABLE public.usuario;
 CREATE TABLE public.usuario(
@@ -231,6 +235,16 @@ CREATE TABLE public.tipodeposito(
 
 );
 -- ddl-end --
+-- object: public.tranretiro | type: TABLE --
+-- DROP TABLE public.tranretiro;
+CREATE TABLE public.tranretiro(
+	codigo_tranret serial,
+	fecha_tranret date
+);
+-- ddl-end --
+COMMENT ON TABLE public.tranretiro IS 'tabla transacion retiro';
+-- ddl-end --
+
 -- object: fk_nacionalidad | type: CONSTRAINT --
 -- ALTER TABLE public.persona DROP CONSTRAINT fk_nacionalidad;
 ALTER TABLE public.persona ADD CONSTRAINT fk_nacionalidad FOREIGN KEY (nacionalidad_per)

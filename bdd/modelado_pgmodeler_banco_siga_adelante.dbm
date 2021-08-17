@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.7.2" last-position="348,156" last-zoom="0.8">
+<dbmodel pgmodeler-ver="0.7.2" last-position="348,157" last-zoom="0.8">
 <database name="new_database">
 </database>
 
@@ -240,7 +240,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="trandeposito">
 	<schema name="public"/>
-	<position x="1116.53" y="370.417"/>
+	<position x="1167.78" y="336.667"/>
 	<column name="codigo_trandep">
 		<type name="serial"/>
 	</column>
@@ -314,7 +314,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="bancoslocales">
 	<schema name="public"/>
-	<position x="1720" y="517.5"/>
+	<position x="1718.75" y="360"/>
 	<column name="codigo_banloc">
 		<type name="serial"/>
 	</column>
@@ -328,7 +328,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="tipodeposito">
 	<schema name="public"/>
-	<position x="1586.25" y="295"/>
+	<position x="1723.75" y="260"/>
 	<column name="codigo_tipdep">
 		<type name="serial"/>
 	</column>
@@ -338,6 +338,18 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<constraint name="pk_tipodeposito" type="pk-constr" factor="100" table="public.tipodeposito">
 		<columns names="codigo_tipdep" ref-type="src-columns"/>
 	</constraint>
+</table>
+
+<table name="tranretiro">
+	<schema name="public"/>
+	<comment><![CDATA[tabla transacion retiro]]></comment>
+	<position x="1087.5" y="626.25"/>
+	<column name="codigo_tranret">
+		<type name="serial"/>
+	</column>
+	<column name="fecha_tranret">
+		<type name="date"/>
+	</column>
 </table>
 
 <constraint name="fk_nacionalidad" type="fk-constr" comparison-type="MATCH FULL"
