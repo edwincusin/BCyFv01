@@ -34,8 +34,7 @@
                 <li id="item_menu"><a href="#">Transacción</a>
 
                     <ul id="desp_submenu">
-                        <li><a href="#">Realizar deposito en efectivo</a></li>
-                        <li><a href="#">Realizar deposito con cheque</a></li>
+                        <li><a href="./formTranDeposito.php">Realizar deposito </a></li>                      
                         <li><a href="#">Realizar retiro</a></li>
                         <li><a href="#">Realizar transferencia interna</a></li>
 
