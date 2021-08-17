@@ -17,6 +17,7 @@
  $descripcion_estcue='';
  $descripcion_tipcue='';
  $numCCC=0;
+ $numRetiro=0;
   
 
 if(isset($_POST['buscar_TR'])){     
@@ -55,12 +56,18 @@ if(isset($_POST['buscar_TR'])){
             $telefono_per=$row['telefono_per'];
             $celular_per=$row['celular_per'];
             $email_per=$row['email_per'];
-            $descripcionestper_estper=$row['descripcion_estper']; 
-                     
+            $descripcionestper_estper=$row['descripcion_estper'];                     
 
         }
 
       pg_free_result($resultado);
+
+        $consulta="SELECT max(codigo_tranret)
+                    FROM tranretiro;";
+        $resultado=pg_query($conexion,$consulta) or die ("error no se pudo contar el total de numero de cuentas");
+        $numRetiro=pg_fetch_result($resultado,0) + 1;
+
+
 
         echo '<h4 id ="msmcorreto" > El número de cuenta encontrado. </h4>' ;
 

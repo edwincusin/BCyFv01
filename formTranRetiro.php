@@ -103,6 +103,11 @@
                         <fieldset >  <legend id="selectfield">Informacion requerida para retiro</legend>
                             <table>
                                 <tr>
+                                    <td> <label for=""><span> N° Retiro :</span></label> </td>
+                                     <td> <input type="text" size="8" name="numRetiro"  value="<?php echo $numRetiro?>" readonly> </td>
+
+                                </tr>
+                                <tr>
                                         <td> <label for=""><span> Fecha de retiro:</span></label> </td>
                                         <td> <input type="text" size="8" name="dtfechaAper_AC"  value="<?php echo date('Y-m-d')?>" readonly> </td>
 
@@ -148,7 +153,7 @@
                             </table>
 
                         </fieldset>    
-<br>
+<br> 
                         <input type="submit" name="crear_retiro" value="&#10004; Registrar retiro e imprimir">                        
                         <!-- <input type="submit" name="eliminar_UDC" value="&#128221; Eliminar cuenta bancaria"> -->
                         <p style="display=grid; text-align:center; color:blue; "> 

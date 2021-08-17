@@ -21,7 +21,7 @@
                                 echo '<br> <h4 id ="errorSis" >  Debe completar los campos que requiere cuando es retiro o cambio en cheque : campo N°cheque, nombre y cedula vuelva a intentar</h4>' ;                           
                             }else {/*   inicio de procesos consultas para guardar  */
 
-                                //$codigo_tranret=$_POST['']; 
+                                $codigo_tranret=$_POST['numRetiro']; 
                                 $fecha_tranret=$_POST['dtfechaAper_AC']; 
                                 $monto_tranret=$_POST['txtvalor'];
                                 $saldomonto_tranret=0; //calcular
@@ -58,7 +58,7 @@
 
                                        
                                         $consulta="INSERT INTO public.tranretiro(
-                                            -- codigo_tranret, 
+                                            codigo_tranret, 
                                             fecha_tranret, 
                                             monto_tranret, 
                                             saldomonto_tranret, 
@@ -68,7 +68,7 @@
                                             nombreret_tranret, 
                                             cedula_tranret)
                                             VALUES (
-                                                    --?, -- codigo
+                                                    $codigo_tranret, -- codigo
                                                     '$fecha_tranret', 
                                                     $monto_tranret, 
                                                     $saldomonto_tranret, 
@@ -90,10 +90,7 @@
                                         echo '<br> <h4 id ="msmcorreto" > RETIRO REALIZADO CON ÉXITO. </h4>' ;    
 
                                     } 
-
                                 }
-
-
                             }
                         }                            
                    }

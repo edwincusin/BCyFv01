@@ -31,8 +31,6 @@ if(isset($_POST['modificar_UDC'])){
         echo '<h4 id ="errorSis" > Debe selecionar una cuenta bancaria, con datos reflejados en el formulario antes de continuar, vuelva a intentar. </h4>' ;
     }
 
-
-
     
     pg_close($conexion);
 }
