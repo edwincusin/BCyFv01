@@ -175,14 +175,14 @@ CREATE TABLE public.estadocuenta(
 CREATE TABLE public.trandeposito(
 	codigo_trandep serial,
 	fechadeposito_trandep date,
-	cuentabancaria_trandep integer,
 	nombredep_trandep varchar(50),
 	ceduladep_trandep varchar(20),
 	monto_trandep double precision,
-	tipodeposito_trandep integer,
-	banco_trandep integer,
 	numerocheque_trandep varchar(30),
 	saldomonto_trandep double precision,
+	cuentabancaria_trandep integer,
+	tipodeposito_trandep integer,
+	banco_trandep integer,
 	CONSTRAINT pk_transacciondepositos PRIMARY KEY (codigo_trandep)
 
 );
@@ -239,10 +239,33 @@ CREATE TABLE public.tipodeposito(
 -- DROP TABLE public.tranretiro;
 CREATE TABLE public.tranretiro(
 	codigo_tranret serial,
-	fecha_tranret date
+	fecha_tranret date,
+	monto_tranret double precision,
+	saldomonto_tranret double precision,
+	cuentabancaria_tranret smallint,
+	CONSTRAINT pk_transaccionretiro PRIMARY KEY (codigo_tranret)
+
 );
 -- ddl-end --
 COMMENT ON TABLE public.tranretiro IS 'tabla transacion retiro';
+-- ddl-end --
+
+-- object: public.trantransferencia | type: TABLE --
+-- DROP TABLE public.trantransferencia;
+CREATE TABLE public.trantransferencia(
+	codigo_transf serial,
+	fechatransferencia_transf date,
+	cuentabeneficiaria_transf integer,
+	cuentadebitar_transf integer,
+	monto_transf double precision,
+	emailnotificar_transf varchar(50),
+	descripcion_transf varchar(50),
+	CONSTRAINT pk_transferencia PRIMARY KEY (codigo_transf)
+
+);
+-- ddl-end --
+COMMENT ON TABLE public.trantransferencia IS 'tabla de transferencia bancaria';
+COMMENT ON COLUMN public.trantransferencia.descripcion_transf IS 'detalle o nombre de la transferencia';
 -- ddl-end --
 
 -- object: fk_nacionalidad | type: CONSTRAINT --
@@ -361,6 +384,30 @@ ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ALTER TABLE public.usuario DROP CONSTRAINT pk_persona_usuario;
 ALTER TABLE public.usuario ADD CONSTRAINT pk_persona_usuario FOREIGN KEY (persona_usr)
 REFERENCES public.persona (cedula_per) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: fk_cuentabancaria_retiro | type: CONSTRAINT --
+-- ALTER TABLE public.tranretiro DROP CONSTRAINT fk_cuentabancaria_retiro;
+ALTER TABLE public.tranretiro ADD CONSTRAINT fk_cuentabancaria_retiro FOREIGN KEY (cuentabancaria_tranret)
+REFERENCES public.cuentabancaria (numerocuenta_cueban) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: fk_cuentabancaria_transferencia | type: CONSTRAINT --
+-- ALTER TABLE public.trantransferencia DROP CONSTRAINT fk_cuentabancaria_transferencia;
+ALTER TABLE public.trantransferencia ADD CONSTRAINT fk_cuentabancaria_transferencia FOREIGN KEY (cuentabeneficiaria_transf)
+REFERENCES public.cuentabancaria (numerocuenta_cueban) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: fk_cuentabancaria_transferencia_debitar | type: CONSTRAINT --
+-- ALTER TABLE public.trantransferencia DROP CONSTRAINT fk_cuentabancaria_transferencia_debitar;
+ALTER TABLE public.trantransferencia ADD CONSTRAINT fk_cuentabancaria_transferencia_debitar FOREIGN KEY (cuentadebitar_transf)
+REFERENCES public.cuentabancaria (numerocuenta_cueban) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 

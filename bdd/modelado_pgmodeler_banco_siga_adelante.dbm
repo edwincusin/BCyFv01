@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.7.2" last-position="348,157" last-zoom="0.8">
+<dbmodel pgmodeler-ver="0.7.2" last-position="348,78" last-zoom="0.8">
 <database name="new_database">
 </database>
 
@@ -13,7 +13,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="persona">
 	<schema name="public"/>
 	<comment><![CDATA[usuarios del sistema y clientes]]></comment>
-	<position x="665.889" y="12.3333"/>
+	<position x="662.139" y="47.3333"/>
 	<column name="cedula_per">
 		<type name="varchar" length="20"/>
 	</column>
@@ -157,7 +157,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="tipousuario">
 	<schema name="public"/>
 	<comment><![CDATA[privilegio de usuario / administrador / empleado / cliente]]></comment>
-	<position x="1169" y="236"/>
+	<position x="1399" y="262.25"/>
 	<column name="codigo_tipusr">
 		<type name="serial"/>
 	</column>
@@ -240,15 +240,12 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="trandeposito">
 	<schema name="public"/>
-	<position x="1167.78" y="336.667"/>
+	<position x="1226.53" y="472.917"/>
 	<column name="codigo_trandep">
 		<type name="serial"/>
 	</column>
 	<column name="fechadeposito_trandep">
 		<type name="date"/>
-	</column>
-	<column name="cuentabancaria_trandep">
-		<type name="integer"/>
 	</column>
 	<column name="nombredep_trandep">
 		<type name="varchar" length="50"/>
@@ -259,14 +256,21 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="monto_trandep">
 		<type name="double precision"/>
 	</column>
+	<column name="numerocheque_trandep">
+		<type name="varchar" length="30"/>
+	</column>
+	<column name="saldomonto_trandep">
+		<type name="double precision"/>
+		<comment><![CDATA[para almacenar la actualizacion del saldo del momento del deposito / historia]]></comment>
+	</column>
+	<column name="cuentabancaria_trandep">
+		<type name="integer"/>
+	</column>
 	<column name="tipodeposito_trandep">
 		<type name="integer"/>
 	</column>
 	<column name="banco_trandep">
 		<type name="integer" length="20"/>
-	</column>
-	<column name="numerocheque_trandep">
-		<type name="varchar" length="30"/>
 	</column>
 	<constraint name="pk_transacciondepositos" type="pk-constr" factor="100" table="public.trandeposito">
 		<columns names="codigo_trandep" ref-type="src-columns"/>
@@ -276,7 +280,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="usuario">
 	<schema name="public"/>
 	<comment><![CDATA[cuentas de usuario]]></comment>
-	<position x="1088.89" y="32.2222"/>
+	<position x="1211.39" y="50.9722"/>
 	<column name="usuario_usr">
 		<type name="varchar" length="25"/>
 	</column>
@@ -300,7 +304,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="estadousuario">
 	<schema name="public"/>
 	<comment><![CDATA[activo o pasivo]]></comment>
-	<position x="922.222" y="231.111"/>
+	<position x="965.972" y="257.361"/>
 	<column name="codigo_esturs">
 		<type name="serial"/>
 	</column>
@@ -314,7 +318,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="bancoslocales">
 	<schema name="public"/>
-	<position x="1718.75" y="360"/>
+	<position x="1253.75" y="760"/>
 	<column name="codigo_banloc">
 		<type name="serial"/>
 	</column>
@@ -328,7 +332,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="tipodeposito">
 	<schema name="public"/>
-	<position x="1723.75" y="260"/>
+	<position x="1253.75" y="345"/>
 	<column name="codigo_tipdep">
 		<type name="serial"/>
 	</column>
@@ -343,13 +347,56 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="tranretiro">
 	<schema name="public"/>
 	<comment><![CDATA[tabla transacion retiro]]></comment>
-	<position x="1087.5" y="626.25"/>
+	<position x="828.75" y="748.75"/>
 	<column name="codigo_tranret">
 		<type name="serial"/>
 	</column>
 	<column name="fecha_tranret">
 		<type name="date"/>
 	</column>
+	<column name="monto_tranret">
+		<type name="double precision"/>
+	</column>
+	<column name="saldomonto_tranret">
+		<type name="double precision"/>
+	</column>
+	<column name="cuentabancaria_tranret">
+		<type name="smallint"/>
+	</column>
+	<constraint name="pk_transaccionretiro" type="pk-constr" factor="100" table="public.tranretiro">
+		<columns names="codigo_tranret" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="trantransferencia">
+	<schema name="public"/>
+	<comment><![CDATA[tabla de transferencia bancaria]]></comment>
+	<position x="483.75" y="743.75"/>
+	<column name="codigo_transf">
+		<type name="serial"/>
+	</column>
+	<column name="fechatransferencia_transf">
+		<type name="date"/>
+	</column>
+	<column name="cuentabeneficiaria_transf">
+		<type name="integer"/>
+	</column>
+	<column name="cuentadebitar_transf">
+		<type name="integer"/>
+	</column>
+	<column name="monto_transf">
+		<type name="double precision"/>
+	</column>
+	<column name="emailnotificar_transf">
+		<type name="varchar" length="50"/>
+	</column>
+	<column name="descripcion_transf">
+		<type name="varchar" length="50"/>
+		<comment><![CDATA[detalle o nombre de la transferencia]]></comment>
+	</column>
+	<constraint name="pk_transferencia" type="pk-constr" factor="100" table="public.trantransferencia">
+		<columns names="codigo_transf" ref-type="src-columns"/>
+	</constraint>
 </table>
 
 <constraint name="fk_nacionalidad" type="fk-constr" comparison-type="MATCH FULL"
@@ -426,6 +473,21 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.persona" table="public.usuario">
 	<columns names="persona_usr" ref-type="src-columns"/>
 	<columns names="cedula_per" ref-type="dst-columns"/>
+</constraint>
+<constraint name="fk_cuentabancaria_retiro" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.cuentabancaria" table="public.tranretiro">
+	<columns names="cuentabancaria_tranret" ref-type="src-columns"/>
+	<columns names="numerocuenta_cueban" ref-type="dst-columns"/>
+</constraint>
+<constraint name="fk_cuentabancaria_transferencia" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.cuentabancaria" table="public.trantransferencia">
+	<columns names="cuentabeneficiaria_transf" ref-type="src-columns"/>
+	<columns names="numerocuenta_cueban" ref-type="dst-columns"/>
+</constraint>
+<constraint name="fk_cuentabancaria_transferencia_debitar" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.cuentabancaria" table="public.trantransferencia">
+	<columns names="cuentadebitar_transf" ref-type="src-columns"/>
+	<columns names="numerocuenta_cueban" ref-type="dst-columns"/>
 </constraint>
 <relationship name="rel_persona_nacionalidad" type="relfk"
 	 src-table="public.persona"
@@ -508,6 +570,16 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <relationship name="rel_trandeposito_tipodeposito" type="relfk"
 	 src-table="public.trandeposito"
 	 dst-table="public.tipodeposito"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_tranretiro_cuentabancaria" type="relfk"
+	 src-table="public.tranretiro"
+	 dst-table="public.cuentabancaria"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_trantransferencia_cuentabancaria" type="relfk"
+	 src-table="public.trantransferencia"
+	 dst-table="public.cuentabancaria"
 	 src-required="true" dst-required="true"/>
 
 </dbmodel>
