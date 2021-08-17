@@ -8,7 +8,7 @@ SET check_function_bodies = false;
 -- ddl-end --
 
 
--- Database creation must be done   outside an multicommand file.
+-- Database creation must be done outside an multicommand file.
 -- These commands were put in this file only for convenience.
 -- -- object: new_database | type: DATABASE --
 -- -- DROP DATABASE new_database;
@@ -22,9 +22,9 @@ SET check_function_bodies = false;
 CREATE TABLE public.persona(
 	cedula_per varchar(20),
 	apellido1_per varchar(25),
+	apellido2_per varchar(25),
 	nombre1_per varchar(25),
 	nombre2_per varchar(25),
-	apellido2_per varchar(25),
 	fechanac_per date,
 	telefono_per varchar(10),
 	celular_per varchar(10),
@@ -173,7 +173,17 @@ CREATE TABLE public.estadocuenta(
 -- object: public.trandeposito | type: TABLE --
 -- DROP TABLE public.trandeposito;
 CREATE TABLE public.trandeposito(
-	codigo_trandep serial
+	codigo_trandep serial,
+	fechadeposito_trandep date,
+	cuentabancaria_trandep integer,
+	nombredep_trandep varchar(50),
+	ceduladep_trandep varchar(20),
+	monto_trandep double precision,
+	tipodeposito_trandep integer,
+	banco_trandep integer,
+	numerocheque_trandep varchar(30),
+	CONSTRAINT pk_transacciondepositos PRIMARY KEY (codigo_trandep)
+
 );
 -- ddl-end --
 -- object: public.usuario | type: TABLE --
@@ -203,6 +213,24 @@ CREATE TABLE public.estadousuario(
 COMMENT ON TABLE public.estadousuario IS 'activo o pasivo';
 -- ddl-end --
 
+-- object: public.bancoslocales | type: TABLE --
+-- DROP TABLE public.bancoslocales;
+CREATE TABLE public.bancoslocales(
+	codigo_banloc serial,
+	descripcion_banloc varchar(30),
+	CONSTRAINT pk_bancoslocales PRIMARY KEY (codigo_banloc)
+
+);
+-- ddl-end --
+-- object: public.tipodeposito | type: TABLE --
+-- DROP TABLE public.tipodeposito;
+CREATE TABLE public.tipodeposito(
+	codigo_tipdep serial,
+	descripcion_tipdep varchar(30),
+	CONSTRAINT pk_tipodeposito PRIMARY KEY (codigo_tipdep)
+
+);
+-- ddl-end --
 -- object: fk_nacionalidad | type: CONSTRAINT --
 -- ALTER TABLE public.persona DROP CONSTRAINT fk_nacionalidad;
 ALTER TABLE public.persona ADD CONSTRAINT fk_nacionalidad FOREIGN KEY (nacionalidad_per)
@@ -271,6 +299,30 @@ ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ALTER TABLE public.cuentabancaria DROP CONSTRAINT fk_estadocuenta;
 ALTER TABLE public.cuentabancaria ADD CONSTRAINT fk_estadocuenta FOREIGN KEY (estado_cueban)
 REFERENCES public.estadocuenta (codigo_estcue) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: fk_cuentabancaria_transacciondeposito | type: CONSTRAINT --
+-- ALTER TABLE public.trandeposito DROP CONSTRAINT fk_cuentabancaria_transacciondeposito;
+ALTER TABLE public.trandeposito ADD CONSTRAINT fk_cuentabancaria_transacciondeposito FOREIGN KEY (cuentabancaria_trandep)
+REFERENCES public.cuentabancaria (numerocuenta_cueban) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: fk_bancoslocales | type: CONSTRAINT --
+-- ALTER TABLE public.trandeposito DROP CONSTRAINT fk_bancoslocales;
+ALTER TABLE public.trandeposito ADD CONSTRAINT fk_bancoslocales FOREIGN KEY (banco_trandep)
+REFERENCES public.bancoslocales (codigo_banloc) MATCH FULL
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+-- ddl-end --
+
+
+-- object: fk_tipodeposito | type: CONSTRAINT --
+-- ALTER TABLE public.trandeposito DROP CONSTRAINT fk_tipodeposito;
+ALTER TABLE public.trandeposito ADD CONSTRAINT fk_tipodeposito FOREIGN KEY (tipodeposito_trandep)
+REFERENCES public.tipodeposito (codigo_tipdep) MATCH FULL
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 -- ddl-end --
 

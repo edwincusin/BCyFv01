@@ -3,7 +3,7 @@
 CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="0.7.2" last-position="0,0" last-zoom="0.9">
+<dbmodel pgmodeler-ver="0.7.2" last-position="348,156" last-zoom="0.8">
 <database name="new_database">
 </database>
 
@@ -172,7 +172,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="estadopersona">
 	<schema name="public"/>
 	<comment><![CDATA[activo/pasivo]]></comment>
-	<position x="65" y="381.889"/>
+	<position x="72.5" y="334.389"/>
 	<column name="codigo_estper">
 		<type name="serial"/>
 	</column>
@@ -240,10 +240,37 @@ CAUTION: Do not modify this file unless you know what you are doing.
 
 <table name="trandeposito">
 	<schema name="public"/>
-	<position x="1117.78" y="556.667"/>
+	<position x="1116.53" y="370.417"/>
 	<column name="codigo_trandep">
 		<type name="serial"/>
 	</column>
+	<column name="fechadeposito_trandep">
+		<type name="date"/>
+	</column>
+	<column name="cuentabancaria_trandep">
+		<type name="integer"/>
+	</column>
+	<column name="nombredep_trandep">
+		<type name="varchar" length="50"/>
+	</column>
+	<column name="ceduladep_trandep">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="monto_trandep">
+		<type name="double precision"/>
+	</column>
+	<column name="tipodeposito_trandep">
+		<type name="integer"/>
+	</column>
+	<column name="banco_trandep">
+		<type name="integer" length="20"/>
+	</column>
+	<column name="numerocheque_trandep">
+		<type name="varchar" length="30"/>
+	</column>
+	<constraint name="pk_transacciondepositos" type="pk-constr" factor="100" table="public.trandeposito">
+		<columns names="codigo_trandep" ref-type="src-columns"/>
+	</constraint>
 </table>
 
 <table name="usuario">
@@ -282,6 +309,34 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</column>
 	<constraint name="pk_estado_usuario" type="pk-constr" factor="100" table="public.estadousuario">
 		<columns names="codigo_esturs" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="bancoslocales">
+	<schema name="public"/>
+	<position x="1720" y="517.5"/>
+	<column name="codigo_banloc">
+		<type name="serial"/>
+	</column>
+	<column name="descripcion_banloc">
+		<type name="varchar" length="30"/>
+	</column>
+	<constraint name="pk_bancoslocales" type="pk-constr" factor="100" table="public.bancoslocales">
+		<columns names="codigo_banloc" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="tipodeposito">
+	<schema name="public"/>
+	<position x="1586.25" y="295"/>
+	<column name="codigo_tipdep">
+		<type name="serial"/>
+	</column>
+	<column name="descripcion_tipdep">
+		<type name="varchar" length="30"/>
+	</column>
+	<constraint name="pk_tipodeposito" type="pk-constr" factor="100" table="public.tipodeposito">
+		<columns names="codigo_tipdep" ref-type="src-columns"/>
 	</constraint>
 </table>
 
@@ -329,6 +384,21 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.estadocuenta" table="public.cuentabancaria">
 	<columns names="estado_cueban" ref-type="src-columns"/>
 	<columns names="codigo_estcue" ref-type="dst-columns"/>
+</constraint>
+<constraint name="fk_cuentabancaria_transacciondeposito" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.cuentabancaria" table="public.trandeposito">
+	<columns names="cuentabancaria_trandep" ref-type="src-columns"/>
+	<columns names="numerocuenta_cueban" ref-type="dst-columns"/>
+</constraint>
+<constraint name="fk_bancoslocales" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.bancoslocales" table="public.trandeposito">
+	<columns names="banco_trandep" ref-type="src-columns"/>
+	<columns names="codigo_banloc" ref-type="dst-columns"/>
+</constraint>
+<constraint name="fk_tipodeposito" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tipodeposito" table="public.trandeposito">
+	<columns names="tipodeposito_trandep" ref-type="src-columns"/>
+	<columns names="codigo_tipdep" ref-type="dst-columns"/>
 </constraint>
 <constraint name="fk_tipousuario" type="fk-constr" comparison-type="MATCH FULL"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.tipousuario" table="public.usuario">
@@ -411,6 +481,21 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <relationship name="rel_usuario_persona" type="relfk"
 	 src-table="public.usuario"
 	 dst-table="public.persona"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_trandeposito_cuentabancaria" type="relfk"
+	 src-table="public.trandeposito"
+	 dst-table="public.cuentabancaria"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_trandeposito_bancoslocales" type="relfk"
+	 src-table="public.trandeposito"
+	 dst-table="public.bancoslocales"
+	 src-required="true" dst-required="true"/>
+
+<relationship name="rel_trandeposito_tipodeposito" type="relfk"
+	 src-table="public.trandeposito"
+	 dst-table="public.tipodeposito"
 	 src-required="true" dst-required="true"/>
 
 </dbmodel>

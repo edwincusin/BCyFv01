@@ -125,3 +125,40 @@ INSERT INTO public.cuentabancaria(
 			(2, '01-01-2021', 50, 2, '1753081051', 1),
 			(3, '01-02-2021', 0, 1, '1753081052', 2),
 			(4, '01-03-2021', 1000, 2, '1753081051', 1);
+
+
+
+
+--*********************TABLA BANCOSLOCALES**************** --
+INSERT INTO public.bancoslocales(
+	codigo_banloc, descripcion_banloc)
+	VALUES (1, 'N/A'),
+			(2, 'BANCO PICHINCHA'),
+			(3, 'BANCO PRODUBANCO'),
+			(4, 'BANCO RUMIÑAHUI'),
+			(5, 'BANCO GUAYAQUIL'),
+			(6, 'BANCO SOLIDARIO'),
+			(7, 'BANCO DEL AUSTRO');
+
+
+--*********************TABLA tipodeposito**************** --
+INSERT INTO public.tipodeposito(
+	codigo_tipdep, descripcion_tipdep)
+	VALUES (1,'EFECTIVO'),
+			(2,'CHEQUE');
+
+
+
+--*********************TABLA DEPOSITOS****************--
+INSERT INTO public.trandeposito(
+	codigo_trandep, 
+	fechadeposito_trandep, 
+	cuentabancaria_trandep, 
+	nombredep_trandep, 
+	ceduladep_trandep, 
+	monto_trandep, 
+	tipodeposito_trandep, 
+	banco_trandep, 
+	numerocheque_trandep)
+	VALUES (1, '16-08-2021', 1, 'EDWIN GUAMA', '1111223366', 600, 1, 1, 'N/A'),
+			(2, '16-09-2021', 1, 'EDWIN CUSIN', '111122222', 1000, 2, 3, '123456789');
