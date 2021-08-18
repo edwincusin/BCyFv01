@@ -265,6 +265,7 @@ CREATE TABLE public.trantransferencia(
 	monto_transf double precision,
 	emailnotificar_transf varchar(50),
 	descripcion_transf varchar(50),
+	saldomonto_transf double precision,
 	CONSTRAINT pk_transferencia PRIMARY KEY (codigo_transf)
 
 );

@@ -561,11 +561,11 @@ fieldset {
  color: blue;
  font-weight: bolder;
 }
-/* .contenedorControlesForm fieldset table, tr, td{
-    border: solid 1px rgb(0, 0, 0);
+ /* .contenedorControlesForm fieldset table, tr, td{
+    border: solid 1px rgba(242, 255, 0, 0.975);
     border-collapse: collapse ;
     margin: 0%;
     padding: 0%;
-}
+} */
 
- */
+ 
