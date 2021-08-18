@@ -17,6 +17,7 @@
  $email_per_B='';
  $descripcionestper_estper_B='';
  $descripcion_tipcue_B='';
+ $descripcion_transf='';
 
  $dateAC=''; 
  $saldo_cueban=0;

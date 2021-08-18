@@ -56,6 +56,7 @@
                                         echo '<br> <h4 id ="errorSis" > Valor a retirar demasiado alto a lo que existe en la cuenta, o la cuenta CORRIENTE no tiene fondos. </h4>' ;    
                                     }else{// ejecuto los sql para generar retiro 
                                        
+                                        //sql para registrar retiro
                                         $consulta="INSERT INTO public.tranretiro(
                                             codigo_tranret, 
                                             fecha_tranret, 
@@ -80,6 +81,7 @@
                                         $resultado=pg_query($conexion,$consulta) or die ("error no se puede registrar retiro en la tabla tranretiro");
                                         pg_free_result($resultado);
 
+                                        //sql para actualizar saldo cuenta
                                         $consulta="UPDATE public.cuentabancaria 
                                         SET  saldo_cueban=$saldomonto_tranret               
                                         WHERE numerocuenta_cueban = $cuentabancaria_tranret;";

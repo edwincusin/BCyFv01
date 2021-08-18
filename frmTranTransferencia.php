@@ -59,7 +59,7 @@
                                     
                                 <tr>
                                     <td> <label for=""><span>Email @:</span></label> </td>
-                                    <td> <input type="text" size="33" id="imputsincolor" name="txtemail" value="<?php echo $email_per; ?>" maxlength="40" disabled> </span> </td>     
+                                    <td> <input type="text" size="33" id="imputsincolor" name="txtemail_D" value="<?php echo $email_per; ?>" maxlength="40" readonly> </span> </td>     
                                 
                                     <td> <label for=""><span>Número celular:</span></label> </td>
                                     <td> <input type="text" size="20" id="imputsincolor" name="txtcelular" value="<?php echo $celular_per; ?>" disabled> </td>                            
@@ -103,7 +103,7 @@
                                 </tr>    
                                 <tr>
                                         <td> <label for=""><span>Tipo de cuenta:</span></label></td> 
-                                        <td> <input type="text" size="15" id="imputsincolor" name="desTipoCuenta_AC" value="<?php echo $descripcion_tipcue_B; ?>" readonly> </td> 
+                                        <td> <input type="text" size="15" id="imputsincolor" name="desTipoCuenta_B" value="<?php echo $descripcion_tipcue_B; ?>" readonly> </td> 
                                                                         
                                         <td > <label for=""><span >Número de cuenta: </span></label></td>                                
                                         <td colspan="12" >  <input type="text" size="24" id="numCuenta" name="txtCCC_B" value="<?php echo $numCCC_B; ?>" readonly> </td> 
@@ -127,7 +127,7 @@
                                     <td> <input type="text" name="txtvalor" placeholder="ej. 100" maxlength="8" onKeyPress='return validaNumericos(event)' required>  </td>
                                
                                     <td colspam="2"> <label for=""><span>Descripción de transferencia:</span></label> </td>
-                                    <td colspam="3"> <input type="text" size="30" value="<?php echo $descripcion_transf; ?>" name="txtdescripciontrans" maxlength="10" placeholder="Primer nombre" required> </td>
+                                    <td colspam="3"> <input type="text" size="30" value="<?php echo $descripcion_transf; ?>" name="txtdescripciontransf" maxlength="10" placeholder="ej. pago / ahorro / prestamo" required> </td>
                                 </tr>
 
 
@@ -135,14 +135,14 @@
 
                         </fieldset>    
 <br> 
-                        <input type="submit" name="crear_transferencia" value="&#10004; Registrar retiro e imprimir">                        
+                        <input type="submit" name="crear_transferencia" value="&#10004; Registrar transferencia e imprimir">                        
                         <!-- <input type="submit" name="eliminar_UDC" value="&#128221; Eliminar cuenta bancaria"> -->
                         <!-- <p style="display=grid; text-align:center; color:blue; ">  -->
                     <!-- <b>Aviso: </b>  Para considerar una eliminacion de una cuenta bancaria ya creada, esta solo se realizara cuando haya sido creado la fecha actual y si el usuario tiene la certeza de haber cometido un error al resgistrar.</p> -->
      
                     </form>
                     <br>
-                     <?php require 'sqlCreateTranRetiro.php'; ?> 
+                     <?php require 'sqlCreateTranTransferencia.php'; ?> 
                    
                     </div>                  
                     <!-- fin FORMULARIO   -->
