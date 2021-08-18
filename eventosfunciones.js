@@ -42,6 +42,27 @@ function soloLetras(e) {
 }
 
 
+///para validar campos en formulario deposito
+
+const selectElement = document.querySelector('.descripcionTipoDeposito');
+				selectElement.addEventListener('change', (event) => {
+						const resultado = document.querySelector('.resultado');																											
+						resultado.textContent = `Te gusta el sabor ${event.target.value}`;																																																																
+						resultado.value=`${event.target.value}`;
+						if(resultado.value==="1"){
+							resultado.value="N/A";
+							resultado.disabled="true";
+						}
+						if(resultado.value==="2"){
+							resultado.value="";
+							resultado.removeAttribute('disabled');
+						}
+					});
+																			
+
+
+
+
 
 
 //                                    function validarNumeroDecimal(numero){

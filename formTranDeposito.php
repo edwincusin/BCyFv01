@@ -122,6 +122,7 @@
                                         </td>
 																				<td> <label for=""><span>Número cheque:</span></label> </td>
 																				<td> <input type="text" size="20"  class="resultado" required> </td>
+                                                                                
 																				<script>
 																					const selectElement = document.querySelector('.descripcionTipoDeposito');
 																									selectElement.addEventListener('change', (event) => {
