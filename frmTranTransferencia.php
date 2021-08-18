@@ -59,7 +59,7 @@
                                     
                                 <tr>
                                     <td> <label for=""><span>Email @:</span></label> </td>
-                                    <td> <input type="text" size="33" id="imputsincolor" name="txtemail_D" value="<?php echo $email_per; ?>" maxlength="40" readonly> </span> </td>     
+                                    <td> <input type="text" size="25" id="imputsincolor" name="txtemail_D" value="<?php echo $email_per; ?>" maxlength="40" readonly> </span> </td>     
                                 
                                     <td> <label for=""><span>Número celular:</span></label> </td>
                                     <td> <input type="text" size="20" id="imputsincolor" name="txtcelular" value="<?php echo $celular_per; ?>" disabled> </td>                            
@@ -70,7 +70,7 @@
                                 </tr>    
                                 <tr>
                                         <td> <label for=""><span>Tipo de cuenta:</span></label></td> 
-                                        <td> <input type="text" size="15" id="imputsincolor" name="desTipoCuenta_AC" value="<?php echo $descripcion_tipcue; ?>" readonly> </td> 
+                                        <td> <input type="text" size="10" id="imputsincolor" name="desTipoCuenta_AC" value="<?php echo $descripcion_tipcue; ?>" readonly> </td> 
                                                                            
                                         <td > <label for=""><span >Número de cuenta: </span></label></td>                                
                                         <td colspan="12" >  <input type="text" size="24" id="numCuenta" name="txtCCC_D" value="<?php echo $numCCC; ?>" readonly> </td> 
@@ -92,7 +92,7 @@
                                     
                                 <tr>
                                     <td> <label for=""><span>Email @:</span></label> </td>
-                                    <td> <input type="text" size="33" id="imputsincolor" name="txtemail" value="<?php echo $email_per_B; ?>" maxlength="40" disabled> </span> </td>     
+                                    <td> <input type="text" size="25" id="imputsincolor" name="txtemail" value="<?php echo $email_per_B; ?>" maxlength="40" disabled> </span> </td>     
                                 
                                     <td> <label for=""><span>Número celular:</span></label> </td>
                                     <td> <input type="text" size="20" id="imputsincolor" name="txtcelular" value="<?php echo $celular_per_B; ?>" disabled> </td>                            
@@ -103,7 +103,7 @@
                                 </tr>    
                                 <tr>
                                         <td> <label for=""><span>Tipo de cuenta:</span></label></td> 
-                                        <td> <input type="text" size="15" id="imputsincolor" name="desTipoCuenta_B" value="<?php echo $descripcion_tipcue_B; ?>" readonly> </td> 
+                                        <td> <input type="text" size="10" id="imputsincolor" name="desTipoCuenta_B" value="<?php echo $descripcion_tipcue_B; ?>" readonly> </td> 
                                                                         
                                         <td > <label for=""><span >Número de cuenta: </span></label></td>                                
                                         <td colspan="12" >  <input type="text" size="24" id="numCuenta" name="txtCCC_B" value="<?php echo $numCCC_B; ?>" readonly> </td> 
@@ -124,10 +124,10 @@
                                     <td> <input type="text" size="8" name="dtfechaAper_AC"  value="<?php echo date('Y-m-d')?>" readonly> </td>
                                                               
                                     <td> <label for=""><span>Valor a transferir $USD:</span></label> </td>
-                                    <td> <input type="text" name="txtvalor" placeholder="ej. 100" maxlength="8" onKeyPress='return validaNumericos(event)' required>  </td>
+                                    <td> <input type="text" size="10" name="txtvalor" placeholder="ej. 100" maxlength="8" onKeyPress='return validaNumericos(event)' required>  </td>
                                
                                     <td colspam="2"> <label for=""><span>Descripción de transferencia:</span></label> </td>
-                                    <td colspam="3"> <input type="text" size="30" value="<?php echo $descripcion_transf; ?>" name="txtdescripciontransf" maxlength="10" placeholder="ej. pago / ahorro / prestamo" required> </td>
+                                    <td colspam="3"> <input type="text" size="30" value="<?php echo $descripcion_transf; ?>" name="txtdescripciontransf" maxlength="25" placeholder="ej. pago / ahorro / prestamo" required> </td>
                                 </tr>
 
 
