@@ -17,11 +17,8 @@ tranretiro.codigo_tranret, tranretiro.fecha_tranret, tranretiro.tiporetiro_tranr
 		  and codigo_tipcue=tipocuenta_cueban
 		  and codigo_estcue=estado_cueban
 		  and codigo_estper=estadopersona_per";
-
-    $resultado=pg_query($conexion,$consulta) or die (" error recuperar datos parar impresion");
-    
+    $resultado=pg_query($conexion,$consulta) or die (" error recuperar datos parar impresion");  
     if(pg_num_rows($resultado)>0){
-
         while($row=pg_fetch_array($resultado)){            
             $_POST['txtcedulatranret']=$row['cedula_per'];
 						$_POST['txtapellido1']=$row['apellido1_per'];
@@ -59,8 +56,6 @@ $html2pdf->Output('archivo.pdf', 'D');
 //$html2pdf->output('/absolute/path/file_xxxx.pdf', 'F');
 }
 ?>
-
-
  <?php 
     include './sessionStart.php';
 ?>
@@ -162,7 +157,6 @@ $html2pdf->Output('archivo.pdf', 'D');
                             </table>
                         </fieldset>    
 
-
                         <fieldset >  <legend id="selectfield">Informacion requerida para retiro</legend>
                             <table>
                                 <tr>
@@ -211,12 +205,10 @@ $html2pdf->Output('archivo.pdf', 'D');
                                         <td> <input type="text" id="valor-retiro" name="txtvalor" placeholder="ej. 100" maxlength="8" onKeyPress='return validaNumericos(event)' required>  </td>
 
                                 </tr>
-
-
                             </table>
 
                         </fieldset>    
-<br> 
+													<br> 
                         <input type="submit" name="crear_retiro" value="&#10004; Registrar retiro " onclick="accion1();">                        
 												<!--<input  style="width:200px;" id="botonGenerar" type="submit" value="Imprimir comprobante" name="generar"> -->
 												<input type="submit" name="generar" id="botonGenerar" value="Imprimir comprobante" onclick="accion2();"> 

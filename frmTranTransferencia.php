@@ -1,3 +1,50 @@
+<?php
+require_once __DIR__.'/vendor/autoload.php';
+use Spipu\Html2Pdf\Html2Pdf;
+
+if (isset($_POST['generar'])) {
+// CONSULTAR REGISTRO GENERADO
+ require_once './conex.php';
+    $conexion=conectarBD();    
+    $consulta="select trantransferencia.monto_transf, trantransferencia.cuentadebitar_transf, trantransferencia.cuentabeneficiaria_transf
+, concat(persona.nombre1_per,' ',persona.nombre2_per,' ',persona.apellido1_per,' ',persona.apellido2_per) AS nombrebeneficiario
+,trantransferencia.emailnotificar_transf, trantransferencia.fechatransferencia_transf,trantransferencia.codigo_transf
+,trantransferencia.descripcion_transf
+from public.persona, public.cuentabancaria, public.trantransferencia
+where trantransferencia.cuentabeneficiaria_transf=numerocuenta_cueban
+		  and persona_cueban=cedula_per
+		";
+    $resultado=pg_query($conexion,$consulta) or die (" error recuperar datos parar impresion");  
+    if(pg_num_rows($resultado)>0){
+        while($row=pg_fetch_array($resultado)){            
+
+
+					 $_POST['monto_transf']=$row['monto_transf'];
+					 $_POST['cuentadebitar_transf']=$row['cuentadebitar_transf'];
+					 $_POST['cuentabeneficiaria_transf']=$row['cuentabeneficiaria_transf'];
+					 $_POST['nombrebeneficiario']=$row['nombrebeneficiario'];
+					 $_POST['emailnotificar_transf']=$row['emailnotificar_transf'];
+					 $_POST['fechatransferencia_transf']=$row['fechatransferencia_transf'];
+					 $_POST['codigo_transf']=$row['codigo_transf'];
+					 $_POST['descripcion_transf']=$row['descripcion_transf'];
+        }
+			}
+
+ob_start();
+require_once './pdf_TranTrasferencia.php';
+$html = ob_get_clean();
+$html2pdf = new Html2Pdf('P','A4','es','true','UTF-8');
+$html2pdf->pdf->SetDisplayMode('fullpage');
+$html2pdf->pdf->SetProtection(array('modify','copy'));
+$html2pdf->setTestTdInOnePage(false);
+$html2pdf->writeHTML($html);
+$html2pdf->Output('archivo.pdf', 'D');
+//uso para guardar en un archivo en el servidor
+//$html2pdf->output('/absolute/path/file_xxxx.pdf', 'F');
+}
+?>
+
+
 <?php 
     include './sessionStart.php';
 ?>
@@ -66,7 +113,6 @@
                                  
                                     <td> <label for=""><span>Estado operativo:</span></label> </td>
                                     <td> <input type="text" size="20" id="imputsincolor" name="txtestadopersona_AC" value="<?php echo $descripcionestper_estper; ?>" readonly> </td> 
-
                                 </tr>    
                                 <tr>
                                         <td> <label for=""><span>Tipo de cuenta:</span></label></td> 
@@ -124,13 +170,11 @@
                                     <td> <input type="text" size="8" name="dtfechaAper_AC"  value="<?php echo date('Y-m-d')?>" readonly> </td>
                                                               
                                     <td> <label for=""><span>Valor a transferir $USD:</span></label> </td>
-                                    <td> <input type="text" size="10" name="txtvalor" placeholder="ej. 100" maxlength="8" onKeyPress='return validaNumericos(event)' required>  </td>
+                                    <td> <input type="text" id="valor-transferir" size="10" name="txtvalor" placeholder="ej. 100" maxlength="8" onKeyPress='return validaNumericos(event)' required>  </td>
                                
                                     <td colspam="2"> <label for=""><span>Descripción de transferencia:</span></label> </td>
-                                    <td colspam="3"> <input type="text" size="30" value="<?php echo $descripcion_transf; ?>" name="txtdescripciontransf" maxlength="25" placeholder="ej. pago / ahorro / prestamo" required> </td>
+                                    <td colspam="3"> <input type="text" id="descripcion-transferir" size="30" value="<?php echo $descripcion_transf; ?>" name="txtdescripciontransf" maxlength="25" placeholder="ej. pago / ahorro / prestamo" required> </td>
                                 </tr>
-
-
                             </table>
 
                         </fieldset>    
@@ -139,7 +183,25 @@
                         <!-- <input type="submit" name="eliminar_UDC" value="&#128221; Eliminar cuenta bancaria"> -->
                         <!-- <p style="display=grid; text-align:center; color:blue; ">  -->
                     <!-- <b>Aviso: </b>  Para considerar una eliminacion de una cuenta bancaria ya creada, esta solo se realizara cuando haya sido creado la fecha actual y si el usuario tiene la certeza de haber cometido un error al resgistrar.</p> -->
-     
+											<input type="submit" name="generar" id="botonGenerar" value="Imprimir comprobante" onclick="accion2();"> 
+												<script>
+													function ocultar() {
+																document.getElementById('botonGenerar').style.display = 'none';
+															}
+															ocultar();
+
+															function accion1() {
+																document.getElementById('valor-transferir').required = "true";
+																document.getElementById('descripcion-transferir').required = "true";
+															}
+
+															function accion2() {
+																document.getElementById('valor-transferir').removeAttribute('required');
+																document.getElementById('descripcion-transferir').removeAttribute('required');
+															}
+													</script>
+
+
                     </form>
                     <br>
                      <?php require 'sqlCreateTranTransferencia.php'; ?> 

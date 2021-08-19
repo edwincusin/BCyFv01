@@ -97,6 +97,12 @@
                      pg_free_result($resultado);             
             
                     echo '<br> <h4 id ="msmcorreto" > TRANSFERENCIA REALIZADO CON ÉXITO. </h4>' ; 
+										echo"		<script>
+																					function mostrar(){																					
+																							document.getElementById('botonGenerar').style.display = 'inline';																					
+																						}mostrar();
+													 </script>";		
+
                 }
             }
 
