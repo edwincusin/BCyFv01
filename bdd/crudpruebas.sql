@@ -14,8 +14,8 @@ INSERT INTO public.estadocivil(
 	codigo_estciv, descripcion_estciv)
 	VALUES (1, 'SOLTERO/A'),
 			(2, 'CASADO/A'),
-			(3,'DIVORCIADO/A'),
-			(4,'VIUDO/A');
+			(3, 'DIVORCIADO/A'),
+			(4, 'VIUDO/A');
 
 
 --TABLA SEXO--
@@ -166,7 +166,7 @@ INSERT INTO public.trandeposito(
 
 
 --*********************TABLA tiporetiro**************** --
-INSERT INTO public.tipoderetiro(
+INSERT INTO public.tiporetiro(
 	codigo_tipret, descripcion_tipret)
 	VALUES (1,'EFECTIVO'),
 			(2,'CHEQUE');

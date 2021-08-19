@@ -34,7 +34,7 @@
                                 $tiporetiro_tranret=$_POST['descripcionTipoRetiro']; 
                                 $numerocheque_tranret=$_POST['txtcheque']; 
                                 $nombreret_tranret=$_POST['txtanomape']; 
-                                $cedula_tranret=$_POST['txtcedularet']; 
+                                $cedularet_tranret=$_POST['txtcedularet']; 
                                 
                                 $saldocuenta=0;
                                 $constCorriente=-500;
@@ -60,8 +60,8 @@
                                     if($saldomonto_tranret<=$constCorriente and $_POST['desTipoCuenta_AC']=='CORRIENTE'){
                                         echo '<br> <h4 id ="errorSis" > Valor a retirar demasiado alto a lo que existe en la cuenta, o la cuenta CORRIENTE no tiene fondos. </h4>' ;    
                                     }else{// ejecuto los sql para generar retiro 
-
                                        
+                                        //sql para registrar retiro
                                         $consulta="INSERT INTO public.tranretiro(
                                             codigo_tranret, 
                                             fecha_tranret, 
@@ -81,11 +81,12 @@
                                                     $tiporetiro_tranret, 
                                                     '$numerocheque_tranret', 
                                                     '$nombreret_tranret', 
-                                                    '$cedula_tranret'
+                                                    '$cedularet_tranret'
                                                     );";
                                         $resultado=pg_query($conexion,$consulta) or die ("error no se puede registrar retiro en la tabla tranretiro");
                                         pg_free_result($resultado);
 
+                                        //sql para actualizar saldo cuenta
                                         $consulta="UPDATE public.cuentabancaria 
                                         SET  saldo_cueban=$saldomonto_tranret               
                                         WHERE numerocuenta_cueban = $cuentabancaria_tranret;";
@@ -112,7 +113,7 @@
             }
 
         }else {
-            echo '<br> <h4 id ="errorSis" > Debe seccionar o consultar primer numero de cuenta, existen campos vacios, vuelva a intentar. </h4>' ;
+            echo '<br> <h4 id ="errorSis" > Debe seleccionar o consultar primer numero de cuenta, existen campos vacios, vuelva a intentar. </h4>' ;
            
         }
 

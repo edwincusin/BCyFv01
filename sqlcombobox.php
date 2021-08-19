@@ -62,7 +62,7 @@ $numRegTipoDeposito=pg_num_rows($resultadoTipoDeposito);
 
 
 
-/* CONSULTA PARA LLENAR COMBOX BANCO DESTINO */
+/* CONSULTA PARA LLENAR COMBOX BANCO DEPOSITO */
 $consulta="SELECT *FROM public.bancoslocales";
 $resultado=pg_query($conexion,$consulta) or die ("error al realizar la consulta en la tabla TipoDeposito");
 $resultadoBancosLocales=$resultado;

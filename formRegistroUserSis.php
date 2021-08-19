@@ -210,6 +210,7 @@
                             </table>
                                                         
                         </fieldset>
+                        <br>
                         <input type="submit" name="crear" value="&#10004; Guardar">
                         <input type="submit" name="modificar" value="&#128221; Modificar Información"> 
                                                              

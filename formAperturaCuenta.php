@@ -47,36 +47,36 @@
                             <table>
                                 <tr>
                                     <td> <label for=""><span>N° Cédula:</span></label> </td>
-                                    <td> <input type="text" name="txtcedula_AC" required value="<?php echo $cedula_per; ?>"   readonly>  </td>
+                                    <td> <input type="text" id="imputsincolor"  name="txtcedula_AC" required value="<?php echo $cedula_per; ?>"   readonly>  </td>
 
                                     <td> <label for=""><span>Apellido paterno:</span></label> </td>
-                                    <td> <input type="text" size="20" value="<?php echo $apellido1_per; ?>" disabled> </td>
+                                    <td> <input type="text" id="imputsincolor"  size="20" value="<?php echo $apellido1_per; ?>" disabled> </td>
                                 
                                     <td> <label for=""><span>Apellido materno:</span></label> </td>
-                                    <td> <input type="text" size="20"  name="txtapellido2" value="<?php echo $apellido2_per; ?>"  disabled> </td> 
+                                    <td> <input type="text" id="imputsincolor"  size="20"  name="txtapellido2" value="<?php echo $apellido2_per; ?>"  disabled> </td> 
                                      
                                 </tr>
                                     
                                 <tr>
                                     <td> <label for=""><span>Primer nombre:</span></label> </td>
-                                    <td> <input type="text" size="20" value="<?php echo $nombre1_per; ?>" name="txtnombre1"  disabled> </td>
+                                    <td> <input type="text" id="imputsincolor" size="20" value="<?php echo $nombre1_per; ?>" name="txtnombre1"  disabled> </td>
                                 
                                     <td> <label for=""><span>Segundo nombre:</span></label> </td>
-                                    <td> <input type="text" size="20" name="txtnombre2" value="<?php echo $nombre2_per; ?>"  disabled> </td>  
+                                    <td> <input type="text" id="imputsincolor" size="20" name="txtnombre2" value="<?php echo $nombre2_per; ?>"  disabled> </td>  
 
                                     <td> <label for=""><span>Email @:</span></label> </td>
-                                    <td> <input type="email" size="33" id="input_email" name="txtemail" value="<?php echo $email_per; ?>" maxlength="40" disabled> </span> </td>     
+                                    <td> <input type="email" id="imputsincolor" size="33" id="input_email" name="txtemail" value="<?php echo $email_per; ?>" maxlength="40" disabled> </span> </td>     
                                 </tr>
 
                                 <tr>
                                     <td> <label for=""><span>Número celular:</span></label> </td>
-                                    <td> <input type="text" size="20"  name="txtcelular" value="<?php echo $celular_per; ?>" disabled> </td>
+                                    <td> <input type="text" id="imputsincolor" size="20"  name="txtcelular" value="<?php echo $celular_per; ?>" disabled> </td>
                                 
                                     <td> <label for=""><span>Número teléfono:</span></label> </td>
-                                    <td> <input type="text" size="20"  name="txttelefono" value="<?php echo $telefono_per; ?>" disabled> </td>  
+                                    <td> <input type="text" id="imputsincolor" size="20"  name="txttelefono" value="<?php echo $telefono_per; ?>" disabled> </td>  
                                     
                                     <td> <label for=""><span>Estado operativo:</span></label> </td>
-                                    <td> <input type="text" size="20"  name="txtestadopersona_AC" value="<?php echo $descripcionestper_estper; ?>" readonly> </td> 
+                                    <td> <input type="text" id="imputsincolor"  size="20"  name="txtestadopersona_AC" value="<?php echo $descripcionestper_estper; ?>" readonly> </td> 
 
                                 </tr>                             
 

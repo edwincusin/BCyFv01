@@ -6,8 +6,18 @@
  $nombre2_per='';
  $celular_per='';
  $email_per='';
- $estadopersona_per=0;
  $descripcionestper_estper='';
+
+ $cedula_per_B='';
+ $apellido1_per_B='';
+ $apellido2_per_B='';
+ $nombre1_per_B='';
+ $nombre2_per_B='';
+ $celular_per_B='';
+ $email_per_B='';
+ $descripcionestper_estper_B='';
+ $descripcion_tipcue_B='';
+ $descripcion_transf='';
 
  $dateAC=''; 
  $saldo_cueban=0;
@@ -15,67 +25,105 @@
 
  $descripcion_estcue='';
  $descripcion_tipcue='';
- $numCCC=0;
- $numTransferencia=0;
+ $numCCC='';
+ $numCCC_B='';
+ $numtransferencia='';
   
 
-if(isset($_POST['buscar_TR'])){     
-   
-    
+if(isset($_POST['buscar_TF'])){  
 
     require_once './conex.php';
-    $conexion=conectarBD();    
-    //consulta buscar en la tabla cuenta
-    $buscarDato=$_POST['txtbuscarDato'];
-    $consulta="SELECT 
-	*FROM public.cuentabancaria, public.persona, public.estadopersona, public.estadocuenta, public.tipocuenta
-    WHERE numerocuenta_cueban='$buscarDato' 
-    and persona_cueban=cedula_per 
-    and estadopersona_per=codigo_estper
-	and tipocuenta_cueban=codigo_tipcue
-	and estado_cueban=codigo_estcue;";
-    $resultado=pg_query($conexion,$consulta) or die (" error no se realizo la consulta en la tabla cuentabancaria");
+    $conexion=conectarBD();   
+
+    if($_POST['txtbuscarDato1']!= $_POST['txtbuscarDato2']){//valida que las cuentas no sean las mismas
     
-    if(pg_num_rows($resultado)>0){
+         
+        //consulta buscar en la tabla cuenta
+        $buscarDato1=$_POST['txtbuscarDato1'];
+        $consulta="SELECT 
+        *FROM public.cuentabancaria, public.persona, public.estadopersona, public.estadocuenta, public.tipocuenta
+        WHERE numerocuenta_cueban='$buscarDato1' 
+        and persona_cueban=cedula_per 
+        and estadopersona_per=codigo_estper
+        and tipocuenta_cueban=codigo_tipcue
+        and estado_cueban=codigo_estcue;";
+        $resultado_D=pg_query($conexion,$consulta) or die (" error no se realizo la consulta en la tabla cuentabancaria");
+        
+        if(pg_num_rows($resultado_D)>0){
 
-        while($row=pg_fetch_array($resultado)){            
-            $numCCC=$row['numerocuenta_cueban'];
-            $dateAC=$row['fechaapertura_cueban'];
-            $saldo_cueban=$row['saldo_cueban'];
             
-            $descripcion_estcue=$row['descripcion_estcue'];
-            $descripcion_tipcue=$row['descripcion_tipcue'];
+        echo '<h4 id ="msmcorreto" > El número de cuenta a debitar encontrado. </h4>' ;
 
-            $cedula_per=$row['cedula_per'];
-            $apellido1_per=$row['apellido1_per'];
-            $apellido2_per=$row['apellido2_per'];
-            $nombre1_per=$row['nombre1_per'];
-            $nombre2_per=$row['nombre2_per'];
-            $fechanac_per=$row['fechanac_per'];
-            $telefono_per=$row['telefono_per'];
-            $celular_per=$row['celular_per'];
-            $email_per=$row['email_per'];
-            $descripcionestper_estper=$row['descripcion_estper'];                     
+        
+            $buscarDato2=$_POST['txtbuscarDato2'];
+            $consulta="SELECT 
+            *FROM public.cuentabancaria, public.persona, public.estadopersona, public.estadocuenta, public.tipocuenta
+            WHERE numerocuenta_cueban='$buscarDato2' 
+            and persona_cueban=cedula_per 
+            and estadopersona_per=codigo_estper
+            and tipocuenta_cueban=codigo_tipcue
+            and estado_cueban=codigo_estcue;";
+            $resultado_B=pg_query($conexion,$consulta) or die (" error no se realizo la consulta en la tabla cuentabancaria");
 
+            if(pg_num_rows($resultado_B)>0){
+
+                while($row=pg_fetch_array($resultado_D)){            
+                    $numCCC=$row['numerocuenta_cueban'];
+                    
+                    $descripcion_tipcue=$row['descripcion_tipcue'];
+        
+                    $cedula_per=$row['cedula_per'];
+                    $apellido1_per=$row['apellido1_per'];
+                    $apellido2_per=$row['apellido2_per'];
+                    $nombre1_per=$row['nombre1_per'];
+                    $nombre2_per=$row['nombre2_per'];
+                    $celular_per=$row['celular_per'];
+                    $email_per=$row['email_per'];
+                    $descripcionestper_estper=$row['descripcion_estper'];                     
+        
+                }
+                
+                pg_free_result($resultado_D);
+
+                while($row=pg_fetch_array($resultado_B)){            
+                    $numCCC_B=$row['numerocuenta_cueban'];
+
+                    $descripcion_tipcue_B=$row['descripcion_tipcue'];
+        
+                    $cedula_per_B=$row['cedula_per'];
+                    $apellido1_per_B=$row['apellido1_per'];
+                    $apellido2_per_B=$row['apellido2_per'];
+                    $nombre1_per_B=$row['nombre1_per'];
+                    $nombre2_per_B=$row['nombre2_per'];
+                    $celular_per_B=$row['celular_per'];
+                    $email_per_B=$row['email_per'];
+                    $descripcionestper_estper_B=$row['descripcion_estper'];                     
+        
+                }
+                echo '<h4 id ="msmcorreto" > El número de cuenta beneficiario encontrado. </h4>' ;
+            }else{
+                    echo '<h4 id ="errorSis" > El número de cuenta beneficiario no es la correcta. </h4>' ;
+
+            }
+            pg_free_result($resultado_B);
+            
+            
+            //PARA CONSULTAR EL ULTIMO UMERO DE TRANSFERENCIA Y SUMARLE UNO PARA EL NUEVO Y MANIPULAR MANUAL
+            $consulta="SELECT max(codigo_transf)
+                        FROM trantransferencia;";
+            $resultado=pg_query($conexion,$consulta) or die ("error no se pudo contar el total de numero de registros en tabla trnsferencia");
+            $numtransferencia=pg_fetch_result($resultado,0) + 1;
+        
         }
-
-      pg_free_result($resultado);
-
-        $consulta="SELECT max(codigo_tranret)
-                    FROM tranretiro;";
-        $resultado=pg_query($conexion,$consulta) or die ("error no se pudo contar el total de numero de cuentas");
-        $numRetiro=pg_fetch_result($resultado,0) + 1;
-
-
-
-        echo '<h4 id ="msmcorreto" > El número de cuenta encontrado. </h4>' ;
-
-    }
-    else{
-        echo '<h4 id ="errorSis" > El número de cuenta no existe, vuelva a intentar. </h4>' ;
+        else{
+            echo '<h4 id ="errorSis" > El número de cuenta a debitar no encontrada, vuelva a intentar. </h4>' ;
+        }
+    }else{
+        echo '<h4 id ="errorSis" > Los números de cuenta son iguales, no se puede realizar transferencia, las cuentas deben ser diferentes </h4>' ;
+        
     }
 
-    pg_close($conexion);
+    pg_close($conexion);     
 }//if isset buscar fin
 
 

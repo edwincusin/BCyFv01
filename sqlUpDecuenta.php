@@ -11,9 +11,11 @@ if(isset($_POST['modificar_UDC'])){
     $estado_cueban_up=$_POST['desEstadoCuenta_AC'];   
     $tipocuenta_cueban_up=$_POST['descripcionTipoCuenta_AC'];
     $CCC=$_POST['txtCCC'];
+    $fechaapertura=$_POST['dtfechaAper_UD'];
+    $fechaactual=date('Y-m-d');
 
     if($_POST['txtcedula']!=''){
-        if($_POST['dtfechaAper_AC']!=date("Y-m-d")){
+        if($fechaapertura == $fechaactual){
 
             $consulta="UPDATE public.cuentabancaria 
             SET  saldo_cueban='$saldo_cueban_up',
