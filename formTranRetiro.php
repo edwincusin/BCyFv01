@@ -221,11 +221,14 @@ $html2pdf->Output('archivo.pdf', 'D');
 															function accion1() {
 																document.getElementById('descripcionTipoRetiro').required = "true";
 																document.getElementById('valor-retiro').required = "true";
+																document.getElementById('tiporet').required = "true";
+																
 															}
 
 															function accion2() {
 																document.getElementById('descripcionTipoRetiro').removeAttribute('required');
 																document.getElementById('valor-retiro').removeAttribute('required');
+																document.getElementById('tiporet').removeAttribute('required');
 															}
 													</script>
                         <p style="display=grid; text-align:center; color:blue; "> 

@@ -31,8 +31,8 @@
             </tbody>
         </table>
  
-        <!--<h4> INFORMACIÓN DATOS CLIENTE TITULAR</h4> -->
-				<br><br>
+        <h4> COMPROBANTE TRANSFERENCIA</h4> 
+				<br>
       <table border="0" width="800">
             <tbody>
               <tr>

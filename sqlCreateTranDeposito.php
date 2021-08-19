@@ -70,6 +70,11 @@ if(isset($_POST['crear_deposito'])){
              pg_free_result($resultado);      
 
              echo '<br> <h4 id ="msmcorreto" > DEPÓSITO REALIZADO CON ÉXITO. </h4>' ; 
+						 echo"		<script>
+																					function mostrar(){																					
+																							document.getElementById('botonGenerar').style.display = 'inline';																					
+																						}mostrar();
+													 </script>";
 
             }else {
             echo '<h4 id ="errorSis" > Debe ingresar un valor mayor a 0 $, vuelva a intentar. </h4>' ;

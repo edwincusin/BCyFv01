@@ -1,3 +1,55 @@
+<?php
+require_once __DIR__.'/vendor/autoload.php';
+use Spipu\Html2Pdf\Html2Pdf;
+
+if (isset($_POST['generar'])) {
+// CONSULTAR REGISTRO GENERADO
+ require_once './conex.php';
+    $conexion=conectarBD();    
+    $consulta="select cuentabancaria.numerocuenta_cueban
+,concat(persona.nombre1_per,' ',persona.nombre2_per,' ',persona.apellido1_per,' ',persona.apellido2_per) AS nombrebeneficiario
+, trandeposito.tipodeposito_trandep, trandeposito.numerocheque_trandep, trandeposito.nombredep_trandep, trandeposito.ceduladep_trandep
+,bancoslocales.descripcion_banloc
+,trandeposito.codigo_trandep
+,trandeposito.monto_trandep
+,trandeposito.fechadeposito_trandep
+from public.persona, public.cuentabancaria, public.trandeposito, public.bancoslocales
+where persona.cedula_per=cuentabancaria.persona_cueban
+and trandeposito.cuentabancaria_trandep=cuentabancaria.numerocuenta_cueban
+and trandeposito.banco_trandep=bancoslocales.codigo_banloc
+and codigo_trandep = (SELECT MAX(codigo_trandep) FROM trandeposito)
+";
+    $resultado=pg_query($conexion,$consulta) or die (" error recuperar datos parar impresion");  
+    if(pg_num_rows($resultado)>0){
+        while($row=pg_fetch_array($resultado)){   
+				$_POST['monto_trandep']=$row['monto_trandep'];
+				$_POST['numerocuenta_cueban']=$row['numerocuenta_cueban'];
+				$_POST['nombrebeneficiario']=$row['nombrebeneficiario'];
+				$_POST['tipodeposito_trandep']=$row['tipodeposito_trandep'];
+				$_POST['numerocheque_trandep']=$row['numerocheque_trandep'];
+				$_POST['fechadeposito_trandep']=$row['fechadeposito_trandep'];
+				$_POST['nombredep_trandep']=$row['nombredep_trandep'];
+				$_POST['ceduladep_trandep']=$row['ceduladep_trandep'];
+				$_POST['descripcion_banloc']=$row['descripcion_banloc'];
+				$_POST['codigo_trandep']=$row['codigo_trandep'];
+										
+        }
+			}
+
+ob_start();
+require_once './pdf_TranDeposito.php';
+$html = ob_get_clean();
+$html2pdf = new Html2Pdf('P','A4','es','true','UTF-8');
+$html2pdf->pdf->SetDisplayMode('fullpage');
+$html2pdf->pdf->SetProtection(array('modify','copy'));
+$html2pdf->setTestTdInOnePage(false);
+$html2pdf->writeHTML($html);
+$html2pdf->Output('archivo.pdf', 'D');
+//uso para guardar en un archivo en el servidor
+//$html2pdf->output('/absolute/path/file_xxxx.pdf', 'F');
+}
+?>
+
 <?php 
     include './sessionStart.php';
 ?>
@@ -141,7 +193,7 @@
                                         
                                         <td> <label for=""><span>Banco de procedencia</span></label> </td>
                                         <td> 
-                                            <select  name="descripcionBancosLocales"   required >
+                                            <select  name="descripcionBancosLocales"  id="banco-procedencia" required >
                                                     <option disabled selected value="">Seleccionar...</option>
                                             
                                                 <!-- llenar cobobox y consultar datos de  persona TABLAS -->
@@ -164,7 +216,7 @@
                                 </tr>
                                 <tr>   
                                         <td> <label for=""><span>Valor a depositar $USD:</span></label> </td>
-                                        <td> <input type="text" name="txtvalor" placeholder="ej. 100" maxlength="8" onKeyPress='return validaNumericos(event)' required>  </td>
+                                        <td> <input id="valor-depositar" type="text" name="txtvalor" placeholder="ej. 100" maxlength="8" onKeyPress='return validaNumericos(event)' required>  </td>
 
                                 </tr>
 
@@ -175,7 +227,31 @@
                         <!-- <input type="submit" name="eliminar_UDC" value="&#128221; Eliminar cuenta bancaria"> -->
                         <p style="display=grid; text-align:center; color:blue; "> 
                     <!-- <b>Aviso: </b>  Para considerar una eliminacion de una cuenta bancaria ya creada, esta solo se realizara cuando haya sido creado la fecha actual y si el usuario tiene la certeza de haber cometido un error al resgistrar.</p> -->
-                                              
+                        <input type="submit" name="generar" id="botonGenerar" value="Imprimir comprobante" onclick="accion2();"> 
+												<script>
+													function ocultar() {
+																document.getElementById('botonGenerar').style.display = 'none';
+															}
+															ocultar();
+
+															function accion1() {
+																document.getElementById('id_tipdep').required = "true";
+																document.getElementById('tipodep').required = "true";
+																document.getElementBYID('banco-procedencia').required="true";
+																document.getElementBYID('tipodepTit').required="true";
+																document.getElementBYID('tipodepCed').required="true";
+																document.getElementBYID('valor-depositar').required="true";
+															}
+
+															function accion2() {
+																document.getElementById('id_tipdep').removeAttribute('required');
+																document.getElementById('tipodep').removeAttribute('required');
+																document.getElementById('banco-procedencia').removeAttribute('required');
+																document.getElementById('tipodepTit').removeAttribute('required');
+																document.getElementById('tipodepCed').removeAttribute('required');
+																document.getElementById('valor-depositar').removeAttribute('required');
+															}
+													</script>                      
 
                     </form>
                     <br>
