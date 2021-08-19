@@ -71,9 +71,13 @@
                                 <tr>
                                         <td> <label for=""><span>Tipo de cuenta:</span></label></td> 
                                         <td> <input type="text" size="10" id="imputsincolor" name="desTipoCuenta_AC" value="<?php echo $descripcion_tipcue; ?>" readonly> </td> 
-                                                                           
+                                          
+                                        <td> <label for=""><span>Saldo disponible USD:</span></label> </td>
+                                        <td> <input type="text" size="20" id="imputsincolor" name="txtsaldodisponible_D" value="<?php echo $saldodisponible_D; ?>" readonly> </td> 
+
+                                        
                                         <td > <label for=""><span >Número de cuenta: </span></label></td>                                
-                                        <td colspan="12" >  <input type="text" size="24" id="numCuenta" name="txtCCC_D" value="<?php echo $numCCC; ?>" readonly> </td> 
+                                        <td colspan="12" >  <input type="text" size="8" id="numCuenta" name="txtCCC_D" value="<?php echo $numCCC; ?>" readonly> </td> 
                                 </tr>  
                             </table>                                                        
                         </fieldset>
@@ -106,7 +110,7 @@
                                         <td> <input type="text" size="10" id="imputsincolor" name="desTipoCuenta_B" value="<?php echo $descripcion_tipcue_B; ?>" readonly> </td> 
                                                                         
                                         <td > <label for=""><span >Número de cuenta: </span></label></td>                                
-                                        <td colspan="12" >  <input type="text" size="24" id="numCuenta" name="txtCCC_B" value="<?php echo $numCCC_B; ?>" readonly> </td> 
+                                        <td colspan="12" >  <input type="text" size="8" id="numCuenta" name="txtCCC_B" value="<?php echo $numCCC_B; ?>" readonly> </td> 
                                 </tr>  
                             </table>                                                        
                         </fieldset>

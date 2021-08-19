@@ -18,6 +18,7 @@
  $descripcionestper_estper_B='';
  $descripcion_tipcue_B='';
  $descripcion_transf='';
+ $saldodisponible_D='';
 
  $dateAC=''; 
  $saldo_cueban=0;
@@ -80,7 +81,8 @@ if(isset($_POST['buscar_TF'])){
                     $celular_per=$row['celular_per'];
                     $email_per=$row['email_per'];
                     $descripcionestper_estper=$row['descripcion_estper'];                     
-        
+                    $saldodisponible_D=$row['saldo_cueban'];
+                
                 }
                 
                 pg_free_result($resultado_D);
