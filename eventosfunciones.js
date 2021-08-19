@@ -44,20 +44,20 @@ function soloLetras(e) {
 
 ///para validar campos en formulario deposito
 
-const selectElement = document.querySelector('.descripcionTipoDeposito');
-				selectElement.addEventListener('change', (event) => {
-						const resultado = document.querySelector('.resultado');																											
-						resultado.textContent = `Te gusta el sabor ${event.target.value}`;																																																																
-						resultado.value=`${event.target.value}`;
-						if(resultado.value==="1"){
-							resultado.value="N/A";
-							resultado.disabled="true";
-						}
-						if(resultado.value==="2"){
-							resultado.value="";
-							resultado.removeAttribute('disabled');
-						}
-					});
+// const selectElement = document.querySelector('.descripcionTipoDeposito');
+// 				selectElement.addEventListener('change', (event) => {
+// 						const resultado = document.querySelector('.resultado');																											
+// 						resultado.textContent = `Te gusta el sabor ${event.target.value}`;																																																																
+// 						resultado.value=`${event.target.value}`;
+// 						if(resultado.value==="1"){
+// 							resultado.value="N/A";
+// 							resultado.disabled="true";
+// 						}
+// 						if(resultado.value==="2"){
+// 							resultado.value="";
+// 							resultado.removeAttribute('disabled');
+// 						}
+// 					});
 																			
 
 
@@ -108,3 +108,37 @@ const selectElement = document.querySelector('.descripcionTipoDeposito');
 //    
 //}
 
+//VALIDAR DESDE UN SELECT LIMITADO 
+
+// <!-- <script>
+// class="descripcionTipoDeposito"
+// class="resultado" 
+// const selectElement = document.querySelector('.descripcionTipoDeposito');
+// 				selectElement.addEventListener('change', (event) => {
+// 						const resultado = document.querySelector('.resultado');																											
+// 						resultado.textContent = `Te gusta el sabor ${event.target.value}`;																																																																
+// 						resultado.value=`${event.target.value}`;
+// 						if(resultado.value==="1"){
+// 							resultado.value="N/A";
+// 							//resultado.disabled="true";
+// 							resultado.attr("readonly", true); 
+// 						}
+// 						if(resultado.value==="2"){
+// 							resultado.value="";
+// 							//resultado.removeAttribute('disabled');
+// 							resultado.attr("readonly", false);
+// 						}
+// 					});
+// </script> -->
+
+//para validar AL SELECCIONAR UN DATO DE UN COMBOBOX
+$("#id_tipdep").change(function() {
+
+    if ($('select option').filter(':selected').val() == 2) {
+        $("#tipodep").attr("readonly", false);
+		$("#tipodep").attr("value",''); 
+    } else {
+        $("#tipodep").attr("readonly", true);		
+		$("#tipodep").attr("value",'N/A');  
+    }
+});

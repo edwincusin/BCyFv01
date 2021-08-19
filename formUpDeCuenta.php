@@ -91,7 +91,7 @@
                                         <td> <input type="text" size="8" name="dtfechaAper_UD"  value="<?php echo $dateAC?>" readonly> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
                                         
                                         <td> <label for=""><span>Saldo  $USD:</span></label> </td>
-                                        <td> <input type="text" name="txtsaldo_AC" value="<?php echo $saldo_cueban?>" onKeyPress='return validaNumericos(event)' required>  </td>
+                                        <td> <input type="text"size="10"  name="txtsaldo_AC" value="<?php echo $saldo_cueban?>" maxlength="2" onKeyPress='return validaNumericos(event)' required>  </td>
 
                                         <td> <label for=""><span>Estado:</span></label> </td>
                                         <td>
@@ -138,7 +138,7 @@
                                         </td>
                                     
                                         <td > <label for=""><span >Número de cuenta: </span></label></td>                                
-                                        <td colspan="2" >  <input type="text" size="24" id="numCuenta" name="txtCCC" value="<?php echo $numCCC; ?>" readonly> </td> 
+                                        <td colspan="3" >  <input type="text" size="24" id="numCuenta" name="txtCCC" value="<?php echo $numCCC; ?>" readonly> </td> 
                                 </tr>
                             </table>
                         </fieldset>        

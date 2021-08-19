@@ -5,6 +5,8 @@
 <html lang="es">
 
     <head>
+        
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <?php 
             include 'headLib.html'; // se llama todas la librerias del html, ccs y multiples validaciones de errores
             require_once ('./sqlcombobox.php'); //* se hace un solo llamado para todo el  documento las consultas de combobox*/
@@ -103,12 +105,12 @@
                             <table>
                                 <tr>
                                         <td> <label for=""><span> Fecha deposito:</span></label> </td>
-                                        <td> <input type="text" size="8" name="dtfechaAper_AC"  value="<?php echo date("Y-m-d");?>" readonly> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
+                                        <td> <input type="text" size="8" name="dtfechaAper_AC" value="<?php echo date("Y-m-d");?>" readonly> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
                                         
                                         
 																				<td> <label for=""><span>Tipo de deposito:</span></label> </td>
                                         <td> 
-                                            <select id="" name="descripcionTipoDeposito" class="descripcionTipoDeposito" required>
+                                            <select name="descripcionTipoDeposito"  id="id_tipdep"  required>
                                                     <option disabled selected value="">Seleccionar...</option>
                                                <?php 
                                                     while($row=pg_fetch_array($resultadoTipoDeposito)){
@@ -121,24 +123,9 @@
                                             </select>																				
                                         </td>
 																				<td> <label for=""><span>Número cheque:</span></label> </td>
-																				<td> <input type="text" size="20"  class="resultado" required> </td>
-                                                                                
-																				<script>
-																					const selectElement = document.querySelector('.descripcionTipoDeposito');
-																									selectElement.addEventListener('change', (event) => {
-																											const resultado = document.querySelector('.resultado');																											
-																											resultado.textContent = `Te gusta el sabor ${event.target.value}`;																																																																
-																											resultado.value=`${event.target.value}`;
-																											if(resultado.value==="1"){
-																												resultado.value="N/A";
-																												resultado.disabled="true";
-																											}
-																											if(resultado.value==="2"){
-																												resultado.value="";
-																												resultado.removeAttribute('disabled');
-																											}
-																										});
-																				</script>
+																				<td> <input type="text" size="20" name="numcheque" id="tipodep" value="" readonly="TRUE" required> </td>
+
+														
 
                                     </tr>
                                 <tr>
