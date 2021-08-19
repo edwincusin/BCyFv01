@@ -29,8 +29,7 @@ if(isset($_POST['buscar_IAC'])){
     
     require_once './conex.php';
     $conexion=conectarBD();    
-
-    $buscarDato=$_POST['txtbuscarDato'];
+    $txtbuscarDato=$_POST['txtbuscarDato'];
 
     $consulta="SELECT 
 	cedula_per, 
@@ -49,8 +48,13 @@ if(isset($_POST['buscar_IAC'])){
 	descripcion_sex,
 	descripcion_int,
 	descripcion_act,
-	descripcion_estper
+	descripcion_estper,
 	
+	numerocuenta_cueban,
+    fechaapertura_cueban,
+	saldo_cueban,
+	descripcion_tipcue,
+	descripcion_estcue
 	
 	FROM public.persona, 
 			public.nacionalidad, 
@@ -58,16 +62,21 @@ if(isset($_POST['buscar_IAC'])){
 			public.sexo, 
 			public.intruccion, 
 			public.actividad, 
-			public.estadopersona
+			public.estadopersona,
+			public.cuentabancaria,
+			public.tipocuenta,
+			public.estadocuenta
 			
-	WHERE cedula_per='$buscarDato'
+	WHERE numerocuenta_cueban=(SELECT max(numerocuenta_cueban) FROM public.cuentabancaria where persona_cueban='$txtbuscarDato' )     
+	and cedula_per=persona_cueban
 	and	nacionalidad_per=codigo_nac
 	and estadocivil=codigo_estciv
 	and sexo_per=codigo_sex
 	and intruccion_per=codigo_int
 	and actividad_per=codigo_act
 	and estadopersona_per=codigo_estper
-	;";
+	and tipocuenta_cueban=codigo_tipcue
+	and codigo_estcue=estado_cueban;";
     $resultado=pg_query($conexion,$consulta) or die ("error al realizar multiple consulta en las tablas maestras y cuentabancaria y persona");
     while($row=pg_fetch_array($resultado)){
             $cedula_per=$row['cedula_per']; 
@@ -87,37 +96,13 @@ if(isset($_POST['buscar_IAC'])){
             $descripcion_int=$row['descripcion_int'];
             $descripcion_act=$row['descripcion_act'];
             $descripcion_estper=$row['descripcion_estper'];
- 
-    }
-    pg_free_result($resultado);
-    
 
-    $consulta="SELECT 
-    numerocuenta_cueban,
-    fechaapertura_cueban,
-    saldo_cueban,
-    descripcion_tipcue,
-    descripcion_estcue
-    FROM                
-        public.cuentabancaria,
-        public.tipocuenta,
-        public.estadocuenta
-    WHERE
-    numerocuenta_cueban=(SELECT max(numerocuenta_cueban) FROM public.cuentabancaria where persona_cueban='$buscarDato')
-    and tipocuenta_cueban=codigo_tipcue
-    and codigo_estcue=estado_cueban
-  ;";
-    $resultado=pg_query($conexion,$consulta) or die ("error al realizar multiple consulta en las tablas maestras y cuentabancaria y persona");
-    while($row=pg_fetch_array($resultado)){
-    
-        $numerocuenta_cueban=$row['numerocuenta_cueban'];
-        $fechaapertura_cueban=$row['fechaapertura_cueban'];
-        $saldo_cueban=$row['saldo_cueban'];
-        $descripcion_tipcue=$row['descripcion_tipcue'];
-        $descripcion_estcue=$row['descripcion_estcue'];     
+            $numerocuenta_cueban=$row['numerocuenta_cueban'];
+            $fechaapertura_cueban=$row['fechaapertura_cueban'];
+            $saldo_cueban=$row['saldo_cueban'];
+            $descripcion_tipcue=$row['descripcion_tipcue'];
+            $descripcion_estcue=$row['descripcion_estcue'];      
     }
-    pg_free_result($resultado); 
-
 
     if($cedula_per!=''){
         echo '<h4 id ="msmcorreto" > Registro encontrado. </h4>' ;
@@ -125,6 +110,7 @@ if(isset($_POST['buscar_IAC'])){
         echo '<h4 id ="errorSis" > Cédula no existe, vuelva a intentar. </h4>' ;    }
 
 
+    pg_free_result($resultado);
     pg_close($conexion);
 }
 
