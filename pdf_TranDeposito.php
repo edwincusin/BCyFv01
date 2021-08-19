@@ -21,7 +21,7 @@
                         <table style="border-collapse: collapse;" border="1" width="1060">
                             <tbody>
                                 <tr>
-                                    <td><img src="./img/iconobcyf.png" WIDTH=100 HEIGHT=100 ></td> 
+                                    <td><img src="./img/01bcyftomate.jpeg" WIDTH=100 HEIGHT=100 ></td> 
                                     <td style="color: #000077;font-size:200%;width:60%;" >   BANCO SIGA ADELANTE</td>
                                 </tr>
                             </tbody>

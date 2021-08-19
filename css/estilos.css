@@ -548,11 +548,28 @@ fieldset {
   border-collapse: collapse ;
   margin: 0%;
   padding: 0%;
-}  */
-.tableimp{table-layout: fixed;  width: 1020px;}
-.tableimp th{ border: 1px solid graytext;    width: 100px;    word-wrap: break-word; color:#000000;
+}   */
+
+.tableimp{
+  table-layout: fixed; 
+  width: 1020px;
+  border-collapse: collapse ;
 }
-.tableimp td { border: 1px solid graytext;    width: 100px;    word-wrap: break-word; 
+.tableimp th{ 
+  border: 2px solid graytext; 
+     width: 100px;  
+       word-wrap: break-word; 
+       color:#000000;
+       background: gray;
+}
+.tableimp td { 
+  border: 2px solid graytext;   
+   width: 100px;   
+    word-wrap: break-word; 
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background: whitesmoke;
 }
 
 

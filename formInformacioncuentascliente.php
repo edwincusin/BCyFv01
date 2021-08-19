@@ -113,17 +113,32 @@
                                                 <th>Número Cuenta</th>
                                                 <th>Tipo </th>
                                                 <th>Estado </th>
-                                                <th>Saldo UDS</th>
+                                                <th>Saldo UD$</th>
                                         </thead>
                                         <tbody>
+                                            <?php 
+                                            $cont=1;
+                                            while($row=pg_fetch_array($resultadoTabla)){
+    
+                                                $numerocuenta_cueban=$row['numerocuenta_cueban'];
+                                                $fechaapertura_cueban=$row['fechaapertura_cueban'];
+                                                $saldo_cueban=$row['saldo_cueban'];
+                                                $descripcion_tipcue=$row['descripcion_tipcue'];
+                                                $descripcion_estcue=$row['descripcion_estcue'];     
+                                            ?>
                                                 <tr>
-                                                    <td><?php $row ?></td>
-                                                    <td><?php $fechaapertura_cueban ?></td>
-                                                    <td><?php $numerocuenta_cueban ?></td>
-                                                    <td><?php $descripcion_tipcue ?></td>
-                                                    <td><?php $descripcion_estcue ?></td>
-                                                    <td><?php $saldo_cueban ?></td>
+                                                    <td><?php echo $cont ?></td>
+                                                    <td><?php echo $fechaapertura_cueban ?></td>
+                                                    <td><?php echo $numerocuenta_cueban ?></td>
+                                                    <td><?php echo $descripcion_tipcue ?></td>
+                                                    <td><?php echo $descripcion_estcue ?></td>
+                                                    <td><?php echo $saldo_cueban ?></td>
                                                 </tr>
+                                            <?php
+                                            $cont++;
+                                            }//                                             
+                                            pg_free_result($resultadoTabla); 
+                                            ?>
                                         </tbody>
                                     </table>    
                                     </center>
@@ -133,14 +148,10 @@
 
                                         
                         <br> 
-                        <input type="submit" name="imprimir_OAC" value="&#10004; Imprimir">                        
-                        <!-- <input type="submit" name="eliminar_UDC" value="&#128221; Eliminar cuenta bancaria"> -->
-                        <!-- <p style="display=grid; text-align:center; color:blue; ">  -->
-                    <!-- <b>Aviso: </b>  Para considerar una eliminacion de una cuenta bancaria ya creada, esta solo se realizara cuando haya sido creado la fecha actual y si el usuario tiene la certeza de haber cometido un error al resgistrar.</p> -->
-     
+                        <input type="submit" name="imprimir_ICC" value="&#10004; Imprimir">                        
+                
                     </form>
                     <br>
-                     <?php //require 'sqlCreateTranTransferencia.php'; ?> 
                    
                     </div>                  
                     <!-- fin FORMULARIO   -->
