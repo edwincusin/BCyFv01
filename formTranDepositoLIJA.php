@@ -131,7 +131,7 @@
                                 <tr>
                                        
 
-																				<td> <label for=""><span>Banco Destino</span></label> </td>
+										<td> <label for=""><span>Banco Destino</span></label> </td>
                                         <td> 
                                             <select id="" name="descripcionBancosLocales" required>
                                                     <option disabled selected value="">Seleccionar...</option>

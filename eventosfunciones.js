@@ -135,9 +135,23 @@ $("#id_tipdep").change(function() {
 
     if ($('select option').filter(':selected').val() == 2) {
         $("#tipodep").attr("readonly", false);
-		$("#tipodep").attr("value",''); 
+		$("#tipodep").attr("value",''); 					
+		$("#tipodepTit").attr("value",'TITULAR'); 					
+		$("#tipodepCed").attr("value",'N/A'); 
     } else {
         $("#tipodep").attr("readonly", true);		
-		$("#tipodep").attr("value",'N/A');  
+		$("#tipodep").attr("value",'N/A');			
+		$("#tipodepTit").attr("value",'TITULAR'); 					
+		$("#tipodepCed").attr("value",'N/A'); 
     }
+
+	// if ($('select option').filter(':selected').val() == 0) {
+	// 	$("#tipodepTit").attr("readonly", true);
+	// 	$("#tipodepCed").attr("readonly", true);		
+	// }else{
+	// 	$("#tipodepTit").attr("readonly", false);
+	// 	$("#tipodepCed").attr("readonly", false);	
+	// }
+
+
 });

@@ -101,7 +101,7 @@ $html2pdf->Output('archivo.pdf', 'D');
                             </tr>
                         </table>
                     </form> 
-                    <?php require 'sqlReadTranRetirodeposito.php'; ?>
+                    <?php require 'sqlReadTranRetiro.php'; ?>
                     
 
                     <form action="" method="post">
