@@ -4,6 +4,8 @@
     <head>
         <?php
             include './headLib.html';
+						require_once __DIR__.'/vendor/autoload.php';
+						use Spipu\Html2Pdf\Html2Pdf;
         ?>
         <title>Acceso</title>
     </head>

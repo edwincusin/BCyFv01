@@ -58,7 +58,6 @@ if(isset($_POST['buscar_UDC'])){
       pg_free_result($resultado);
 
         echo '<h4 id ="msmcorreto" > El número de cuenta encontrado. </h4>' ;
-
     }
     else{
         echo '<h4 id ="errorSis" > El número de cuenta no existe, vuelva a intentar. </h4>' ;

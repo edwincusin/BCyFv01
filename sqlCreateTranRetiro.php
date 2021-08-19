@@ -1,8 +1,13 @@
 <?php
 
-    if(isset($_POST['crear_retiro'])){
 
-        require_once './conex.php';
+    if(isset($_POST['crear_retiro'])){
+			echo "<script>
+			document.getElementById('descripcionTipoRetiro').setAttribute('required', '');			
+			</script>
+			";
+			
+			require_once './conex.php';
         $conexion=conectarBD();    
 
         if($_POST['txtcedulatranret']!=""){//validar que haya seleccionado la cuenta
@@ -66,7 +71,7 @@
                                             tiporetiro_tranret, 
                                             numerocheque_tranret, 
                                             nombreret_tranret, 
-                                            cedula_tranret)
+                                            cedularet_tranret)
                                             VALUES (
                                                     $codigo_tranret, -- codigo
                                                     '$fecha_tranret', 
@@ -87,7 +92,13 @@
                                         $resultado=pg_query($conexion,$consulta) or die ("error al realizar modificacion en la tabla cuentabancaria");
                                         pg_free_result($resultado);
                                 
-                                        echo '<br> <h4 id ="msmcorreto" > RETIRO REALIZADO CON ÉXITO. </h4>' ;    
+                                        echo '<br> <h4 id ="msmcorreto" > RETIRO REALIZADO CON ÉXITO. </h4>' ; 
+																		//		echo '<input  style="width:200px;"type="submit" value="Imprimir comprobante" name="generar" class="boton">';
+																			echo"		<script>
+																					function mostrar(){																					
+																							document.getElementById('botonGenerar').style.display = 'inline';																					
+																						}mostrar();
+																				</script>";
 
                                     } 
                                 }

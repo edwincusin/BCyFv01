@@ -43,7 +43,6 @@ function soloLetras(e) {
 
 
 
-
 //                                    function validarNumeroDecimal(numero){
 //                                    var patt = new RegExp("^[+-]?([0-9]*[.])?[0-9]+$");
 //                                     if (patt.test(numero) == false)
