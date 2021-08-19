@@ -24,7 +24,7 @@
 
                     <!-- INICIO FORMULARIO   -->
                     <div class="tituloForm">
-                        <h2>Formulario para retiro en efectivo de la cuenta titular</h2>
+                        <h2>Formulario para transacción depósito</h2>
                     </div>
                     
                     <div class="contenedorControlesForm">
@@ -34,11 +34,11 @@
                             <tr>
                                 <td> <label for=""><span>N° Cuenta cliente::</span></label> </td>
                                 <td colspam="2"> <input type="text" name="txtbuscarDato" id="validarCedulaEcu" size="20" onKeyPress='return validaNumericos(event)' maxlength="10" placeholder="ej. 002" required  oninvalid="this.setCustomValidity('Se Requiere ingrese N° cuenta')" oninput="this.setCustomValidity('')"> </td>
-                                <td> <input type="submit" name="buscar_TR" value="&#128270; Buscar"> </td>
+                                <td> <input type="submit" name="buscar_DEP" value="&#128270; Buscar"> </td>
                             </tr>
                         </table>
                     </form> 
-                    <?php require 'sqlReadTranRetirodeposito.php'; ?>
+                    <?php require 'sqlReadTranDeposito.php'; ?>
                     
 
                     <form action="" method="post">
@@ -47,7 +47,7 @@
                             <table >
                                 <tr>
                                     <td> <label for=""><span>N° Cédula:</span></label> </td>
-                                    <td> <input type="text" name="txtcedulatranret" id="imputsincolor" value="<?php echo $cedula_per; ?>"   readonly>  </td>
+                                    <td> <input type="text" name="txtcedulatrandep" id="imputsincolor" value="<?php echo $cedula_per; ?>"   readonly>  </td>
 
                                     <td> <label for=""><span>Apellido paterno:</span></label> </td>
                                     <td> <input type="text" size="20" id="imputsincolor" value="<?php echo $apellido1_per; ?>" disabled> </td>
@@ -100,30 +100,30 @@
                         </fieldset>    
 
 
-                        <fieldset >  <legend id="selectfield">Informacion requerida para retiro</legend>
+                        <fieldset >  <legend id="selectfield">Información requerida para realizar el depósito</legend>
                             <table>
                                 <tr>
-                                    <td> <label for=""><span> N° Retiro :</span></label> </td>
-                                     <td> <input type="text" size="8" name="numRetiro"  value="<?php echo $numRetiro?>" readonly> </td>
+                                    <td> <label for=""><span> N° Depósito :</span></label> </td>
+                                     <td> <input type="text" size="8" name="numDeposito"  value="<?php echo $numDeposito?>" readonly> </td>
 
                                 </tr>
                                 <tr>
-                                        <td> <label for=""><span> Fecha de retiro:</span></label> </td>
+                                        <td> <label for=""><span> Fecha de depósito:</span></label> </td>
                                         <td> <input type="text" size="8" name="dtfechaAper_AC"  value="<?php echo date('Y-m-d')?>" readonly> </td>
 
-                                        <td> <label for=""><span>Tipo de retiro:</span></label></td> 
+                                        <td> <label for=""><span>Tipo de depósito:</span></label></td> 
                                         <td> 
-                                            <select id="" name="descripcionTipoRetiro" required>
+                                            <select name="descripcionTipoRetiro" id="id_tipdep" required>
                                                     <option disabled selected value="">Seleccionar...</option>
                                             
                                                 <!-- llenar cobobox y consultar datos de  persona TABLAS -->
                                                 <?php 
-                                                    while($row=pg_fetch_array($resultadoTipoRetiro)){
-                                                        $optionC = "<option value='".$row['codigo_tipret']."'"; //iniciamos el codigo del option                                                
-                                                        if($tiporetiro_tranret > 0 and $tiporetiro_tranret == $row['codigo_tipret']){ //si el id de la opcion es igual al del usuario lo seleccionamos
+                                                    while($row=pg_fetch_array($resultadoTipoDeposito)){
+                                                        $optionC = "<option value='".$row['codigo_tipdep']."'"; //iniciamos el codigo del option                                                
+                                                        if($tipodeposito_trandep > 0 and $tipodeposito_trandep == $row['codigo_tipdep']){ //si el id de la opcion es igual al del usuario lo seleccionamos
                                                             $optionC .= " selected='selected'";
                                                         }                                                
-                                                        $optionC .= ">".$row['descripcion_tipret']."</option>"; //terminamos el codigo del option                                                
+                                                        $optionC .= ">".$row['descripcion_tipdep']."</option>"; //terminamos el codigo del option                                                
                                                         echo $optionC; //imprimimos en pantalla el codigo que se armo
                                                     }
                                                 ?>
@@ -134,27 +134,44 @@
                                         </td>
 
                                         <td> <label for=""><span>N° Cheque:</span></label> </td>
-                                        <td> <input type="text" name="txtcheque" size="30" value="<?php echo 'N/A'?>" " onKeyPress='return validaNumericos(event)'  maxlength="25"  placeholder="ej. 123456789000000" required oninvalid="this.setCustomValidity('Se Requiere 10 digitos')" oninput="this.setCustomValidity('')">  </td>                 
+                                        <td> <input type="text" name="txtcheque" id="tipodep" size="30"  value="<?php //echo 'N/A'?>" " onKeyPress='return validaNumericos(event)'  maxlength="25"  placeholder="ej. 123456789000000" required oninvalid="this.setCustomValidity('Se Requiere ingrese digitos')" oninput="this.setCustomValidity('')" readonly="TRUE">  </td>                 
 
                                 </tr>
                                 <tr>    
-                                        <td> <label for=""><span>Nombre y apellido:</span></label> </td>
-                                        <td> <input type="text" size="20" name="txtanomape" value="<?php echo 'TITULAR'?>" maxlength="22" placeholder="ej. JUAN ORTEGA" required> </td>
+                                        
+                                        <td> <label for=""><span>Banco de procedencia</span></label> </td>
+                                        <td> 
+                                            <select  name="descripcionBancosLocales"   required >
+                                                    <option disabled selected value="">Seleccionar...</option>
+                                            
+                                                <!-- llenar cobobox y consultar datos de  persona TABLAS -->
+                                                <?php 
+                                                    while($row=pg_fetch_array($resultadoBancosLocales)){
+                                                        $optionC = "<option value='".$row['codigo_banloc']."'"; //iniciamos el codigo del option                                                                                                                                              
+                                                        $optionC .= ">".$row['descripcion_banloc']."</option>"; //terminamos el codigo del option                                                
+                                                        echo $optionC; //imprimimos en pantalla el codigo que se armo
+                                                    }
+                                                ?>
+                                                <!-- FIN llenar cobobox y consultar datos de  persona TABLAS -->                                     
+                                                    
+                                            </select>
+                                        </td> 
+                                        <td> <label for=""><span>Nombre depositante:</span></label> </td>
+                                        <td> <input type="text" size="20" name="txtanomape" id="tipodepTit"  value="<?php //echo 'TITULAR'?>" maxlength="22" placeholder="Apellido y nombre" required> </td>
 
                                         <td> <label for=""><span>N° Cédula:</span></label> </td>
-                                        <td> <input type="text" name="txtcedularet" value="<?php echo 'N/A'; ?>" size="20" onKeyPress='return validaNumericos(event)' maxlength="10"  placeholder="ej. 1234567890" required oninvalid="this.setCustomValidity('Se Requiere 10 digitos')" oninput="this.setCustomValidity('')">  </td>
-
-                                        <td> <label for=""><span>Valor a retirar $USD:</span></label> </td>
+                                        <td> <input type="text" name="txtcedularet" id="tipodepCed" value="<?php //echo 'N/A'; ?>" size="20" onKeyPress='return validaNumericos(event)' maxlength="10"  placeholder="ej. 1234567890" required>  </td>
+                                </tr>
+                                <tr>   
+                                        <td> <label for=""><span>Valor a depositar $USD:</span></label> </td>
                                         <td> <input type="text" name="txtvalor" placeholder="ej. 100" maxlength="8" onKeyPress='return validaNumericos(event)' required>  </td>
 
                                 </tr>
 
-
                             </table>
-
                         </fieldset>    
 <br> 
-                        <input type="submit" name="crear_retiro" value="&#10004; Registrar retiro e imprimir">                        
+                        <input type="submit" name="crear_deposito" value="&#10004; Registrar deposito">                        
                         <!-- <input type="submit" name="eliminar_UDC" value="&#128221; Eliminar cuenta bancaria"> -->
                         <p style="display=grid; text-align:center; color:blue; "> 
                     <!-- <b>Aviso: </b>  Para considerar una eliminacion de una cuenta bancaria ya creada, esta solo se realizara cuando haya sido creado la fecha actual y si el usuario tiene la certeza de haber cometido un error al resgistrar.</p> -->
@@ -162,7 +179,7 @@
 
                     </form>
                     <br>
-                     <?php require 'sqlCreateTranRetiro.php'; ?> 
+                     <?php require 'sqlCreateTranDeposito.php'; ?> 
                    
                     </div>                  
                     <!-- fin FORMULARIO   -->

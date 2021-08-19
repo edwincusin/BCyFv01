@@ -15,9 +15,9 @@
         <div id="cont_menu_menu">
             <ul>
                 <li id="item_menu"><a href="./menuInicio.php">Inicio</a></li>
-                <li id="item_menu"><a href="#">Usuario</a>
+                <li id="item_menu"><a href="#">Personas</a>
                     <ul id="desp_submenu">
-                        <li><a href="./formregistroUserSis.php">Registrar información de usuario</a></li>
+                        <li><a href="./formregistroUserSis.php">Registrar información de persona</a></li>
                         <li><a href="./formregistroUserSis.php">Crear usuario empleado</a></li>
                         <li><a href="./formregistroUser.php">Crear usuario cliente</a></li>
 
@@ -26,7 +26,7 @@
                 <li id="item_menu"><a href="#">Cuenta Bancaria </a>
 
                     <ul id="desp_submenu">
-                        <li><a href="./formAperturaCuenta.php">Agregar cuenta bancaria</a></li>
+                        <li><a href="./formAperturaCuenta.php">Apertura cuenta bancaria</a></li>
                         <li><a href="./formUpDeCuenta.php">Modificar/eliminar cuenta bancaria</a></li>
                     </ul>
 
@@ -42,8 +42,10 @@
                 </li>
                 <li id="item_menu"><a href="#">Consultar / Imprimir</a>
                     <ul id="desp_submenu">
-                        <li><a href="#">Estado de cuenta</a></li>
-                        <li><a href="#"></a></li>
+                        <li><a href="./formOficioAperturaCuenta.php">Oficio apertura de cuenta </a></li>
+                        <li><a href="#">Informacion cuentas cliente </a></li>
+                        <li><a href="#">Estado de cuenta de N° cuenta</a></li>
+                        
 
                     </ul>
                 </li>

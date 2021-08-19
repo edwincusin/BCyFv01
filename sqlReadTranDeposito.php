@@ -13,13 +13,14 @@
  $dateAC=''; 
  $saldo_cueban=0;
  $persona_cueban="";
- $tipocuenta_cueban=0;
- $descripcion_estcue="";
- $estadocuenta_cueban=0;
+
+ $descripcion_estcue='';
+ $descripcion_tipcue='';
  $numCCC=0;
+ $numDeposito=0;
   
 
-if(isset($_POST['buscar_UDC'])){     
+if(isset($_POST['buscar_DEP'])){     
    
     
 
@@ -28,8 +29,12 @@ if(isset($_POST['buscar_UDC'])){
     //consulta buscar en la tabla cuenta
     $buscarDato=$_POST['txtbuscarDato'];
     $consulta="SELECT 
-	*FROM public.cuentabancaria, public.persona, public.estadopersona, public.estadocuenta
-    WHERE numerocuenta_cueban='$buscarDato' and persona_cueban=cedula_per and estadopersona_per=codigo_estper;";
+	*FROM public.cuentabancaria, public.persona, public.estadopersona, public.estadocuenta, public.tipocuenta
+    WHERE numerocuenta_cueban='$buscarDato' 
+    and persona_cueban=cedula_per 
+    and estadopersona_per=codigo_estper
+	and tipocuenta_cueban=codigo_tipcue
+	and estado_cueban=codigo_estcue;";
     $resultado=pg_query($conexion,$consulta) or die (" error no se realizo la consulta en la tabla cuentabancaria");
     
     if(pg_num_rows($resultado)>0){
@@ -38,9 +43,9 @@ if(isset($_POST['buscar_UDC'])){
             $numCCC=$row['numerocuenta_cueban'];
             $dateAC=$row['fechaapertura_cueban'];
             $saldo_cueban=$row['saldo_cueban'];
-            $tipocuenta_cueban=$row['tipocuenta_cueban'];
-            $estadocuenta_cueban=$row['estado_cueban'];
-						$descripcion_estcue=$row['descripcion_estcue'];
+            
+            $descripcion_estcue=$row['descripcion_estcue'];
+            $descripcion_tipcue=$row['descripcion_tipcue'];
 
             $cedula_per=$row['cedula_per'];
             $apellido1_per=$row['apellido1_per'];
@@ -51,13 +56,21 @@ if(isset($_POST['buscar_UDC'])){
             $telefono_per=$row['telefono_per'];
             $celular_per=$row['celular_per'];
             $email_per=$row['email_per'];
-            $descripcionestper_estper=$row['descripcion_estper'];       
+            $descripcionestper_estper=$row['descripcion_estper'];              
 
         }
 
       pg_free_result($resultado);
 
+        $consulta="SELECT max(codigo_trandep)
+                    FROM trandeposito;";
+        $resultado=pg_query($conexion,$consulta) or die ("error no se pudo contar el total de numero de depositos en trandepositos");
+        $numDeposito=pg_fetch_result($resultado,0) + 1;
+
+        pg_free_result($resultado);
+
         echo '<h4 id ="msmcorreto" > El número de cuenta encontrado. </h4>' ;
+
     }
     else{
         echo '<h4 id ="errorSis" > El número de cuenta no existe, vuelva a intentar. </h4>' ;

@@ -1,6 +1,5 @@
 <?php
 
-
     if(isset($_POST['crear_transferencia'])){
 
         require_once './conex.php';
