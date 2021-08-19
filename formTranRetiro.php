@@ -191,7 +191,7 @@ $html2pdf->Output('archivo.pdf', 'D');
                                         </td>
 
                                         <td> <label for=""><span>N° Cheque:</span></label> </td>
-                                        <td> <input type="text" name="txtcheque" id="tiporet" size="30" value="<?php 'N/A'?>" onKeyPress='return validaNumericos(event)'  maxlength="25"  placeholder="ej. 123456789000000" required oninvalid="this.setCustomValidity('Se Requiere 10 digitos')" oninput="this.setCustomValidity('')">  </td>                 
+                                        <td> <input type="text" name="txtcheque"  size="30" value="<?php echo 'N/A'?>" onKeyPress='return validaNumericos(event)'  maxlength="25"  placeholder="ej. 123456789000000" required oninvalid="this.setCustomValidity('Se Requiere 10 digitos')" oninput="this.setCustomValidity('')">  </td>                 
 
                                 </tr>
                                 <tr>    

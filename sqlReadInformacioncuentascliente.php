@@ -93,20 +93,21 @@ if(isset($_POST['buscar_IAC'])){
     
 
     $consulta="SELECT 
-    numerocuenta_cueban,
-    fechaapertura_cueban,
-    saldo_cueban,
-    descripcion_tipcue,
-    descripcion_estcue
-    FROM                
-        public.cuentabancaria,
-        public.tipocuenta,
-        public.estadocuenta
-    WHERE
-    numerocuenta_cueban=(SELECT max(numerocuenta_cueban) FROM public.cuentabancaria where persona_cueban='$buscarDato')
-    and tipocuenta_cueban=codigo_tipcue
-    and codigo_estcue=estado_cueban
-  ;";
+                numerocuenta_cueban,
+                fechaapertura_cueban,
+                saldo_cueban,
+                descripcion_tipcue,
+                descripcion_estcue
+                FROM                
+                    public.cuentabancaria,
+                    public.tipocuenta,
+                    public.estadocuenta
+                WHERE
+                    persona_cueban='$buscarDato'
+                and tipocuenta_cueban=codigo_tipcue
+                and codigo_estcue=estado_cueban
+                and numerocuenta_cueban=(SELECT max(numerocuenta_cueban) FROM public.cuentabancaria)
+               ;";
     $resultado=pg_query($conexion,$consulta) or die ("error al realizar multiple consulta en las tablas maestras y cuentabancaria y persona");
     while($row=pg_fetch_array($resultado)){
     
@@ -116,7 +117,7 @@ if(isset($_POST['buscar_IAC'])){
         $descripcion_tipcue=$row['descripcion_tipcue'];
         $descripcion_estcue=$row['descripcion_estcue'];     
     }
-    pg_free_result($resultado); 
+    pg_free_result($resultado);   pg_free_result($resultado);
 
 
     if($cedula_per!=''){
@@ -125,6 +126,7 @@ if(isset($_POST['buscar_IAC'])){
         echo '<h4 id ="errorSis" > Cédula no existe, vuelva a intentar. </h4>' ;    }
 
 
+    pg_free_result($resultado);
     pg_close($conexion);
 }
 
