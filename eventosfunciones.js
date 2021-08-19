@@ -144,6 +144,23 @@ $("#id_tipdep").change(function() {
 		$("#tipodepTit").attr("value",'TITULAR'); 					
 		$("#tipodepCed").attr("value",'N/A'); 
     }
+});
+
+// $("#id_tipret").change(function() {
+
+//     if ($('select option').filter(':selected').val() == 2) {
+//         $("#tiporet").attr("readonly", false);
+// 		$("#tiporet").attr("value",''); 					
+// 		$("#tiporetTit").attr("value",'TITULAR'); 					
+// 		$("#tiporetCed").attr("value",'N/A'); 
+//     } else {
+//         $("#tiporet").attr("readonly", true);		
+// 		$("#tiporet").attr("value",'N/A');			
+// 		$("#tiporetTit").attr("value",'TITULAR'); 					
+// 		$("#tiporetCed").attr("value",'N/A'); 
+//     }
+// }.
+
 
 	// if ($('select option').filter(':selected').val() == 0) {
 	// 	$("#tipodepTit").attr("readonly", true);
@@ -153,5 +170,12 @@ $("#id_tipdep").change(function() {
 	// 	$("#tipodepCed").attr("readonly", false);	
 	// }
 
+// // {/* <script>
+// // 													document.getElementById("ingresar_deposito").addEventListener("click", function( event ) {
+// // 														// presentar la cuenta de clicks realizados sobre el elemento con id "prueba"
+// // 														event.target.innerHTML = "Conteo de Clicks: " + event.detail;
+// // 														console.log("hhjhjj");
+// // 													}, false);
+// // 											</script>     
 
-});
+// // }); 

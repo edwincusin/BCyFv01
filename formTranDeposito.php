@@ -104,7 +104,7 @@
                             <table>
                                 <tr>
                                     <td> <label for=""><span> N° Depósito :</span></label> </td>
-                                     <td> <input type="text" size="8" name="numDeposito"  value="<?php echo $numRetiro?>" readonly> </td>
+                                     <td> <input type="text" size="8" name="numDeposito"  value="<?php echo $numDeposito?>" readonly> </td>
 
                                 </tr>
                                 <tr>

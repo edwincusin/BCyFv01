@@ -17,7 +17,7 @@
  $descripcion_estcue='';
  $descripcion_tipcue='';
  $numCCC=0;
- $numRetiro=0;
+ $numDeposito=0;
   
 
 if(isset($_POST['buscar_DEP'])){     
@@ -65,7 +65,7 @@ if(isset($_POST['buscar_DEP'])){
         $consulta="SELECT max(codigo_trandep)
                     FROM trandeposito;";
         $resultado=pg_query($conexion,$consulta) or die ("error no se pudo contar el total de numero de depositos en trandepositos");
-        $numRetiro=pg_fetch_result($resultado,0) + 1;
+        $numDeposito=pg_fetch_result($resultado,0) + 1;
 
         pg_free_result($resultado);
 
