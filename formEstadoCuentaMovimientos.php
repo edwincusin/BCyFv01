@@ -24,7 +24,7 @@
 
                     <!-- INICIO FORMULARIO   -->
                     <div class="tituloForm">
-                        <h2>Formulario consulta de cuentas bancarias de un cliente</h2>
+                        <h2>Formulario consulta movimientos de una cuenta bancaria</h2>
                     </div>
                     
                     <div class="contenedorControlesForm">
@@ -32,13 +32,13 @@
                     <form action="" method="post">
                         <table>
                             <tr>
-                                <td> <label for=""><span>N° Cédula cliente:</span></label> </td>
-                                <td colspam="2"> <input type="text" name="txtbuscarDato" id="validarCedulaEcu" size="20" onKeyPress='return validaNumericos(event)' maxlength="10" placeholder="ej. 1234567890 " required pattern="[0-9]{10}" oninvalid="this.setCustomValidity('Se Requiere 10 digitos')" oninput="this.setCustomValidity('')"> </td>
-                                <td> <input type="submit" name="buscar_IAC" value="&#128270; Buscar"> </td>
+                                <td> <label for=""><span>N° de cuenta:</span></label> </td>
+                                <td colspam="2"> <input type="text" name="txtbuscarDato" id="validarCedulaEcu" placeholder="ej. 002" size="20" onKeyPress='return validaNumericos(event)' maxlength="10" oninvalid="this.setCustomValidity('complete los digitos')" oninput="this.setCustomValidity('')"> </td>
+                                <td> <input type="submit" name="buscar_EDC" value="&#128270; Buscar"> </td>
                             </tr>
                         </table>
                     </form> 
-                    <?php require 'sqlReadInformacioncuentascliente.php'; ?>
+                    <?php require 'sqlReadEstadoCuentaMovimientos.php'; ?>
                     
 
                     <form action="" method="post">
@@ -102,7 +102,37 @@
                             </table>                                                        
                         </fieldset>
 
-                        <fieldset   > <legend>Información de cuentas bancarias </legend>
+                        <fieldset   > <legend>Información de la cuenta</legend>
+                        <table >
+                            <tr>
+                                        <td > <label for=""><span >Número de cuenta: </span></label></td>                                
+                                        <td colspan="2" >  <input type="text" size="8" id="numCuenta" name="txtCCC_D" value="<?php echo $numerocuenta_cueban; ?>" readonly> </td> 
+   
+                            </tr>
+
+                            <tr>
+                                        <td> <label for=""><span>Fecha apertura:</span></label></td> 
+                                        <td> <input type="text" size="10" id="imputsincolor" name="fecchaaperura" value="<?php echo $fechaapertura_cueban; ?>" readonly> </td> 
+
+                                        <td> <label for=""><span>Tipo de cuenta:</span></label></td> 
+                                        <td> <input type="text" size="10" id="imputsincolor" name="desTipoCuenta_AC" value="<?php echo $descripcion_tipcue; ?>" readonly> </td> 
+                                        
+                                        <td> <label for=""><span>Estado de cuenta:</span></label></td> 
+                                        <td> <input type="text" size="10" id="imputsincolor" name="estadocuenta" value="<?php echo $descripcion_estcue; ?>" readonly> </td> 
+
+                                        <td> <label for=""><span>Saldo USD:</span></label> </td>
+                                        <td> <input type="text" size="8" id="imputsincolor" name="txtsaldodisponible_D" value="<?php echo $saldo_cueban; ?>" readonly> </td> 
+
+                                        
+                            </tr>  
+
+                            
+                                
+                            </table>                                                        
+                        </fieldset>             
+
+
+                        <fieldset   > <legend>Movimientos de la cuenta </legend>
                         <br>
                                     <!-- CREAR TABLA CON LA CONSULTA  -->
                                     <center>
