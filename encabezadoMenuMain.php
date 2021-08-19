@@ -42,7 +42,7 @@
                 </li>
                 <li id="item_menu"><a href="#">Consultar / Imprimir</a>
                     <ul id="desp_submenu">
-                        <li><a href="#">Informacion apertura cuenta </a></li>
+                        <li><a href="./formOficioAperturaCuenta.php">Oficio apertura de cuenta </a></li>
                         <li><a href="#">Informacion cuentas cliente </a></li>
                         <li><a href="#">Estado de cuenta de N° cuenta</a></li>
                         
