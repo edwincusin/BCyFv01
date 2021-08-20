@@ -106,6 +106,7 @@ if(isset($_POST['buscar_IAC'])){
 
     if($cedula_per!=''){
         echo '<h4 id ="msmcorreto" > Registro encontrado. </h4>' ;
+	
     }else {
         echo '<h4 id ="errorSis" > Cédula no existe, vuelva a intentar. </h4>' ;    }
 
