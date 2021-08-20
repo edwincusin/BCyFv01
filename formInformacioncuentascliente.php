@@ -95,7 +95,7 @@
                                 </tr>
                                 <tr>
                                     <td colspan="2"> <label for=""><span>Dirección domicilio:</span></label> </td>
-                                    <td colspan="4"> <input type="text" id="imputsincolor" name="txtdireccion"  value="<?php echo $direcciondom_per; ?>" size="70" maxlength="90" placeholder="Provincia / ciudad / parroquia / calle 1 / calle 2 / numero de casa" required> </span> </td>     
+                                    <td colspan="4"> <input type="text" id="imputsincolor" name="txtdireccion"  value="<?php echo $direcciondom_per; ?>" size="70" maxlength="90" readonly </span> </td>     
    
                                 </tr>
 
