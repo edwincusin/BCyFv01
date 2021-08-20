@@ -1,6 +1,6 @@
 <?php
     session_start();
-    // error_reporting(0);     
+     error_reporting(0);     
     // agregar al final una vez se haya terminado el sistema con toda la funcionalidad al 100%, para que no reporte errores que no efectan al sistema
     $varsession=$_SESSION['nameuser'];
     if($varsession==null || $varsession==" "){

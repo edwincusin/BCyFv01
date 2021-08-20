@@ -114,7 +114,12 @@ $html2pdf->Output('archivo.pdf', 'D');
                                 </tr>
                                 <tr>
                                     <td colspan="2"> <label for=""><span>Dirección domicilio:</span></label> </td>
+<<<<<<< HEAD
                                     <td colspan="4"> <input type="text" name="direcciondomiciliaria" id="imputsincolor" name="txtdireccion"  value="<?php echo $direcciondom_per; ?>" size="70" maxlength="90" placeholder="Provincia / ciudad / parroquia / calle 1 / calle 2 / numero de casa" readonly> </span> </td>        
+=======
+                                    <td colspan="4"> <input type="text" id="imputsincolor" name="txtdireccion"  value="<?php echo $direcciondom_per; ?>" size="70" maxlength="90" readonly </span> </td>     
+   
+>>>>>>> 040211b5a68eb33d42fd6ba07e6b10b6857bcdcb
                                 </tr>
 
                             </table>                                                        
