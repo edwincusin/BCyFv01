@@ -147,9 +147,9 @@
                                                 <th>N° Trans</th> 
                                                 <th>Fecha</th>
                                                 <th>Cuenta Benef.</th>
-                                                <th>Nombre Benef. </th>
-                                                <th>Valor $</th>                                                
+                                                <th>Nombre Benef. </th>                                              
                                                 <th>Concepto </th>
+                                                <th>Valor $</th>  
                                                 <th>Seg. Saldo</th>
                                                 </tr>
                                         </thead>
@@ -172,8 +172,8 @@
                                                     <td><?php echo $fechatransferencia_transf ?></td>
                                                     <td><?php echo $cuentabeneficiaria_transf ?></td>
                                                     <td><?php echo $nombres ?></td>
-                                                    <td><?php echo $monto_transf ?></td>
                                                     <td><?php echo $descripcion_transf ?></td>
+                                                    <td><?php echo $monto_transf ?></td>
                                                     <td><?php echo $saldomonto_transf ?></td>
                                                 </tr>
                                             <?php
@@ -197,9 +197,9 @@
                                                 <th>N° Trans</th> 
                                                 <th>Fecha</th>
                                                 <th>Cuenta Tranf.</th>
-                                                <th>Nombre Tranf. </th>
-                                                <th>Valor $</th>                                                
+                                                <th>Nombre Tranf. </th>                                               
                                                 <th>Concepto </th>
+                                                <th>Valor $</th> 
                                                 <th>Seg. Saldo</th>
                                                 </tr>
                                         </thead>
@@ -222,8 +222,8 @@
                                                     <td><?php echo $fechatransferencia_transf ?></td>
                                                     <td><?php echo $cuentabeneficiaria_transf ?></td>
                                                     <td><?php echo $nombres ?></td>
-                                                    <td><?php echo $monto_transf ?></td>
                                                     <td><?php echo $descripcion_transf ?></td>
+                                                    <td><?php echo $monto_transf ?></td>
                                                     <td><?php echo $saldomonto_transf ?></td>
                                                 </tr>
                                             <?php
@@ -240,7 +240,7 @@
                                         
                                         <thead >
                                             <tr>
-                                            <th colspan="8"><b> MOVIMIENTO DE TRANSFERENCIAS ENTRANTES</b></th>
+                                            <th colspan="8"><b> MOVIMIENTO DE RETIROS</b></th>
                                             </tr>
                                             <tr>
                                                 <th>N°</th>                                    
@@ -292,11 +292,11 @@
                                         
                                         <thead >
                                             <tr>
-                                            <th colspan="8"><b> MOVIMIENTO DE TRANSFERENCIAS ENTRANTES</b></th>
+                                            <th colspan="8"><b> MOVIMIENTO DE DEPOSITOS</b></th>
                                             </tr>
                                             <tr>
                                                 <th>N°</th>                                    
-                                                <th>N° Dep.</th> 
+                                                <th>N° Ret.</th> 
                                                 <th>Fecha</th>
                                                 <th>Per. Retira</th>
                                                 <th>Tipo Ret. </th>                                             
@@ -308,30 +308,30 @@
                                         <tbody>
                                             <?php 
                                             //$cont=1;
-                                            while($row=pg_fetch_array($resultdeposito)){
+                                            while($row=pg_fetch_array($resultretiro)){
     
-                                                $codigo_trandep=$row['codigo_trandep'];
-                                                $fechadeposito_trandep=$row['fechadeposito_trandep'];
-                                                $nombredep_trandep=$row['nombredep_trandep']; 
-                                                $monto_trandep=$row['monto_trandep']; 
-                                                $saldomonto_trandep=$row['saldomonto_trandep'];
-                                                $numerocheque_trandep=$row['numerocheque_trandep']; 
-                                                $descripcion_tipdep=$row['descripcion_tipdep'];
+                                                $codigo_tranret=$row['codigo_tranret'];
+                                                $fecha_tranret=$row['fecha_tranret']; 
+                                                $monto_tranret=$row['monto_tranret']; 
+                                                $saldomonto_tranret=$row['saldomonto_tranret']; 
+                                                $numerocheque_tranret=$row['numerocheque_tranret']; 
+                                                $nombreret_tranret=$row['nombreret_tranret']; 
+                                                $descripcion_tipret=$row['descripcion_tipret'];
                                             ?>
                                                 <tr>
                                                     <td><?php echo $cont ?></td>
-                                                    <td><?php echo $codigo_trandep ?></td>
-                                                    <td><?php echo $fechadeposito_trandep ?></td>
-                                                    <td><?php echo $nombredep_trandep ?></td>
-                                                    <td><?php echo $descripcion_tipdep ?></td>
-                                                    <td><?php echo $numerocheque_trandep ?></td>
-                                                    <td><?php echo $saldomonto_trandep ?></td>
-                                                    <td><?php echo $monto_trandep ?></td>
+                                                    <td><?php echo $codigo_tranret ?></td>
+                                                    <td><?php echo $fecha_tranret ?></td>
+                                                    <td><?php echo $nombreret_tranret ?></td>
+                                                    <td><?php echo $descripcion_tipret ?></td>
+                                                    <td><?php echo $numerocheque_tranret ?></td>
+                                                    <td><?php echo $saldomonto_tranret ?></td>
+                                                    <td><?php echo $monto_tranret ?></td>
                                                 </tr>
                                             <?php
                                             $cont++;
                                             }//                                             
-                                            pg_free_result($resultdeposito); 
+                                            pg_free_result($resultretiro); 
                                             ?>
                                         </tbody>
                                     </table>   

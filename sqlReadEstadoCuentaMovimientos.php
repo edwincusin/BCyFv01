@@ -157,6 +157,8 @@ if(isset($_POST['buscar_EDC'])){
         $numerocheque_trandep=''; 
         $descripcion_tipdep='';
 
+
+        //sql deposito
         $consulta="SELECT 
         codigo_trandep,
         fechadeposito_trandep,
@@ -172,6 +174,31 @@ if(isset($_POST['buscar_EDC'])){
         ORDER BY fechadeposito_trandep ASC
         ;";
         $resultdeposito=pg_query($conexion,$consulta) or die ("error al realizar multiple consulta en las tablas transferencias");
+
+
+        $codigo_tranret='';
+        $fecha_tranret=''; 
+        $monto_tranret=''; 
+        $saldomonto_tranret=''; 
+        $numerocheque_tranret=''; 
+        $nombreret_tranret=''; 
+        $descripcion_tipret='';
+        //sql retiro
+        $consulta="SELECT 
+        codigo_tranret,
+        fecha_tranret, 
+        monto_tranret, 
+        saldomonto_tranret, 
+        numerocheque_tranret, 
+        nombreret_tranret, 
+        descripcion_tipret
+        FROM public.tranretiro, cuentabancaria, tiporetiro
+         WHERE cuentabancaria_tranret=1
+        and cuentabancaria_tranret=numerocuenta_cueban
+        and tiporetiro_tranret=codigo_tipret
+        ORDER BY fecha_tranret ASC
+        ;";
+        $resultretiro=pg_query($conexion,$consulta) or die ("error al realizar multiple consulta en las tablas transferencias");
 
 
 
