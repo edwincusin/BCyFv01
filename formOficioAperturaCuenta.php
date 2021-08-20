@@ -16,9 +16,8 @@ $html2pdf->Output('archivo.pdf', 'D');
 //uso para guardar en un archivo en el servidor
 //$html2pdf->output('/absolute/path/file_xxxx.pdf', 'F');
 	}
-
-
 ?>
+
 <?php 
     include './sessionStart.php';
 ?>

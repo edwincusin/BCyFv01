@@ -72,32 +72,64 @@
 					</tbody>
     </table>
 
-    <h4> INFORMACIÓN DE LA CUENTA APERTURADA</h4> 		
+    <h4> INFORMACIÓN DE CUENTAS BANCARIAS</h4> 		
 		<table border="0" width="925"> 
-			<tbody>
-    		<tr>
-                <td style="width:20%;">Número de cuenta:	 <h2><?php if (isset($_POST['txtCCC_D'])): ?><?= $_POST['txtCCC_D'] ?><?php endif; ?></h2>    </td>               
-   			</tr>
-				 <tr>
-                <td style="width:20%;">Fecha apertura: <h2><?php if (isset($_POST['fecchaaperura'])): ?><?= $_POST['fecchaaperura'] ?><?php endif; ?></h2>    </td>
-                <td style="width:20%;">Tipo de cuenta:	 <h2><?php if (isset($_POST['desTipoCuenta_AC'])): ?><?= $_POST['desTipoCuenta_AC'] ?><?php endif; ?> </h2>    </td>
-                <td style="width:20%;">Estado de cuenta:	 <h2><?php if (isset($_POST['estadocuenta'])): ?><?= $_POST['estadocuenta'] ?><?php endif; ?> </h2>  </td>
-								<td style="width:20%;">Saldo USD:	 <h2><?php if (isset($_POST['txtsaldodisponible_D'])): ?><?= $_POST['txtsaldodisponible_D'] ?><?php endif; ?> </h2>  </td>						
-   			</tr>
-			</tbody>
-		</table>
-		<br>
-		<br>
-		<br>
-		<br>
-		<table border="0" width="925"> 
-			<tbody>
-				 <tr>		<td style="width:20%;"></td>
-                <td style="width:20%;">........................... <h3>Firma Banco</h3>    </td>
-                <td style="width:20%;">...........................<h3>Firma Cliente</h3>    </td>                
-   			</tr>
-			</tbody>
-		</table>
+	    		<thead>
+                <tr>
+                    <th>N°</th>
+                    <th>Fecha Apertura</th>
+                    <th>Número Cuenta</th>
+                    <th>Tipo</th>
+                    <th>Estado</th>
+										<th>Saldo  $USD</th>
+                </tr>
+					</thead>
+				<tbody>
+					
+                                            <?php 
+require_once './conex.php';
+    $conexion=conectarBD(); 
+		if($_POST['txtcedula']===""){$buscarDato=" ";}else{$buscarDato=$_POST['txtcedula'];}
+$consulta="SELECT 
+    numerocuenta_cueban,
+    fechaapertura_cueban,
+    saldo_cueban,
+    descripcion_tipcue,
+    descripcion_estcue
+    FROM                
+        public.cuentabancaria,
+        public.tipocuenta,
+        public.estadocuenta
+    WHERE
+    persona_cueban='$buscarDato'
+    and tipocuenta_cueban=codigo_tipcue
+    and codigo_estcue=estado_cueban
+  ;";
+    $resultadoTabla=pg_query($conexion,$consulta);
+                                            $cont=1;
+                                            while($row=pg_fetch_array($resultadoTabla)){
+    
+                                                $numerocuenta_cueban=$row['numerocuenta_cueban'];
+                                                $fechaapertura_cueban=$row['fechaapertura_cueban'];
+                                                $saldo_cueban=$row['saldo_cueban'];
+                                                $descripcion_tipcue=$row['descripcion_tipcue'];
+                                                $descripcion_estcue=$row['descripcion_estcue'];     
+                                            ?>
+                                                <tr>
+                                                    <td style="width:4%;"><?php echo $cont ?></td>
+                                                    <td style="width:15%;"><?php echo $fechaapertura_cueban ?></td>
+                                                    <td style="width:15%;"><?php echo $numerocuenta_cueban ?></td>
+                                                    <td style="width:15%;"><?php echo $descripcion_tipcue ?></td>
+                                                    <td style="width:15%;"><?php echo $descripcion_estcue ?></td>
+                                                    <td style="width:8%;"><?php echo $saldo_cueban ?></td>
+                                                </tr>
+                                            <?php
+                                            $cont++;
+                                            }//                                             
+                                            pg_free_result($resultadoTabla); 
+                                            ?>
+                                        </tbody>						
+        </table>
 
-	</body>
+    </body>
 </html>
