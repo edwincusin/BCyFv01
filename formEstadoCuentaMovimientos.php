@@ -33,7 +33,7 @@
                         <table>
                             <tr>
                                 <td> <label for=""><span>N° de cuenta:</span></label> </td>
-                                <td colspam="2"> <input type="text" name="txtbuscarDato" id="validarCedulaEcu" placeholder="ej. 002" size="20" onKeyPress='return validaNumericos(event)' maxlength="10" oninvalid="this.setCustomValidity('complete los digitos')" oninput="this.setCustomValidity('')"> </td>
+                                <td colspan="2"> <input type="text" name="txtbuscarDato" id="validarCedulaEcu" placeholder="ej. 002" size="20" onKeyPress='return validaNumericos(event)' maxlength="10" oninvalid="this.setCustomValidity('complete los digitos')" oninput="this.setCustomValidity('')"> </td>
                                 <td> <input type="submit" name="buscar_EDC" value="&#128270; Buscar"> </td>
                             </tr>
                         </table>
@@ -134,43 +134,217 @@
 
                         <fieldset   > <legend>Movimientos de la cuenta </legend>
                         <br>
-                                    <!-- CREAR TABLA CON LA CONSULTA  -->
+                                    <!-- CREAR TABLA CON LA CONSULTA  TRASFERENCIA  salida  -->
                                     <center>
                                     <table class="tableimp" border="1">
+                                        
                                         <thead >
+                                            <tr>
+                                            <th colspan="8"><b> MOVIMIENTO DE TRANSFERENCIAS SALIENTES</b></th>
+                                            </tr>
+                                            <tr>
                                                 <th>N°</th>                                    
-                                                <th>Fecha apertura</th> 
-                                                <th>Número Cuenta</th>
-                                                <th>Tipo </th>
-                                                <th>Estado </th>
-                                                <th>Saldo UD$</th>
+                                                <th>N° Trans</th> 
+                                                <th>Fecha</th>
+                                                <th>Cuenta Benef.</th>
+                                                <th>Nombre Benef. </th>
+                                                <th>Valor $</th>                                                
+                                                <th>Concepto </th>
+                                                <th>Seg. Saldo</th>
+                                                </tr>
                                         </thead>
                                         <tbody>
                                             <?php 
                                             $cont=1;
-                                            while($row=pg_fetch_array($resultadoTabla)){
+                                            while($row=pg_fetch_array($resultsalidatrans)){
     
-                                                $numerocuenta_cueban=$row['numerocuenta_cueban'];
-                                                $fechaapertura_cueban=$row['fechaapertura_cueban'];
-                                                $saldo_cueban=$row['saldo_cueban'];
-                                                $descripcion_tipcue=$row['descripcion_tipcue'];
-                                                $descripcion_estcue=$row['descripcion_estcue'];     
+                                                $codigo_transf=$row['codigo_transf'];
+                                                $fechatransferencia_transf=$row['fechatransferencia_transf'];
+                                                $cuentabeneficiaria_transf=$row['cuentabeneficiaria_transf']; 
+                                                $nombres =$row['nombres']; 
+                                                $monto_transf=$row['monto_transf']; 
+                                                $descripcion_transf=$row['descripcion_transf']; 
+                                                $saldomonto_transf=$row['saldomonto_transf'];   
                                             ?>
                                                 <tr>
                                                     <td><?php echo $cont ?></td>
-                                                    <td><?php echo $fechaapertura_cueban ?></td>
-                                                    <td><?php echo $numerocuenta_cueban ?></td>
-                                                    <td><?php echo $descripcion_tipcue ?></td>
-                                                    <td><?php echo $descripcion_estcue ?></td>
-                                                    <td><?php echo $saldo_cueban ?></td>
+                                                    <td><?php echo $codigo_transf ?></td>
+                                                    <td><?php echo $fechatransferencia_transf ?></td>
+                                                    <td><?php echo $cuentabeneficiaria_transf ?></td>
+                                                    <td><?php echo $nombres ?></td>
+                                                    <td><?php echo $monto_transf ?></td>
+                                                    <td><?php echo $descripcion_transf ?></td>
+                                                    <td><?php echo $saldomonto_transf ?></td>
                                                 </tr>
                                             <?php
                                             $cont++;
                                             }//                                             
-                                            pg_free_result($resultadoTabla); 
+                                            pg_free_result($resultsalidatrans); 
                                             ?>
                                         </tbody>
                                     </table>    
+
+                                       <!-- CREAR TABLA CON LA CONSULTA  TRASFERENCIA  salida  -->
+
+                                    <table class="tableimp" border="1">
+                                        
+                                        <thead >
+                                            <tr>
+                                            <th colspan="8"><b> MOVIMIENTO DE TRANSFERENCIAS ENTRANTES</b></th>
+                                            </tr>
+                                            <tr>
+                                                <th>N°</th>                                    
+                                                <th>N° Trans</th> 
+                                                <th>Fecha</th>
+                                                <th>Cuenta Tranf.</th>
+                                                <th>Nombre Tranf. </th>
+                                                <th>Valor $</th>                                                
+                                                <th>Concepto </th>
+                                                <th>Seg. Saldo</th>
+                                                </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php 
+                                            //$cont=1;
+                                            while($row=pg_fetch_array($resultentradatrans)){
+    
+                                                $codigo_transf=$row['codigo_transf'];
+                                                $fechatransferencia_transf=$row['fechatransferencia_transf'];
+                                                $cuentabeneficiaria_transf=$row['cuentadebitar_transf']; 
+                                                $nombres =$row['nombres']; 
+                                                $monto_transf=$row['monto_transf']; 
+                                                $descripcion_transf=$row['descripcion_transf']; 
+                                                $saldomonto_transf=$row['saldomonto_transf'];   
+                                            ?>
+                                                <tr>
+                                                    <td><?php echo $cont ?></td>
+                                                    <td><?php echo $codigo_transf ?></td>
+                                                    <td><?php echo $fechatransferencia_transf ?></td>
+                                                    <td><?php echo $cuentabeneficiaria_transf ?></td>
+                                                    <td><?php echo $nombres ?></td>
+                                                    <td><?php echo $monto_transf ?></td>
+                                                    <td><?php echo $descripcion_transf ?></td>
+                                                    <td><?php echo $saldomonto_transf ?></td>
+                                                </tr>
+                                            <?php
+                                            $cont++;
+                                            }//                                             
+                                            pg_free_result($resultentradatrans); 
+                                            ?>
+                                        </tbody>
+                                    </table>   
+
+                    <!-- CREAR TABLA CON LA CONSULTA  DEPOSITOS  -->
+
+                                    <table class="tableimp" border="1">
+                                        
+                                        <thead >
+                                            <tr>
+                                            <th colspan="8"><b> MOVIMIENTO DE TRANSFERENCIAS ENTRANTES</b></th>
+                                            </tr>
+                                            <tr>
+                                                <th>N°</th>                                    
+                                                <th>N° Dep.</th> 
+                                                <th>Fecha</th>
+                                                <th>Depositante.</th>
+                                                <th>Tipo Dep. </th>                                             
+                                                <th>Ref. Cheque</th>
+                                                <th>Valor $</th>   
+                                                <th>Seg. Saldo</th>
+                                                </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php 
+                                            //$cont=1;
+                                            while($row=pg_fetch_array($resultdeposito)){
+    
+                                                $codigo_trandep=$row['codigo_trandep'];
+                                                $fechadeposito_trandep=$row['fechadeposito_trandep'];
+                                                $nombredep_trandep=$row['nombredep_trandep']; 
+                                                $monto_trandep=$row['monto_trandep']; 
+                                                $saldomonto_trandep=$row['saldomonto_trandep'];
+                                                $numerocheque_trandep=$row['numerocheque_trandep']; 
+                                                $descripcion_tipdep=$row['descripcion_tipdep'];
+                                            ?>
+                                                <tr>
+                                                    <td><?php echo $cont ?></td>
+                                                    <td><?php echo $codigo_trandep ?></td>
+                                                    <td><?php echo $fechadeposito_trandep ?></td>
+                                                    <td><?php echo $nombredep_trandep ?></td>
+                                                    <td><?php echo $descripcion_tipdep ?></td>
+                                                    <td><?php echo $numerocheque_trandep ?></td>
+                                                    <td><?php echo $saldomonto_trandep ?></td>
+                                                    <td><?php echo $monto_trandep ?></td>
+                                                </tr>
+                                            <?php
+                                            $cont++;
+                                            }//                                             
+                                            pg_free_result($resultdeposito); 
+                                            ?>
+                                        </tbody>
+                                    </table>   
+
+
+
+                    <!-- CREAR TABLA CON LA CONSULTA  RETIROS  -->
+
+                    <table class="tableimp" border="1">
+                                        
+                                        <thead >
+                                            <tr>
+                                            <th colspan="8"><b> MOVIMIENTO DE TRANSFERENCIAS ENTRANTES</b></th>
+                                            </tr>
+                                            <tr>
+                                                <th>N°</th>                                    
+                                                <th>N° Dep.</th> 
+                                                <th>Fecha</th>
+                                                <th>Per. Retira</th>
+                                                <th>Tipo Ret. </th>                                             
+                                                <th>Ref. Cheque</th>
+                                                <th>Valor $</th>   
+                                                <th>Seg. Saldo</th>
+                                                </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php 
+                                            //$cont=1;
+                                            while($row=pg_fetch_array($resultdeposito)){
+    
+                                                $codigo_trandep=$row['codigo_trandep'];
+                                                $fechadeposito_trandep=$row['fechadeposito_trandep'];
+                                                $nombredep_trandep=$row['nombredep_trandep']; 
+                                                $monto_trandep=$row['monto_trandep']; 
+                                                $saldomonto_trandep=$row['saldomonto_trandep'];
+                                                $numerocheque_trandep=$row['numerocheque_trandep']; 
+                                                $descripcion_tipdep=$row['descripcion_tipdep'];
+                                            ?>
+                                                <tr>
+                                                    <td><?php echo $cont ?></td>
+                                                    <td><?php echo $codigo_trandep ?></td>
+                                                    <td><?php echo $fechadeposito_trandep ?></td>
+                                                    <td><?php echo $nombredep_trandep ?></td>
+                                                    <td><?php echo $descripcion_tipdep ?></td>
+                                                    <td><?php echo $numerocheque_trandep ?></td>
+                                                    <td><?php echo $saldomonto_trandep ?></td>
+                                                    <td><?php echo $monto_trandep ?></td>
+                                                </tr>
+                                            <?php
+                                            $cont++;
+                                            }//                                             
+                                            pg_free_result($resultdeposito); 
+                                            ?>
+                                        </tbody>
+                                    </table>   
+
+
+
+
+
+
+
+
+
+
                                     </center>
 
 

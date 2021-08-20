@@ -103,6 +103,97 @@ if(isset($_POST['buscar_EDC'])){
             $descripcion_tipcue=$row['descripcion_tipcue'];
             $descripcion_estcue=$row['descripcion_estcue'];      
     }
+//consultar movimientos de trasferencias realizados
+
+        $codigo_transf='';
+        $fechatransferencia_transf='';
+        $cuentabeneficiaria_transf=''; 
+       $nombres =''; 
+       $monto_transf=''; 
+       $descripcion_transf=''; 
+       $saldomonto_transf='';
+        
+
+    $consulta="SELECT 
+        codigo_transf,
+        fechatransferencia_transf,
+        cuentabeneficiaria_transf, 
+        (apellido1_per || ' ' || nombre1_per) AS nombres , 
+        monto_transf, 
+        descripcion_transf, 
+        saldomonto_transf
+        
+        FROM public.trantransferencia, persona, cuentabancaria
+        WHERE cuentadebitar_transf='$txtbuscarDato'
+        and cuentabeneficiaria_transf=numerocuenta_cueban
+        and persona_cueban=cedula_per
+        ORDER BY fechatransferencia_transf ASC
+        ;";
+        $resultsalidatrans=pg_query($conexion,$consulta) or die ("error al realizar multiple consulta en las tablas transferencias");
+
+
+    $consulta="SELECT 
+        codigo_transf,
+        fechatransferencia_transf,
+        cuentadebitar_transf, 
+        (apellido1_per || ' ' || nombre1_per) AS nombres , 
+        monto_transf, 
+        descripcion_transf, 
+        saldomonto_transf
+        
+        FROM public.trantransferencia, persona, cuentabancaria
+        WHERE cuentabeneficiaria_transf='$txtbuscarDato'
+        and cuentadebitar_transf=numerocuenta_cueban
+        and persona_cueban=cedula_per
+        ORDER BY fechatransferencia_transf ASC
+        ;";
+        $resultentradatrans=pg_query($conexion,$consulta) or die ("error al realizar multiple consulta en las tablas transferencias");
+
+        $codigo_trandep='';
+        $fechadeposito_trandep='';
+        $nombredep_trandep=''; 
+        $monto_trandep=''; 
+        $saldomonto_trandep='';
+        $numerocheque_trandep=''; 
+        $descripcion_tipdep='';
+
+        $consulta="SELECT 
+        codigo_trandep,
+        fechadeposito_trandep,
+        nombredep_trandep, 
+        monto_trandep, 
+        saldomonto_trandep,
+        numerocheque_trandep, 
+        descripcion_tipdep
+        FROM public.trandeposito, cuentabancaria, tipodeposito
+        WHERE cuentabancaria_trandep='$txtbuscarDato'
+        and cuentabancaria_trandep=numerocuenta_cueban
+        and tipodeposito_trandep=codigo_tipdep
+        ORDER BY fechadeposito_trandep ASC
+        ;";
+        $resultdeposito=pg_query($conexion,$consulta) or die ("error al realizar multiple consulta en las tablas transferencias");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     if($cedula_per!=''){
         echo '<h4 id ="msmcorreto" > Registro encontrado. </h4>' ;
