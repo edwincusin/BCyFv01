@@ -10,7 +10,7 @@
             require_once ('./sqlcombobox.php'); //* se hace un solo llamado para todo el  documento las consultas de combobox*/
         ?>
         <script type="text/javascript" src="./jsValidarCedulaEcu.js"></script>
-        <title>Gestión de usuario</title>
+        <title>Movimientos de la cuenta</title>
     </head>    
     <body>  
         <!-- <form action="" method="post"> -->
@@ -240,7 +240,7 @@
                                         
                                         <thead >
                                             <tr>
-                                            <th colspan="8"><b> MOVIMIENTO DE RETIROS</b></th>
+                                            <th colspan="8"><b> MOVIMIENTO DE DEPOSITOS</b></th>
                                             </tr>
                                             <tr>
                                                 <th>N°</th>                                    
@@ -292,7 +292,7 @@
                                         
                                         <thead >
                                             <tr>
-                                            <th colspan="8"><b> MOVIMIENTO DE DEPOSITOS</b></th>
+                                            <th colspan="8"><b> MOVIMIENTO DE RETIROS</b></th>
                                             </tr>
                                             <tr>
                                                 <th>N°</th>                                    
@@ -330,7 +330,7 @@
                                                 </tr>
                                             <?php
                                             $cont++;
-                                            }//                                             
+                                            }                                            
                                             pg_free_result($resultretiro); 
                                             ?>
                                         </tbody>

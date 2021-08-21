@@ -38,7 +38,8 @@
             WHERE numerocuenta_cueban=$cuentabeneficiaria_transf ;";
             $resultado=pg_query($conexion,$consulta) or die ("error no se puede realizar la consulta de saldo en la cuenta bancaria de beneficiario");
             while($row=pg_fetch_array($resultado)){
-                $saldocuentadebitar=$row['saldo_cueban'];            }
+                $saldocuentaBeneficiario=$row['saldo_cueban'];  
+                      }
             pg_free_result($resultado);
             echo  'saldo beneficario'. $saldocuentaBeneficiario.' '; //imprimir prueba
 
@@ -86,6 +87,7 @@
 
                     //calcular el total saldo de beneficiario si se hace la transferenica
                     $saldocuentaBeneficiario=$saldocuentaBeneficiario + $monto_transf;
+                    
                     echo  'saldo resto debito'. $saldocuentaBeneficiario.' '; //imprimir prueba
 
                      //sql para actualizar saldo cuenta beneficiaria
@@ -96,6 +98,7 @@
                      pg_free_result($resultado);             
             
                     echo '<br> <h4 id ="msmcorreto" > TRANSFERENCIA REALIZADO CON ÉXITO. </h4>' ; 
+
 										echo"		<script>
 																					function mostrar(){																					
 																							document.getElementById('botonGenerar').style.display = 'inline';																					

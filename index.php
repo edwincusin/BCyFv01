@@ -7,7 +7,7 @@
 						require_once __DIR__.'/vendor/autoload.php';
 						use Spipu\Html2Pdf\Html2Pdf;
         ?>
-        <title>Acceso</title>
+        <title>Acceso sistema</title>
     </head>
 
     <body >

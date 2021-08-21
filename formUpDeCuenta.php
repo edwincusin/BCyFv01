@@ -42,7 +42,7 @@
                     
 
                     <form action="" method="post">
-                        <fieldset  > <legend>Información datos cliente</legend>
+                        <fieldset  > <legend>Modificacion de Cuenta Bancaria</legend>
 
                             <table>
                                 <tr>

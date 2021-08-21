@@ -193,7 +193,7 @@ if(isset($_POST['buscar_EDC'])){
         nombreret_tranret, 
         descripcion_tipret
         FROM public.tranretiro, cuentabancaria, tiporetiro
-         WHERE cuentabancaria_tranret=1
+         WHERE cuentabancaria_tranret='$txtbuscarDato'
         and cuentabancaria_tranret=numerocuenta_cueban
         and tiporetiro_tranret=codigo_tipret
         ORDER BY fecha_tranret ASC

@@ -68,7 +68,7 @@ $html2pdf->Output('archivo.pdf', 'D');
             require_once ('./sqlcombobox.php'); //* se hace un solo llamado para todo el  documento las consultas de combobox*/
         ?>
         <script type="text/javascript" src="./jsValidarCedulaEcu.js"></script>
-        <title>Gestión de usuario</title>
+        <title>Transaccion retiro</title>
     </head>    
     <body>  
         <!-- <form action="" method="post"> -->
