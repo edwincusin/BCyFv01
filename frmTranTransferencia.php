@@ -183,7 +183,7 @@ $html2pdf->Output('archivo.pdf', 'D');
 
                         </fieldset>    
 <br> 
-                        <input type="submit" name="crear_transferencia" value="&#10004; Registrar transferencia e imprimir">                        
+                        <input type="submit" name="crear_transferencia" value="&#10004; Registrar transferencia">                        
                         <!-- <input type="submit" name="eliminar_UDC" value="&#128221; Eliminar cuenta bancaria"> -->
                         <!-- <p style="display=grid; text-align:center; color:blue; ">  -->
                     <!-- <b>Aviso: </b>  Para considerar una eliminacion de una cuenta bancaria ya creada, esta solo se realizara cuando haya sido creado la fecha actual y si el usuario tiene la certeza de haber cometido un error al resgistrar.</p> -->

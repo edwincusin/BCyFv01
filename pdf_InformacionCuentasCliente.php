@@ -88,7 +88,9 @@
 					
                                             <?php 
 require_once './conex.php';
+
     $conexion=conectarBD(); 
+    $txtbuscarDato=$_POST['txtbuscarDato'];
 		if($_POST['txtcedula']===""){$buscarDato=" ";}else{$buscarDato=$_POST['txtcedula'];}
 $consulta="SELECT 
     numerocuenta_cueban,

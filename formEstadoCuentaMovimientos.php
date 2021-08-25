@@ -1,3 +1,24 @@
+<?php
+require_once __DIR__.'/vendor/autoload.php';
+use Spipu\Html2Pdf\Html2Pdf;
+
+if (isset($_POST['imprimir_ICC'])) {
+// CONSULTAR REGISTRO GENERADO
+ob_start();
+require_once './pdf_EstadoCuentaMovimientos.php';
+$html = ob_get_clean();
+$html2pdf = new Html2Pdf('P','A4','es','true','UTF-8');
+$html2pdf->pdf->SetDisplayMode('fullpage');
+$html2pdf->pdf->SetProtection(array('modify','copy'));
+$html2pdf->setTestTdInOnePage(false);
+$html2pdf->writeHTML($html);
+$html2pdf->Output($_POST['txtnombres'].' '.$_POST['txtcedula'].'.pdf', 'D');
+//uso para guardar en un archivo en el servidor
+//$html2pdf->output('/absolute/path/file_xxxx.pdf', 'F');
+	}
+?>
+
+
 <?php 
     include './sessionStart.php';
 ?>
@@ -50,10 +71,10 @@
                                     <td> <input type="text" name="txtcedula" id="imputsincolor" value="<?php echo $cedula_per; ?>"   readonly>  </td>
 
                                     <td> <label for=""><span>Apellidos y nombres:</span></label> </td>
-                                    <td> <input type="text" size="30" id="imputsincolor" value="<?php echo $apellido1_per.' '.$apellido2_per.' '.$nombre1_per.' '.$nombre2_per; ?>" disabled> </td>
+                                    <td> <input type="text" size="30" id="imputsincolor" name="txtnombres" value="<?php echo $apellido1_per.' '.$apellido2_per.' '.$nombre1_per.' '.$nombre2_per; ?>" readonly> </td>
                                    
                                     <td> <label for=""><span>Fecha nac.:</span></label> </td>
-                                    <td> <input type="text" size="9" id="imputsincolor" value="<?php echo $fechanac_per; ?>" disabled> </td>
+                                    <td> <input type="text" size="9" name="fechanac" id="imputsincolor" value="<?php echo $fechanac_per; ?>" readonly> </td>
                             
                                 </tr>
                                     
@@ -62,40 +83,40 @@
                                     <td> <input type="text" size="25" id="imputsincolor" name="txtemail_D" value="<?php echo $email_per; ?>" maxlength="40" readonly> </span> </td>     
                                 
                                     <td> <label for=""><span>Número celular:</span></label> </td>
-                                    <td> <input type="text" size="15" id="imputsincolor" name="txtcelular" value="<?php echo $celular_per; ?>" disabled> </td>                            
+                                    <td> <input type="text" size="15" id="imputsincolor" name="txtcelular" value="<?php echo $celular_per; ?>" readonly> </td>                            
                                    
                                     <td> <label for=""><span>Número teléfono:</span></label> </td>
-                                    <td> <input type="text" size="15" id="imputsincolor" name="txtcelular" value="<?php echo $celular_per; ?>" disabled> </td>                            
+                                    <td> <input type="text" name="txttelefono" size="15" id="imputsincolor" name="txtcelular" value="<?php echo $celular_per; ?>" readonly> </td>                            
 
                                     
                                 </tr>  
 
                                 <tr>
                                     <td> <label for=""><span>Nacionalidad:</span></label> </td>
-                                    <td> <input type="text" size="15" id="imputsincolor" value="<?php echo $descripcion_nac ; ?>" disabled> </td>
+                                    <td> <input type="text" name="nacionalidad" size="15" id="imputsincolor" value="<?php echo $descripcion_nac ; ?>" readonly> </td>
 
                                     <td> <label for=""><span>Est. civil:</span></label> </td>
-                                    <td> <input type="text" size="20" id="imputsincolor" value="<?php echo $descripcion_estciv ; ?>" disabled> </td>
+                                    <td> <input type="text" name="estcivil" size="20" id="imputsincolor" value="<?php echo $descripcion_estciv ; ?>" readonly> </td>
                                   
                                     <td> <label for=""><span>Sexo:</span></label> </td>
-                                    <td> <input type="text" size="20" id="imputsincolor" value="<?php echo $descripcion_sex ; ?>" disabled> </td>
+                                    <td> <input type="text" name="sexo" size="20" id="imputsincolor" value="<?php echo $descripcion_sex ; ?>" readonly> </td>
 
                                 </tr>
                                 
                                 <tr>
                                     <td> <label for=""><span>Instruccion:</span></label> </td>
-                                    <td> <input type="text" size="15" id="imputsincolor" value="<?php echo $descripcion_int ; ?>" disabled> </td>
+                                    <td> <input type="text" name="instruccion" size="15" id="imputsincolor" value="<?php echo $descripcion_int ; ?>" readonly> </td>
 
 
                                     <td> <label for=""><span>Actividad laboral:</span></label> </td>
-                                    <td> <input type="text" size="20" id="imputsincolor" value="<?php echo $descripcion_act ; ?>" disabled> </td>
+                                    <td> <input type="text" name="actividadlaboral" size="20" id="imputsincolor" value="<?php echo $descripcion_act ; ?>" readonly> </td>
 
                                     <td> <label for=""><span>Estado operativo:</span></label> </td>
-                                    <td> <input type="text" size="15" id="imputsincolor" name="txtestadopersona_AC" value="<?php echo $descripcion_estper; ?>" readonly> </td> 
+                                    <td> <input type="text" name="estadooperativo" size="15" id="imputsincolor" name="txtestadopersona_AC" value="<?php echo $descripcion_estper; ?>" readonly> </td> 
                                 </tr>
                                 <tr>
                                     <td colspan="2"> <label for=""><span>Dirección domicilio:</span></label> </td>
-                                    <td colspan="4"> <input type="text" id="imputsincolor" name="txtdireccion"  value="<?php echo $direcciondom_per; ?>" size="70" maxlength="90" placeholder="Provincia / ciudad / parroquia / calle 1 / calle 2 / numero de casa" required> </span> </td>     
+                                    <td colspan="4"> <input type="text" id="imputsincolor" name="direcciondomiciliaria"  value="<?php echo $direcciondom_per; ?>" size="70" maxlength="90" placeholder="Provincia / ciudad / parroquia / calle 1 / calle 2 / numero de casa" required> </span> </td>     
    
                                 </tr>
 
@@ -140,7 +161,7 @@
                                         
                                         <thead >
                                             <tr>
-                                            <th colspan="7"><b> MOVIMIENTO DE TRANSFERENCIAS SALIENTES</b></th>
+                                            <th colspan="7"><b> TRANSFERENCIAS SALIENTES</b></th>
                                             </tr>
                                             <tr>
                                                 <th>N°</th>                                    
@@ -190,7 +211,7 @@
                                         
                                         <thead >
                                             <tr>
-                                            <th colspan="7"><b> MOVIMIENTO DE TRANSFERENCIAS ENTRANTES</b></th>
+                                            <th colspan="7"><b>  TRANSFERENCIAS ENTRANTES</b></th>
                                             </tr>
                                             <tr>
                                                 <th>N°</th>                                    
@@ -240,7 +261,7 @@
                                         
                                         <thead >
                                             <tr>
-                                            <th colspan="7"><b> MOVIMIENTO DE DEPOSITOS</b></th>
+                                            <th colspan="7"><b> DEPOSITOS</b></th>
                                             </tr>
                                             <tr>
                                                 <th>N°</th>                                    
@@ -292,7 +313,7 @@
                                         
                                         <thead >
                                             <tr>
-                                            <th colspan="7"><b> MOVIMIENTO DE RETIROS</b></th>
+                                            <th colspan="7"><b> RETIROS</b></th>
                                             </tr>
                                             <tr>
                                                 <th>N°</th>                                    

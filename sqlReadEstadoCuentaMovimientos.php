@@ -24,6 +24,8 @@ $fechaapertura_cueban='';
 $descripcion_tipcue='';
 $descripcion_estcue='';
 
+
+
 if(isset($_POST['buscar_EDC'])){
 
     

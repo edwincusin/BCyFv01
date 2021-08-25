@@ -12,11 +12,12 @@ $html2pdf->pdf->SetDisplayMode('fullpage');
 $html2pdf->pdf->SetProtection(array('modify','copy'));
 $html2pdf->setTestTdInOnePage(false);
 $html2pdf->writeHTML($html);
-$html2pdf->Output('archivo.pdf', 'D');
+$html2pdf->Output($_POST['txtnombres'].' '.$_POST['txtcedula'].'.pdf', 'D');
 //uso para guardar en un archivo en el servidor
 //$html2pdf->output('/absolute/path/file_xxxx.pdf', 'F');
 	}
 ?>
+
 <?php 
     include './sessionStart.php';
 ?>
