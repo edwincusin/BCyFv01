@@ -49,12 +49,12 @@
 
                     </ul>
                 </li>
-                <li id="item_menu"><a href="#">Reportes</a>
+                <!-- <li id="item_menu"><a href="#">Reportes</a>
                     <ul id="desp_submenu">
                         <li><a href="#">Clientes</a></li>
                         <li><a href="#">Usuarios</a></li>
                     </ul>
-                </li>
+                </li> -->
                 <?php  ?>
 
                 <li id="item_cuenta" > <a href="#">&#128100; <?php echo $_SESSION['nameuser'];?></a>

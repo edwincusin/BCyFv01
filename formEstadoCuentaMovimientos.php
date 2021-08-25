@@ -140,7 +140,7 @@
                                         
                                         <thead >
                                             <tr>
-                                            <th colspan="8"><b> MOVIMIENTO DE TRANSFERENCIAS SALIENTES</b></th>
+                                            <th colspan="7"><b> MOVIMIENTO DE TRANSFERENCIAS SALIENTES</b></th>
                                             </tr>
                                             <tr>
                                                 <th>N°</th>                                    
@@ -150,7 +150,7 @@
                                                 <th>Nombre Benef. </th>                                              
                                                 <th>Concepto </th>
                                                 <th>Valor $</th>  
-                                                <th>Seg. Saldo</th>
+                                                <!-- <th>Seg. Saldo</th> -->
                                                 </tr>
                                         </thead>
                                         <tbody>
@@ -174,7 +174,7 @@
                                                     <td><?php echo $nombres ?></td>
                                                     <td><?php echo $descripcion_transf ?></td>
                                                     <td><?php echo $monto_transf ?></td>
-                                                    <td><?php echo $saldomonto_transf ?></td>
+                                                    <!-- <td><?php //echo $saldomonto_transf ?></td> -->
                                                 </tr>
                                             <?php
                                             $cont++;
@@ -184,13 +184,13 @@
                                         </tbody>
                                     </table>    
 
-                                       <!-- CREAR TABLA CON LA CONSULTA  TRASFERENCIA  salida  -->
+                                       <!-- CREAR TABLA CON LA CONSULTA  TRASFERENCIA  ENTRADA  -->
 
                                     <table class="tableimp" border="1">
                                         
                                         <thead >
                                             <tr>
-                                            <th colspan="8"><b> MOVIMIENTO DE TRANSFERENCIAS ENTRANTES</b></th>
+                                            <th colspan="7"><b> MOVIMIENTO DE TRANSFERENCIAS ENTRANTES</b></th>
                                             </tr>
                                             <tr>
                                                 <th>N°</th>                                    
@@ -200,7 +200,7 @@
                                                 <th>Nombre Tranf. </th>                                               
                                                 <th>Concepto </th>
                                                 <th>Valor $</th> 
-                                                <th>Seg. Saldo</th>
+                                                <!-- <th>Seg. Saldo</th> -->
                                                 </tr>
                                         </thead>
                                         <tbody>
@@ -224,7 +224,7 @@
                                                     <td><?php echo $nombres ?></td>
                                                     <td><?php echo $descripcion_transf ?></td>
                                                     <td><?php echo $monto_transf ?></td>
-                                                    <td><?php echo $saldomonto_transf ?></td>
+                                                    <!-- <td><?php// echo $saldomonto_transf ?></td> -->
                                                 </tr>
                                             <?php
                                             $cont++;
@@ -240,7 +240,7 @@
                                         
                                         <thead >
                                             <tr>
-                                            <th colspan="8"><b> MOVIMIENTO DE DEPOSITOS</b></th>
+                                            <th colspan="7"><b> MOVIMIENTO DE DEPOSITOS</b></th>
                                             </tr>
                                             <tr>
                                                 <th>N°</th>                                    
@@ -250,7 +250,7 @@
                                                 <th>Tipo Dep. </th>                                             
                                                 <th>Ref. Cheque</th>
                                                 <th>Valor $</th>   
-                                                <th>Seg. Saldo</th>
+                                                <!-- <th>Seg. Saldo</th> -->
                                                 </tr>
                                         </thead>
                                         <tbody>
@@ -272,9 +272,9 @@
                                                     <td><?php echo $fechadeposito_trandep ?></td>
                                                     <td><?php echo $nombredep_trandep ?></td>
                                                     <td><?php echo $descripcion_tipdep ?></td>
-                                                    <td><?php echo $numerocheque_trandep ?></td>
-                                                    <td><?php echo $saldomonto_trandep ?></td>
+                                                    <td><?php echo $numerocheque_trandep ?></td>                                                    
                                                     <td><?php echo $monto_trandep ?></td>
+                                                    <!-- <td><?php //echo $saldomonto_trandep ?></td> -->
                                                 </tr>
                                             <?php
                                             $cont++;
@@ -292,7 +292,7 @@
                                         
                                         <thead >
                                             <tr>
-                                            <th colspan="8"><b> MOVIMIENTO DE RETIROS</b></th>
+                                            <th colspan="7"><b> MOVIMIENTO DE RETIROS</b></th>
                                             </tr>
                                             <tr>
                                                 <th>N°</th>                                    
@@ -302,7 +302,7 @@
                                                 <th>Tipo Ret. </th>                                             
                                                 <th>Ref. Cheque</th>
                                                 <th>Valor $</th>   
-                                                <th>Seg. Saldo</th>
+                                                <!-- <th>Seg. Saldo</th> -->
                                                 </tr>
                                         </thead>
                                         <tbody>
@@ -324,9 +324,9 @@
                                                     <td><?php echo $fecha_tranret ?></td>
                                                     <td><?php echo $nombreret_tranret ?></td>
                                                     <td><?php echo $descripcion_tipret ?></td>
-                                                    <td><?php echo $numerocheque_tranret ?></td>
-                                                    <td><?php echo $saldomonto_tranret ?></td>
+                                                    <td><?php echo $numerocheque_tranret ?></td>                                                    
                                                     <td><?php echo $monto_tranret ?></td>
+                                                    <!-- <td><?php// echo $saldomonto_tranret ?></td> -->
                                                 </tr>
                                             <?php
                                             $cont++;
@@ -335,16 +335,6 @@
                                             ?>
                                         </tbody>
                                     </table>   
-
-
-
-
-
-
-
-
-
-
                                     </center>
 
 
